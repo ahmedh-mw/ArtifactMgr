@@ -32,7 +32,10 @@ runs:
     - name: Job Execute for Windows
       if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') }}
       shell: pwsh
-      run: "../shell_commands.bat"
+      run: |
+        echo $pwd
+        dir
+        ../shell_commands.sh
 
     - name: Job Execute for Linux/MacOS
       if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') }}
