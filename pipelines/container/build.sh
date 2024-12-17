@@ -28,6 +28,8 @@ sudo docker build -f Matlab.R2024b.Dockerfile \
         --build-arg MATLAB_PRODUCT_LIST='MATLAB Simulink Simulink_Check Simulink_Design_Verifier Simulink_Report_Generator Simulink_Coder Simulink_Compiler Simulink_Test Embedded_Coder Polyspace_Code_Prover Polyspace_Bug_Finder Simulink_Coverage CI/CD_Automation_for_Simulink_Check' \
         -t matlab_padv:R2024b .
 
+docker tag matlab_padv:R2024b localhost:5000/matlab_padv:R2024b
+docker push localhost:5000/matlab_padv:R2024b
 ########################################
 #    Create matlab container
 ########################################

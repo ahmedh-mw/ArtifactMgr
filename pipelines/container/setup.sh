@@ -149,3 +149,8 @@ sudo ln -s /opt/matlab/R2024b/bin/matlab /usr/local/bin/matlab
 # Simulink_Check Simulink_Coder Simulink_Compiler Simulink_Coverage
 # Simulink_Design_Verifier Simulink_Report_Generator Simulink_Test
 # CI/CD_Automation_for_Simulink_Check
+
+########################################
+#    Setup local registery
+########################################
+docker run -d -p 5000:5000 --name registry registry:2
