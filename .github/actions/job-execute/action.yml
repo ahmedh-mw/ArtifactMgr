@@ -13,19 +13,19 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        echo inputs.os: "${{ inputs.os }}"
+        echo runner.os: "${{ runner.os }}"
         echo inputs.enable-dryrun: "${{ inputs.enable-dryrun }}"
         echo condition1: "${{ (inputs.os == 'Windows') && (inputs.enable-dryrun == 'true') }}"
         echo condition2: "${{ (inputs.os != 'Windows') && (inputs.enable-dryrun == 'true') }}"
       shell: pwsh
 
     - name: Job Execute for Windows
-      if: ${{ (inputs.os == 'Windows') && (inputs.enable-dryrun == 'true') }}
+      if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: pwsh
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
     - name: Job Execute for Linux/MacOS
-      if: ${{ (inputs.os != 'Windows') && (inputs.enable-dryrun == 'true') }}
+      if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: bash
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
