@@ -13,7 +13,6 @@ on:
 jobs:
   Generic-Linux-Job:
     name: Generic Job
-    if: ${{ !cancelled() }}
     runs-on: ${{ inputs.agent-label }}
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE

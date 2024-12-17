@@ -5,12 +5,14 @@ on:                                           # You must define at least one tri
 jobs:
   start:
     uses: ./.github/workflows/generic-job.yml
+    if: ${{ !cancelled() }}
     with:
       job-name: start
       agent-label: padv_win_agents
 
   AHRS_Voter_CollectMetrics:
     needs: start
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
@@ -18,6 +20,7 @@ jobs:
 
   Actuator_Control_CollectMetrics:
     needs: start
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
@@ -25,6 +28,7 @@ jobs:
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end
