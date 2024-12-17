@@ -1,18 +1,20 @@
 name: Single Job Workflow
 on:                                           # You must define at least one trigger for each workflow.
   workflow_dispatch:                          # Set manual triggers as the default trigger, while it is not intended to be activated manually.
+env:
+  CONTINUE_ON_ERROR: true
 
 jobs:
   start:
     uses: ./.github/workflows/generic-job.yml
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && CONTINUE_ON_ERROR}}
     with:
       job-name: start
       agent-label: padv_win_agents
 
   AHRS_Voter_CollectMetrics:
     needs: start
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && CONTINUE_ON_ERROR }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
@@ -20,7 +22,7 @@ jobs:
 
   Actuator_Control_CollectMetrics:
     needs: start
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && CONTINUE_ON_ERROR }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
@@ -28,7 +30,7 @@ jobs:
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && CONTINUE_ON_ERROR }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end
