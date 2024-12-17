@@ -13,6 +13,7 @@ jobs:
     runs-on: ${{ vars.RUNNER_LABEL }}
     container:
       image: ${{ vars.IMAGE_TAG }}
+      volumes: ${{ fromJSON(vars.RUNNER_CONTAINER_VOLUMES) }}
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
