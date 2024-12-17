@@ -17,7 +17,7 @@ jobs:
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: scm
-      PYTHON_ALIAS: python3
+      PYTHON_ALIAS: python
 
     steps:
       - name: Checkout code
@@ -25,6 +25,8 @@ jobs:
         with:
           path: ${{ env.SOURCECODE_FOLDER }}
       
+      - run: python --version
+
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SOURCECODE_FOLDER }}/pipelines/scripts/env_prepare.py --platform github"
 
