@@ -2,9 +2,6 @@ name: Single Job Workflow
 on:                                           # You must define at least one trigger for each workflow.
   workflow_dispatch:                          # Set manual triggers as the default trigger, while it is not intended to be activated manually.
 
-vars:
-  CONTINUE_ON_ERROR: 'true'
-
 jobs:
   start:
     if: ${{ vars.CONTINUE_ON_ERROR == 'true' && !cancelled() }}
