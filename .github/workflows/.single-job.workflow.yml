@@ -7,7 +7,7 @@ env:
 jobs:
   start:
     uses: ./.github/workflows/generic-job.yml
-    if: ${{ !cancelled() && env.CONTINUE_ON_ERROR == 'true' }}
+    if: env.CONTINUE_ON_ERROR == 'true'
     with:
       job-name: start
       agent-label: padv_win_agents
