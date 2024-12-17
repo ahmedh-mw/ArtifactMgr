@@ -1,12 +1,13 @@
 name: Single Job Workflow
 on:                                           # You must define at least one trigger for each workflow.
   workflow_dispatch:                          # Set manual triggers as the default trigger, while it is not intended to be activated manually.
-env:
+
+vars:
   CONTINUE_ON_ERROR: 'true'
 
 jobs:
   start:
-    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
+    if: ${{ vars.CONTINUE_ON_ERROR == 'true' && !cancelled() }}
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: start
@@ -14,7 +15,7 @@ jobs:
 
   AHRS_Voter_CollectMetrics:
     needs: start
-    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
+    if: vars.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
@@ -22,7 +23,7 @@ jobs:
 
   Actuator_Control_CollectMetrics:
     needs: start
-    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
+    if: vars.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
@@ -30,7 +31,7 @@ jobs:
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
-    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
+    if: vars.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end
