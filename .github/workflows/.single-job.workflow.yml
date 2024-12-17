@@ -14,7 +14,7 @@ jobs:
 
   AHRS_Voter_CollectMetrics:
     needs: start
-    if: ${{ !cancelled() && env.CONTINUE_ON_ERROR == 'true' }}
+    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
@@ -22,7 +22,7 @@ jobs:
 
   Actuator_Control_CollectMetrics:
     needs: start
-    if: ${{ !cancelled() && env.CONTINUE_ON_ERROR == 'true' }}
+    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
@@ -30,7 +30,7 @@ jobs:
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
-    if: ${{ !cancelled() && env.CONTINUE_ON_ERROR == 'true' }}
+    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end
