@@ -1,6 +1,6 @@
 {
     "INCREMENTAL_PIPELINE_ENABLED" : "true",
-    "CONTINUE_ON_ERROR" : "fase",
+    "CONTINUE_ON_ERROR" : "true",
     "ENABLE_CI_DRYRUN" : "false",
     "comment__AGENT_TYPE_____" : "defaul/containert",
     "AGENT_TYPE" : "default",

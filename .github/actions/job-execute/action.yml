@@ -13,12 +13,12 @@ runs:
   using: 'composite'
   steps:
     - name: Job Execute for Windows
-      if: ${{ (inputs.os == 'Windows') && (enable-dryrun == 'true') }}
+      if: ${{ (inputs.os == 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: pwsh
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
     - name: Job Execute for Linux/MacOS
-      if: ${{ (inputs.os != 'Windows') && (enable-dryrun == 'true') }}
+      if: ${{ (inputs.os != 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: bash
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
