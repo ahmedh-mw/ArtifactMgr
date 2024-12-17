@@ -34,10 +34,6 @@ jobs:
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
-      # - name: Tasks Execution
-      #   run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
-      #   continue-on-error: ${{ env.CONTINUE_ON_ERROR == 'true' }}
-
       - name: Execute Job tasks
         uses: ./scm/.github/actions/job-execute
         with:

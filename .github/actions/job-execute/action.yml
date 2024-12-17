@@ -34,8 +34,6 @@ runs:
       shell: pwsh
       run: |
         echo $pwd
-        dir
-        ../shell_commands.sh
 
     - name: Job Execute for Linux/MacOS
       if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') }}
