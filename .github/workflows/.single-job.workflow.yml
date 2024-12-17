@@ -17,14 +17,14 @@ jobs:
       job-name: AHRS_Voter_CollectMetrics
 
   AHRS_Voter_CollectMetrics2:
-    needs: start
+    needs: AHRS_Voter_CollectMetrics
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
 
   AHRS_Voter_CollectMetrics3:
-    needs: start
+    needs: AHRS_Voter_CollectMetrics2
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
@@ -38,14 +38,14 @@ jobs:
       job-name: Actuator_Control_CollectMetrics
 
   Actuator_Control_CollectMetrics2:
-    needs: start
+    needs: Actuator_Control_CollectMetrics
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
 
   Actuator_Control_CollectMetrics3:
-    needs: start
+    needs: Actuator_Control_CollectMetrics2
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
