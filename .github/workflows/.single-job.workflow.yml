@@ -4,6 +4,7 @@ on:                                           # You must define at least one tri
 
 jobs:
   start:
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: start
@@ -11,6 +12,7 @@ jobs:
 
   AHRS_Voter_CollectMetrics:
     needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
@@ -18,6 +20,7 @@ jobs:
 
   Actuator_Control_CollectMetrics:
     needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
@@ -25,6 +28,7 @@ jobs:
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end

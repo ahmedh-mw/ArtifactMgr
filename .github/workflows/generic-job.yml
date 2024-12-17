@@ -14,7 +14,6 @@ jobs:
   Generic-Linux-Job:
     name: Generic Job
     runs-on: ${{ inputs.agent-label }}
-    if: vars.CONTINUE_ON_ERROR == 'true' || !cancelled()
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: scm
