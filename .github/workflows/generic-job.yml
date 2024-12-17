@@ -24,8 +24,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: ${{ env.SOURCECODE_FOLDER }}
-      
-      - run: python --version
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SOURCECODE_FOLDER }}/pipelines/scripts/env_prepare.py --platform github"
@@ -43,7 +41,7 @@ jobs:
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Execute Job tasks
-        uses: ./.github/actions/job-execute
+        uses: .github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
