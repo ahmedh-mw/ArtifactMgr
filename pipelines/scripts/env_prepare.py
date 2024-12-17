@@ -52,7 +52,7 @@ if __name__ == "__main__":
                 if os.name == 'nt':           # isWindows
                     content += f"env.PATH = \"{value};$PATH\"\n"
                 else:
-                    content += f"env.PATH = \"{value}|$PATH\"\n"
+                    content += f"env.PATH = \"{value}:$PATH\"\n"
 
         content += "return this"
         print(content)
@@ -69,6 +69,6 @@ if __name__ == "__main__":
                     if os.name == 'nt':           # isWindows
                         github_env.write(f"PATH={value};{envPATH}\n")
                     else:
-                        github_env.write(f"PATH={value}|{envPATH}\n")
+                        github_env.write(f"PATH={value}:{envPATH}\n")
         
     logger.log(core.HEADER_LOG, core.SECTION_END)
