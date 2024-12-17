@@ -11,17 +11,13 @@
     "UPLOADS_FOLDER" : "_uploads_",
     "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.json",
     
-
-    "WORKSPACE_PATH_KEY-JENKINS" : "WORKSPACE" ,
-    "WORKSPACE_PATH_KEY" : "GITHUB_WORKSPACE" ,
     "PROJECT_NAME-JENKINS" : "$JOB_NAME",
-    "PROJECT_NAME" : "$GITHUB_WORKFLOW",
     "CURRENT_RUN_ID-JENKINS": "$BUILD_NUMBER",
-    "CURRENT_RUN_ID": "$GITHUB_RUN_NUMBER",
     "REPO_BRANCH_NAME-JENKINS": "${scm.branches[0].name}",
+
+    "PROJECT_NAME" : "$GITHUB_WORKFLOW",
+    "CURRENT_RUN_ID": "$GITHUB_RUN_NUMBER",
     "REPO_BRANCH_NAME": "$GITHUB_REF_NAME",
 
-
-    "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts",
-    "NODE_EXTRA_CA_CERTS": "C:\\Data\\certs\\github.mathworks.crt"
+    "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts"
 }
