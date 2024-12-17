@@ -16,8 +16,8 @@ jobs:
     runs-on: ${{ inputs.agent-label }}
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
-      SOURCECODE_FOLDER: scm
-      PYTHON_ALIAS: python
+      SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
+      PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
 
     steps:
       - name: Checkout code
