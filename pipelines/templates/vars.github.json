@@ -1,9 +1,6 @@
 {
     "comment__AGENT_TYPE_____" : "defaul/containert",
-    "AGENT_TYPE" : "default",
-    "AGENT_LABEL" : "" ,
-    "IMAGE_TAG" : "matlab_padv:R2024b" ,
-    "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+    "RUNNER_TYPE" : "default",
 
     "CONTINUE_ON_ERROR" : "true",
     "INCREMENTAL_PIPELINE_ENABLED" : "true",

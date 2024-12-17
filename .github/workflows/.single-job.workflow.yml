@@ -8,7 +8,6 @@ jobs:
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: start
-      agent-label: padv_win_agents
 
   AHRS_Voter_CollectMetrics:
     needs: start
@@ -16,7 +15,6 @@ jobs:
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: AHRS_Voter_CollectMetrics
-      agent-label: padv_win_agents
 
   Actuator_Control_CollectMetrics:
     needs: start
@@ -24,7 +22,6 @@ jobs:
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Actuator_Control_CollectMetrics
-      agent-label: padv_win_agents
 
   end:
     needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
@@ -32,7 +29,6 @@ jobs:
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: end
-      agent-label: padv_win_agents
 
   # job4:
   #   needs: job2

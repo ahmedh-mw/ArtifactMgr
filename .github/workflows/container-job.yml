@@ -6,11 +6,16 @@ on:
       job-name:
         required: true
         type: string
+      agent-label:
+        required: true
+        type: string
       
 jobs:
   Generic-Linux-Job:
     name: Generic Job
-    runs-on: ${{ vars.RUNNER_LABEL }}
+    runs-on: ${{ inputs.agent-label }}
+    container:
+      image: node:14
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
