@@ -1,0 +1,35 @@
+# action.yaml
+name: 'Job Execute'
+description: 'Job Execute'
+inputs:
+  job-name:
+    description: 'Job name'
+    required: true
+  enable-dryrun:
+    description: 'Enable Dryrun'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Job Execute for Windows
+      if: ${{ (inputs.os == 'Windows') && (enable-dryrun == 'true') }}
+      shell: pwsh
+      run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
+
+    - name: Job Execute for Linux/MacOS
+      if: ${{ (inputs.os != 'Windows') && (enable-dryrun == 'true') }}
+      shell: bash
+      run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
+
+
+# - run: |
+         
+      #       if("$ENABLE_CI_DRYRUN" == "true"){
+      #           sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_dryrun.py --jobname \"$jobName\""
+      #       } else {
+      #           dir("$SOURCECODE_FOLDER"){
+      #               sh "../shell_commands.sh"
+      #           }
+      #       }
+ 
