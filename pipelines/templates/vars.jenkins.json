@@ -1,23 +1,20 @@
 {
-    "INCREMENTAL_PIPELINE_ENABLED" : "true",
-    "CONTINUE_ON_ERROR" : "true",
-    "ENABLE_CI_DRYRUN" : "false",
     "comment__AGENT_TYPE_____" : "defaul/containert",
     "AGENT_TYPE" : "default",
     "AGENT_LABEL" : "" ,
     "IMAGE_TAG" : "matlab_padv:R2024b" ,
     "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+
+    "CONTINUE_ON_ERROR" : "true",
+    "INCREMENTAL_PIPELINE_ENABLED" : "true",
+    "ENABLE_CI_DRYRUN" : "false",
+    
+    "PROJECT_NAME" : "$JOB_NAME",
+    "CURRENT_RUN_ID": "$BUILD_NUMBER",
+    "REPO_BRANCH_NAME": "${scm.branches[0].name}",
+
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
     "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.json",
-    
-    "PROJECT_NAME-JENKINS" : "$JOB_NAME",
-    "CURRENT_RUN_ID-JENKINS": "$BUILD_NUMBER",
-    "REPO_BRANCH_NAME-JENKINS": "${scm.branches[0].name}",
-
-    "PROJECT_NAME" : "$GITHUB_WORKFLOW",
-    "CURRENT_RUN_ID": "$GITHUB_RUN_NUMBER",
-    "REPO_BRANCH_NAME": "$GITHUB_REF_NAME",
-
     "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts"
 }

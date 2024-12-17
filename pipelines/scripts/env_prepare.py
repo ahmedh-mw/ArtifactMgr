@@ -7,8 +7,10 @@ import logging
 from config import *
 
 logger = logging.getLogger()
-_PIPELINE_ENVIRONMENT_VARIABLES_PATH = 'pipelines/templates/vars.json'
-_JENKINS_PIPELINE_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
+_ENVIRONMENT_JENKINS_VARIABLES_PATH = 'pipelines/templates/vars.jenkins.json'
+_GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
+
+_ENVIRONMENT_GUTHUB_VARIABLES_PATH = 'pipelines/templates/vars.github.json'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Prepare environemnt variables.', prog='env_prepare.py')
@@ -32,7 +34,11 @@ if __name__ == "__main__":
     
     logger.info(f"Prepare environemnt variables")
     
-    variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _PIPELINE_ENVIRONMENT_VARIABLES_PATH)
+    if args.platform == "jenkins":
+        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
+    elif args.platform == "github":
+        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_GUTHUB_VARIABLES_PATH)
+    
     print(variables_file_path)
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
@@ -44,7 +50,7 @@ if __name__ == "__main__":
 
         content += "return this"
         print(content)
-        jenkinsFilePath = os.path.join(WORKSPACE_PATH, _JENKINS_PIPELINE_ENVIRONMENT_VARIABLES_PATH)
+        jenkinsFilePath = os.path.join(WORKSPACE_PATH, _GROOVY_ENVIRONMENT_VARIABLES_PATH)
         print(jenkinsFilePath)
         files.add_file(jenkinsFilePath, content)
     elif args.platform == "github":
