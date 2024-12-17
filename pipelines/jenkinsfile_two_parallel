@@ -1,0 +1,37 @@
+node{
+    skipDefaultCheckout()
+    cleanWs()
+    checkout scm
+    TEMPLATES_LOCATION = 'scm/pipelines/templates/jenkins'
+    load "$TEMPLATES_LOCATION/vars.groovy"
+    activity = load "$TEMPLATES_LOCATION/activity.groovy"
+
+    activity.addStage('job1')()
+    activity.addStage('job2')()
+    activity.addStage('job3')()
+    stage('Parallel1'){
+        parallel(
+            'job4': {
+                activity.addStage('job4a')()
+                activity.addStage('job4b')()
+            },
+            'job5': {
+                activity.addStage('job5')()
+            },
+            'job6': {
+                activity.addStage('job6')()
+            }
+        )
+    }
+    activity.addStage('job7')()
+    stage('Parallel2'){
+        parallel(
+            'job8': activity.addStage('job8'),
+            'job9': activity.addStage('job9')
+        )
+    }
+    activity.addStage('end')()
+}
+
+
+    

@@ -1,0 +1,73 @@
+{
+    "Jobs" : {
+        "start" : {
+            "Flow_Predecessor_Jobs":[],
+            "Commands": [
+                "openProject(pwd);",
+                "padv.util.saveArtifactDatabase('derived/dmrs/base.dmr');"
+            ],
+            "Outputs" : [
+                {"Path":"derived"}
+            ]
+        },
+        "AHRS_Voter_CollectMetrics" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [
+                "openProject(pwd);",
+                "{{runprocess}};",
+                "padv.util.saveArtifactDatabase('derived/dmrs/AHRS_Voter.dmr');",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "04_Results/AHRS_Voter/metrics"}
+            ]
+        },
+        "Actuator_Control_CollectMetrics" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [
+                "openProject(pwd);",
+                "{{runprocess}};",
+                "padv.util.saveArtifactDatabase('derived/dmrs/Actuator_Control.dmr');",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
+            ],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "04_Results/Actuator_Control/metrics"}
+            ]
+        },
+        "end" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics", "Actuator_Control_CollectMetrics"],
+            "Commands": [
+                "openProject(pwd);",
+                "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
+                "cd('..');delete('derived/dmrs/*.dmr');",
+                "rptObj=padv.ProcessAdvisorReportGenerator(Process = 'CIPipeline', Format='pdf', OutputPath='04_Results/ProcessAdvisorReport');",
+                "rptObj.generateReport();"
+            ],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "04_Results"}
+            ]
+        }
+    },
+    "Pipeline" :{
+        "GenerateReport": true,
+        "CollectArtifacts": true,
+        "ProcessName" : "CIPipeline",
+        "RunprocessOptions": {
+            "Force" : false,
+            "RerunFailedTasks": false,
+            "RerunErroredTasks": false,
+            "GenerateJUnitForProcess": true,
+            "MakeSureOutputArtifactsWriteable": true,
+            "ExitInBatchMode": false
+        }
+    }
+}

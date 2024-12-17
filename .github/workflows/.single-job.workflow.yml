@@ -1,0 +1,63 @@
+name: Single Job Workflow
+on:                                           # You must define at least one trigger for each workflow.
+  workflow_dispatch:                          # Set manual triggers as the default trigger, while it is not intended to be activated manually.
+
+jobs:
+  start:
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: start
+      agent-label: padv_win_agents
+
+  AHRS_Voter_CollectMetrics:
+    needs: start
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: AHRS_Voter_CollectMetrics
+      agent-label: padv_win_agents
+
+  Actuator_Control_CollectMetrics:
+    needs: start
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: Actuator_Control_CollectMetrics
+      agent-label: padv_win_agents
+
+  end:
+    needs: [AHRS_Voter_CollectMetrics, Actuator_Control_CollectMetrics]
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: end
+      agent-label: padv_win_agents
+
+  # job4:
+  #   needs: job2
+  #   uses: ./.github/workflows/generic-job.yml
+  #   with:
+  #     job-name: job4
+  #     shell-type: ${{ env.SHELL_TYPE }}
+  #     agent-label: ${{ env.AGENT_LABEL }}
+  
+  # job5:
+  #   needs: job2
+  #   uses: ./.github/workflows/generic-job.yml
+  #   with:
+  #     job-name: job5
+  #     shell-type: ${{ env.SHELL_TYPE }}
+  #     agent-label: ${{ env.AGENT_LABEL }}
+
+  # job5b:
+  #   needs: job5
+  #   uses: ./.github/workflows/generic-job.yml
+  #   with:
+  #     job-name: job5b
+  #     shell-type: ${{ env.SHELL_TYPE }}
+  #     agent-label: ${{ env.AGENT_LABEL }}
+
+  # job6:
+  #   needs: [job3, job4, job5b]
+  #   uses: ./.github/workflows/generic-job.yml
+  #   with:
+  #     job-name: job6
+  #     shell-type: ${{ env.SHELL_TYPE }}
+  #     agent-label: ${{ env.AGENT_LABEL }}
