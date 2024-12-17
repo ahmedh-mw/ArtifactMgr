@@ -19,15 +19,25 @@ runs:
     #     echo condition2: "${{ (inputs.os != 'Windows') && (inputs.enable-dryrun == 'true') }}"
     #   shell: pwsh
 
-    - name: Job Execute for Windows
+    - name: Job Dryrun Execute for Windows
       if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: pwsh
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
-    - name: Job Execute for Linux/MacOS
+    - name: Job Dryrun Execute for Linux/MacOS
       if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: bash
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
+
+    - name: Job Execute for Windows
+      if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') }}
+      shell: pwsh
+      run: "../shell_commands.bat"
+
+    - name: Job Execute for Linux/MacOS
+      if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') }}
+      shell: bash
+      run: "../shell_commands.sh"
 
 
 # - run: |
