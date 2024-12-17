@@ -1,4 +1,4 @@
-name: Generic Job
+name: Container Job
 on:
   workflow_dispatch:
   workflow_call:
@@ -6,16 +6,13 @@ on:
       job-name:
         required: true
         type: string
-      agent-label:
-        required: true
-        type: string
       
 jobs:
-  Generic-Linux-Job:
-    name: Generic Job
-    runs-on: ${{ inputs.agent-label }}
+  Container-Job:
+    name: Container Job
+    runs-on: ${{ vars.RUNNER_LABEL }}
     container:
-      image: node:14
+      image: ${{ vars.IMAGE_TAG }}
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}

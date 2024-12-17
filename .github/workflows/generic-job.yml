@@ -8,7 +8,7 @@ on:
         type: string
       
 jobs:
-  Generic-Linux-Job:
+  Generic-Job:
     name: Generic Job
     runs-on: ${{ vars.RUNNER_LABEL }}
     env:
