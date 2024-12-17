@@ -13,9 +13,9 @@ jobs:
     runs-on: ${{ vars.RUNNER_LABEL }}
     container:
       image: ${{ vars.IMAGE_TAG }}
-      # volumes:
-      #   - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
-      #   - /home/ahmedh/artifactory:/home/ahmedh/artifactory
+      volumes:
+        - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
+        - /home/ahmedh/artifactory:/home/ahmedh/artifactory
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
