@@ -6,7 +6,7 @@ env:
 
 jobs:
   start:
-    if: env.CONTINUE_ON_ERROR == 'true'
+    if: env.CONTINUE_ON_ERROR == 'true' && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: start
