@@ -41,7 +41,7 @@ jobs:
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Execute Job tasks
-        uses: .github/actions/job-execute
+        uses: ./scm/.github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
