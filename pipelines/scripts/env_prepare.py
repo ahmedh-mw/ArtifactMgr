@@ -11,6 +11,7 @@ _ENVIRONMENT_JENKINS_VARIABLES_PATH = 'pipelines/templates/vars.jenkins.json'
 _GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
 
 _ENVIRONMENT_GUTHUB_VARIABLES_PATH = 'pipelines/templates/vars.github.json'
+_MATLAB_INSTALLATION_PATH_KEY = 'MATLAB_INSTALLATION_PATH'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Prepare environemnt variables.', prog='env_prepare.py')
@@ -47,6 +48,11 @@ if __name__ == "__main__":
         content = str()
         for key, value in variables.items():
             content += f"env.{key} = \"{value}\"\n"
+            if key == _MATLAB_INSTALLATION_PATH_KEY:
+                if os.name == 'nt':           # isWindows
+                    content += f"env.PATH = \"{value};$PATH\"\n"
+                else:
+                    content += f"env.PATH = \"{value}|$PATH\"\n"
 
         content += "return this"
         print(content)
@@ -58,5 +64,11 @@ if __name__ == "__main__":
             for key, value in variables.items():
                 value = replace_env_variables(value)
                 github_env.write(f"{key}={value}\n")
+                if key == _MATLAB_INSTALLATION_PATH_KEY:
+                    envPATH = os.environ.get('PATH')
+                    if os.name == 'nt':           # isWindows
+                        github_env.write(f"PATH={value};{envPATH}\n")
+                    else:
+                        github_env.write(f"PATH={value}|{envPATH}\n")
         
     logger.log(core.HEADER_LOG, core.SECTION_END)
