@@ -2,18 +2,18 @@ class Utils:
     @staticmethod
     def getList(jsonObject, listName):
         listObject  = jsonObject.get(listName)
-        if not listObject:
+        if listObject is None:
             listObject = []
         return listObject
     
     def getBoolean(jsonObject, fieldName, defaultValue=False):
         item = jsonObject.get(fieldName)
-        if not item:
+        if item is None:
             listObject = defaultValue
         return listObject
     
     def getDic(jsonObject, fieldName, defaultValue={}):
         dic = jsonObject.get(fieldName)
-        if not dic:
+        if dic is None:
             dic = defaultValue
         return dic
