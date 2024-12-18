@@ -13,6 +13,8 @@ jobs:
     runs-on: ${{ vars.RUNNER_LABEL }}
     container:
       image: ${{ vars.IMAGE_TAG }}
+      env:
+        HOME: /home/matlab
       volumes:
         - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
         - /home/ahmedh/artifactory:/home/ahmedh/artifactory
