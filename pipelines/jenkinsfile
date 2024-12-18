@@ -4,7 +4,6 @@ node{
     env.SOURCECODE_FOLDER = 'scm'
     activity = load "$SOURCECODE_FOLDER/pipelines/templates/jenkins/activity.groovy"
     activity.loadEnvVariables()
-    // env.PATH = "${env.JENKINS_WIN_MATLAB_PATH};${env.PATH}"
 
     activity.addStage('start')()
     activity.addParallelStages('Iterations',

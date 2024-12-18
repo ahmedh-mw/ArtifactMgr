@@ -11,6 +11,7 @@ class Pipeline:
     _RUNNER_LABEL_FIELD = 'RUNNER_LABEL'
     _IMAGE_TAG_FIELD = 'IMAGE_TAG'
     _IMAGE_ARGS_FIELD = 'IMAGE_ARGS'
+    _USE_MATLAB_PLUGIN_FIELD = 'USE_MATLAB_PLUGIN'
 
     _CONTINUE_ON_ERROR_FIELD = 'CONTINUE_ON_ERROR'
     _SUBMODULES_MODE_FIELD = 'SUBMODULES_MODE'
@@ -38,6 +39,7 @@ class Pipeline:
                 
         self.CONTINUE_ON_ERROR = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._CONTINUE_ON_ERROR_FIELD), False)
         self.SUBMODULES_MODE = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._SUBMODULES_MODE_FIELD), False)
+        self.USE_MATLAB_PLUGIN = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._USE_MATLAB_PLUGIN_FIELD), False)
         self.IncrementalPipelineEnabled = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._INCREMENTAL_PIPELINE_ENABLED_FIELD), True)
         self.MatlabInstrallationPath = self._pipelineObject.get(self._MATLAB_INSTALLATION_PATH_FIELD)
         self.MatlabLaunchCmd = self._pipelineObject.get(self._MATLAB_LAUNCH_CMD_FIELD)

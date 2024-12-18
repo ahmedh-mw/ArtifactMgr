@@ -46,14 +46,18 @@ def addParallelStages(stageName, jobs) {
 def _getStageBody(jobName){
     def exception = null
     try {
-        if ("IS_UNIX" == "true") {
+        if ("$IS_UNIX" == "true") {
             sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_prepare.py --jobname \"$jobName\""
             sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_download.py --jobname \"$jobName\""
             if("$ENABLE_CI_DRYRUN" == "true"){
                 sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_dryrun.py --jobname \"$jobName\""
             } else {
                 dir("$SOURCECODE_FOLDER"){
-                    sh "../shell_commands.sh"
+                    if ("$USE_MATLAB_PLUGIN" == "true" ) {
+                        runMATLABCommand "addpath(fileparts(pwd));matlab_job_commands"
+                    } else {
+                        sh "../shell_commands.sh"
+                    }
                 }
             }
         } else {            
@@ -63,7 +67,11 @@ def _getStageBody(jobName){
                 bat "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_dryrun.py --jobname \"$jobName\""
             } else {
                 dir("$SOURCECODE_FOLDER"){
-                    bat "..\\shell_commands.bat"
+                    if ("$USE_MATLAB_PLUGIN" == "true" ) {
+                        runMATLABCommand "addpath(fileparts(pwd));matlab_job_commands"
+                    } else {
+                        bat "..\\shell_commands.bat"
+                    }
                 }
             }
         }
@@ -75,7 +83,7 @@ def _getStageBody(jobName){
     }
     
     errorDetected = exception? true : false
-    if ("IS_UNIX" == "true") {
+    if ("$IS_UNIX" == "true") {
         sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_delta_upload.py --jobname \"$jobName\" --errordetected \"$errorDetected\""
     } else {
         bat "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_delta_upload.py --jobname \"$jobName\" --errordetected \"$errorDetected\""

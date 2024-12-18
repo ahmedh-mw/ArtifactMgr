@@ -66,8 +66,8 @@
 
         "CONTINUE_ON_ERROR" : false,
         "_SUBMODULES_MODE" : "Configured from Jenkins pipeline scm settings",
+        "USE_MATLAB_PLUGIN" : true,
 
-        
         "IncrementalPipelineEnabled" : true,
         "MatlabInstrallationPath" : "D:/sb/BR24b_1211/matlab/bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
