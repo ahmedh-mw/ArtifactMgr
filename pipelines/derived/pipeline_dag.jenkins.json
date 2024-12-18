@@ -69,7 +69,7 @@
         "USE_MATLAB_PLUGIN" : false,
 
         "IncrementalPipelineEnabled" : true,
-        "MatlabInstrallationPath" : "D:/sb/BR24b_1211/matlab/bin",
+        "MatlabInstrallationPath" : "D:/sb/Bslcicd_1217/matlab/bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
         "MatlabLaunchCmd" : "matlab",
         "MatlabStartupOptions" : "-nodesktop -logfile output.log",

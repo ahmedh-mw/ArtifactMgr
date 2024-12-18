@@ -13,9 +13,9 @@ jobs:
     runs-on: ${{ vars.RUNNER_LABEL }}
     container:
       image: ${{ vars.IMAGE_TAG }}  
-      volumes:
-        - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
-        - /home/ahmedh/artifactory:/home/ahmedh/artifactory
+      # volumes:
+      #   - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
+      #   - /home/ahmedh/artifactory:/home/ahmedh/artifactory
     env:
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
