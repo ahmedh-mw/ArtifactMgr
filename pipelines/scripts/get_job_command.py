@@ -36,4 +36,4 @@ if __name__ == "__main__":
         shellCommandsFilePath += ".bat"
     else:
         shellCommandsFilePath += ".sh"
-    files.add_file(shellCommandsFilePath, "matlab -batch matlab_job_commands")
+    files.add_file(shellCommandsFilePath, f"matlab -batch {_MATLAB_JOB_COMMANDS_FILE_PATH}")
