@@ -27,7 +27,7 @@ def parseArguments():
     return args
 
 def dryrun(jobName):
-    dag = DAG(DAG_PATH)
+    dag = DAG(getDagPath())
     job = dag.getJob(jobName)
     for outputPath, dirFiles in job.Outputs.items():
         dir_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, outputPath)

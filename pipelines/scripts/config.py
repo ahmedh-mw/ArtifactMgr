@@ -26,14 +26,6 @@ SOURCECODE_FOLDER = os.environ.get('SOURCECODE_FOLDER')
 if SOURCECODE_FOLDER is None:
     SOURCECODE_FOLDER = 'scm'
 
-DAG_RELATIVE_PATH = os.environ.get('DAG_RELATIVE_PATH')
-if DAG_RELATIVE_PATH is None:
-    DAG_RELATIVE_PATH = 'pipelines/derived/pipeline_dag.json'
-
-DAG_PATH = os.environ.get('DAG_PATH')
-if DAG_PATH is None:
-    DAG_PATH = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, DAG_RELATIVE_PATH)
-
 PROJECT_NAME = os.environ.get('PROJECT_NAME')
 if PROJECT_NAME is None:
     PROJECT_NAME = "Artifactory/bslcicd"
@@ -58,3 +50,9 @@ else:
     NETWORK_STORAGE_PATH = "/home/ahmedh/artifactory"
 artifactsService = NetworkStorage(NETWORK_STORAGE_PATH, INCREMENTAL_PIPELINE_ENABLED == 'true')
 # artifactsService = Artifactory(root_folder)
+
+def getDagPath():
+    dagPath = os.environ.get('DAG_PATH')
+    if dagPath is None:
+        dagPath = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, os.environ.get('DAG_RELATIVE_PATH'))
+    return dagPath

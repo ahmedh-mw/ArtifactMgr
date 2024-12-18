@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: ${{ env.SOURCECODE_FOLDER }}
+          submodules: ${{ env.SUBMODULES_MODE }}
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SOURCECODE_FOLDER }}/pipelines/scripts/env_prepare.py --platform github"

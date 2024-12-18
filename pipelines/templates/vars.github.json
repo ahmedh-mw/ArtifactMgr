@@ -1,11 +1,6 @@
 {
-    "MATLAB_INSTALLATION_PATH" : "D:\\sb\\BR24b_1211\\matlab\\bin",
-    "MATLAB_INSTALLATION_PATH____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
-    "comment__AGENT_TYPE_____" : "defaul/containert",
-    "RUNNER_TYPE" : "default",
-
-    "INCREMENTAL_PIPELINE_ENABLED" : "true",
     "ENABLE_CI_DRYRUN" : "false",
+    "PYTHON_ALIAS" : "ex:python3 - Update this value at Repository variables",
     
     "PROJECT_NAME" : "$GITHUB_WORKFLOW",
     "CURRENT_RUN_ID": "$GITHUB_RUN_NUMBER",
@@ -13,12 +8,6 @@
 
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
-    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.json",
-    "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts",
-
-    "xxxxx_REPO_VARIABLES_CONTINUE_ON_ERROR" : "ex:false - Update this value at Repository variables",
-    "xxxxx_REPO_VARIABLES_IMAGE_TAG" : "ex:localhost:5000/matlab_padv:R2024b - Update this value at Repository variables",
-    "xxxxx_REPO_VARIABLES_PYTHON_ALIAS" : "ex:python3 - Update this value at Repository variables",
-    "xxxxx_REPO_VARIABLES_RUNNER_LABEL" : "ex:padv_win_agents - Update this value at Repository variables",
-    "xxxxx_REPO_VARIABLES_SOURCECODE_FOLDER" : "ex:scm - Update this value at Repository variables"
+    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.github.json",
+    "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts"
 }

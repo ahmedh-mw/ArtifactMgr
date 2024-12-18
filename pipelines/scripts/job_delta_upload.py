@@ -25,7 +25,7 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, core.SECTION_END)
     logger.info(args)
 
-    dag = DAG(DAG_PATH)
+    dag = DAG(getDagPath())
     # Move to _uploads_ => calculate delta => upload
     ####### Download:
     # 'Start' job:  - download only the 'End' job branch folder from the last succssful run

@@ -21,7 +21,7 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, core.SECTION_END)
     logger.info(args)
 
-    dag = DAG(DAG_PATH)
+    dag = DAG(getDagPath())
     # Download => Merge => Move to project
     ####### Download:
     # 'Start' job:  - download only the 'End' job branch folder from the last succssful run

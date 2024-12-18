@@ -1,4 +1,5 @@
 from utils import core
+from dag import DAG
 from utils import files
 import os
 import json
@@ -12,6 +13,7 @@ _GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
 
 _ENVIRONMENT_GUTHUB_VARIABLES_PATH = 'pipelines/templates/vars.github.json'
 _MATLAB_INSTALLATION_PATH_KEY = 'MATLAB_INSTALLATION_PATH'
+_DAG_RELATIVE_PATH_FIELD = 'DAG_RELATIVE_PATH'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Prepare environemnt variables.', prog='env_prepare.py')
@@ -43,6 +45,25 @@ if __name__ == "__main__":
     print(variables_file_path)
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
+
+    os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
+    dag = DAG(getDagPath())
+    variables[dag.Pipeline._RUNNER_TYPE_FIELD] = dag.Pipeline.RunnerType
+    variables[dag.Pipeline._RUNNER_LABEL_FIELD] = dag.Pipeline.RunnerLabel
+    variables[dag.Pipeline._IMAGE_TAG_FIELD] = dag.Pipeline.ImageTag
+    variables[dag.Pipeline._IMAGE_ARGS_FIELD] = dag.Pipeline.ImageArgs
+    variables[dag.Pipeline._CONTINUE_ON_ERROR_FIELD] = dag.Pipeline.ContinueOnError
+    variables[dag.Pipeline._SUBMODULES_MODE_FIELD] = dag.Pipeline.SubmodulesMode
+    variables[dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD] = dag.Pipeline.IncrementalPipelineEnabled
+    variables[dag.Pipeline._MATLAB_INSTALLATION_PATH_FIELD] = dag.Pipeline.MatlabInstrallationPath
+    variables[dag.Pipeline._MATLAB_LAUNCH_CMD_FIELD] = dag.Pipeline.MatlabLaunchCmd
+    variables[dag.Pipeline._MATLAB_STARTUP_OPTIONS_FIELD] = dag.Pipeline.MatlabStartupOptions
+    variables[dag.Pipeline.AddBatchStartupOption] = dag.Pipeline.AddBatchStartupOption
+    variables[dag.Pipeline._PROCESS_NAME_FIELD] = dag.Pipeline.ProcessName
+    variables[dag.Pipeline._GENERATE_REPORT] = dag.Pipeline.GenerateReport
+    variables[dag.Pipeline._REPORT_PATH_FIELD] = dag.Pipeline.ReportPath
+    variables[dag.Pipeline._REPORT_FORMAT_FIELD] = dag.Pipeline.ReportFormat
+    variables[dag.Pipeline._ENABLE_ARTIFACTS_COLLECTION_FIELD] = dag.Pipeline.EnableArtifactCollection
 
     if args.platform == "jenkins":
         content = str()

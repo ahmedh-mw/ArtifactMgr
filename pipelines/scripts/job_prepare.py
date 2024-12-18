@@ -59,7 +59,7 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, core.SECTION_END)
     
     logger.info(f"Prepare job data and check job status")
-    dag = DAG(DAG_PATH)
+    dag = DAG(getDagPath())
     currentJob = dag.getJob(args.jobname)
     build_shell_commands(dag, currentJob)
         

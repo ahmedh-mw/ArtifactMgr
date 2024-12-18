@@ -58,9 +58,28 @@
         }
     },
     "Pipeline" :{
-        "GenerateReport": true,
-        "EnableArtifactCollection": true,
+        "comment__RunnerType_____" : "defaul/container",
+        "RunnerType" : "default",
+        "RunnerLabel" : "padv_win_agents",
+        "ImageTag" : "matlab_padv:R2024b",
+        "ImageArgs" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+
+        "ContinueOnError" : false,
+        "SubmodulesMode" : false,
+        "IncrementalPipelineEnabled" : true,
+        "MatlabInstrallationPath" : "D:\\sb\\BR24b_1211\\matlab\\bin",
+        "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
+        "MatlabLaunchCmd" : "matlab",
+        "MatlabStartupOptions" : "-nodesktop -logfile output.log",
+        "AddBatchStartupOption" : true,
+        
         "ProcessName" : "CIPipeline",
+        "GenerateReport": true,
+        "ReportPath" : "ProcessAdvisorReport",
+        "ReportFormat" : "pdf",
+
+        "EnableArtifactCollection": true,
+
         "RunprocessOptions": {
             "Force" : false,
             "RerunFailedTasks": false,

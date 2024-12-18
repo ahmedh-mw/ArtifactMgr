@@ -1,13 +1,4 @@
 {
-    "MATLAB_INSTALLATION_PATH" : "D:\\sb\\BR24b_1211\\matlab\\bin",
-    "comment__AGENT_TYPE_____" : "defaul/containert",
-    "AGENT_TYPE" : "default",
-    "AGENT_LABEL" : "" ,
-    "IMAGE_TAG" : "matlab_padv:R2024b" ,
-    "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
-
-    "CONTINUE_ON_ERROR" : "true",
-    "INCREMENTAL_PIPELINE_ENABLED" : "true",
     "ENABLE_CI_DRYRUN" : "false",
     
     "PROJECT_NAME" : "$JOB_NAME",
@@ -16,6 +7,6 @@
 
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
-    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.json",
+    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.json",
     "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts"
 }
