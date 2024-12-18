@@ -13,8 +13,8 @@ def loadEnvVariables(){
 def addStage(jobName) {
     return {
         stage(jobName) {
-            if("$AGENT_TYPE" == "default"){
-                node("$AGENT_LABEL") {
+            if("$RUNNER_TYPE" == "default"){
+                node("$RUNNER_LABEL") {
                     skipDefaultCheckout()
                     cleanWs()
                     checkout scm

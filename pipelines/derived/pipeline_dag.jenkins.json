@@ -58,14 +58,16 @@
         }
     },
     "Pipeline" :{
-        "comment__RunnerType_____" : "defaul/container",
-        "RunnerType" : "default",
-        "RunnerLabel" : "padv_win_agents",
-        "ImageTag" : "matlab_padv:R2024b",
-        "ImageArgs" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+        "comment__RUNNER_TYPE_____" : "defaul/container",
+        "RUNNER_TYPE" : "default",
+        "RUNNER_LABEL" : "padv_win_agents",
+        "IMAGE_TAG" : "matlab_padv:R2024b",
+        "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
 
-        "ContinueOnError" : false,
-        "SubmodulesMode" : "false",
+        "CONTINUE_ON_ERROR" : false,
+        "_SUBMODULES_MODE" : "Configured from Jenkins pipeline scm settings",
+
+        
         "IncrementalPipelineEnabled" : true,
         "MatlabInstrallationPath" : "D:/sb/BR24b_1211/matlab/bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",

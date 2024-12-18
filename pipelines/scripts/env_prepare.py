@@ -30,18 +30,18 @@ def replace_env_variables(expression):
     return result
 
 def loadPipelineVariables(variables, dag):
-    if dag.Pipeline.RunnerType: 
-        variables[dag.Pipeline._RUNNER_TYPE_FIELD] = dag.Pipeline.RunnerType
-    if dag.Pipeline.RunnerLabel: 
-        variables[dag.Pipeline._RUNNER_LABEL_FIELD] = dag.Pipeline.RunnerLabel
-    if dag.Pipeline.ImageTag: 
-        variables[dag.Pipeline._IMAGE_TAG_FIELD] = dag.Pipeline.ImageTag
-    if dag.Pipeline.ImageArgs: 
-        variables[dag.Pipeline._IMAGE_ARGS_FIELD] = dag.Pipeline.ImageArgs
-    if dag.Pipeline.ContinueOnError: 
-        variables[dag.Pipeline._CONTINUE_ON_ERROR_FIELD] = str(dag.Pipeline.ContinueOnError).lower()
-    if dag.Pipeline.SubmodulesMode: 
-        variables[dag.Pipeline._SUBMODULES_MODE_FIELD] = dag.Pipeline.SubmodulesMode
+    if dag.Pipeline.RUNNER_TYPE: 
+        variables[dag.Pipeline._RUNNER_TYPE_FIELD] = dag.Pipeline.RUNNER_TYPE
+    if dag.Pipeline.RUNNER_LABEL: 
+        variables[dag.Pipeline._RUNNER_LABEL_FIELD] = dag.Pipeline.RUNNER_LABEL
+    if dag.Pipeline.IMAGE_TAG: 
+        variables[dag.Pipeline._IMAGE_TAG_FIELD] = dag.Pipeline.IMAGE_TAG
+    if dag.Pipeline.IMAGE_ARGS: 
+        variables[dag.Pipeline._IMAGE_ARGS_FIELD] = dag.Pipeline.IMAGE_ARGS
+    if dag.Pipeline.CONTINUE_ON_ERROR: 
+        variables[dag.Pipeline._CONTINUE_ON_ERROR_FIELD] = str(dag.Pipeline.CONTINUE_ON_ERROR).lower()
+    if dag.Pipeline.SUBMODULES_MODE: 
+        variables[dag.Pipeline._SUBMODULES_MODE_FIELD] = dag.Pipeline.SUBMODULES_MODE
     if dag.Pipeline.IncrementalPipelineEnabled:
         variables[dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD] = str(dag.Pipeline.IncrementalPipelineEnabled).lower()
     if dag.Pipeline.MatlabInstrallationPath: 

@@ -7,13 +7,13 @@ import logging
 logger = logging.getLogger()
 
 class Pipeline:
-    _RUNNER_TYPE_FIELD = 'RunnerType'
-    _RUNNER_LABEL_FIELD = 'RunnerLabel'
-    _IMAGE_TAG_FIELD = 'ImageTag'
-    _IMAGE_ARGS_FIELD = 'ImageArgs'
+    _RUNNER_TYPE_FIELD = 'RUNNER_TYPE'
+    _RUNNER_LABEL_FIELD = 'RUNNER_LABEL'
+    _IMAGE_TAG_FIELD = 'IMAGE_TAG'
+    _IMAGE_ARGS_FIELD = 'IMAGE_ARGS'
 
-    _CONTINUE_ON_ERROR_FIELD = 'ContinueOnError'
-    _SUBMODULES_MODE_FIELD = 'SubmodulesMode'
+    _CONTINUE_ON_ERROR_FIELD = 'CONTINUE_ON_ERROR'
+    _SUBMODULES_MODE_FIELD = 'SUBMODULES_MODE'
     _INCREMENTAL_PIPELINE_ENABLED_FIELD = 'IncrementalPipelineEnabled'
     _MATLAB_INSTALLATION_PATH_FIELD = 'MatlabInstrallationPath'
     _MATLAB_LAUNCH_CMD_FIELD = 'MatlabLaunchCmd'
@@ -31,13 +31,13 @@ class Pipeline:
     def __init__(self, pipelineObject):
         self._pipelineObject = pipelineObject
 
-        self.RunnerType = self._pipelineObject.get(self._RUNNER_TYPE_FIELD)
-        self.RunnerLabel = self._pipelineObject.get(self._RUNNER_LABEL_FIELD)
-        self.ImageTag = self._pipelineObject.get(self._IMAGE_TAG_FIELD)
-        self.ImageArgs = self._pipelineObject.get(self._IMAGE_ARGS_FIELD)
+        self.RUNNER_TYPE = self._pipelineObject.get(self._RUNNER_TYPE_FIELD)
+        self.RUNNER_LABEL = self._pipelineObject.get(self._RUNNER_LABEL_FIELD)
+        self.IMAGE_TAG = self._pipelineObject.get(self._IMAGE_TAG_FIELD)
+        self.IMAGE_ARGS = self._pipelineObject.get(self._IMAGE_ARGS_FIELD)
                 
-        self.ContinueOnError = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._CONTINUE_ON_ERROR_FIELD), False)
-        self.SubmodulesMode = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._SUBMODULES_MODE_FIELD), False)
+        self.CONTINUE_ON_ERROR = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._CONTINUE_ON_ERROR_FIELD), False)
+        self.SUBMODULES_MODE = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._SUBMODULES_MODE_FIELD), False)
         self.IncrementalPipelineEnabled = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._INCREMENTAL_PIPELINE_ENABLED_FIELD), True)
         self.MatlabInstrallationPath = self._pipelineObject.get(self._MATLAB_INSTALLATION_PATH_FIELD)
         self.MatlabLaunchCmd = self._pipelineObject.get(self._MATLAB_LAUNCH_CMD_FIELD)

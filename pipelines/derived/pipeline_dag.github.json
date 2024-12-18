@@ -57,9 +57,9 @@
         }
     },
     "Pipeline" :{
-        "comment__RunnerType_____" : "defaul/containert",
-        "RunnerType" : "default",
-        "_RunnerLabel" : "ex:padv_win_agents - Update this value at Repository variables",
+        "comment__RUNNER_TYPE_____" : "defaul/containert",
+        "RUNNER_TYPE" : "default",
+        "_RUNNER_LABEL" : "ex:padv_win_agents - Update this value at Repository variables",
         "_IMAGE_TAG" : "ex:localhost:5000/matlab_padv:R2024b - Update this value at Repository variables",
         "_IMAGE_ARGS" : "Add directly to container-job.yml",
 
