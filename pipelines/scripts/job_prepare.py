@@ -7,7 +7,8 @@ import logging
 from config import *
 
 logger = logging.getLogger()
-_MATLAB_JOB_COMMANDS_FILE_PATH = 'matlab_job_commands.m'
+_MATLAB_JOB_COMMANDS_FILE_NAME = 'matlab_job_commands'
+_MATLAB_JOB_COMMANDS_FILE_PATH = "{_MATLAB_JOB_COMMANDS_FILE_NAME}.m"
 _SHELL_COMMANDS_FILE_PATH = 'shell_commands'
 
 def parseArguments():
@@ -35,7 +36,7 @@ def build_shell_commands(dag, currentJob):
         shellCommandsFilePath += ".bat"
     else:
         shellCommandsFilePath += ".sh"
-    files.add_file(shellCommandsFilePath, f"matlab -batch \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_PATH}\"")
+    files.add_file(shellCommandsFilePath, f"matlab -batch \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_NAME}\"")
     files.set_execute_flag(shellCommandsFilePath)
 
 def build_runprocess_command(dag, currentJob):
