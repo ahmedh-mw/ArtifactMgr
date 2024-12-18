@@ -68,7 +68,7 @@
         "_SOURCECODE_FOLDER" : "ex:scm - Update this value at Repository variables",
 
         "_ContinueOnError" : "ex:false - Update this value at Repository variables",
-        "SubmodulesMode" : false,
+        "_SubmodulesMode" : "ex:false - Update this value at Repository variables",
         "IncrementalPipelineEnabled" : true,
         "MatlabInstrallationPath" : "D:\\sb\\BR24b_1211\\matlab\\bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
