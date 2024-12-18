@@ -12,9 +12,7 @@ jobs:
     name: Container Job
     runs-on: ${{ vars.RUNNER_LABEL }}
     container:
-      image: ${{ vars.IMAGE_TAG }}
-      env:
-        HOME: /home/matlab
+      image: ${{ vars.IMAGE_TAG }}  
       volumes:
         - /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses
         - /home/ahmedh/artifactory:/home/ahmedh/artifactory
@@ -22,6 +20,7 @@ jobs:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
+      HOME: /home/matlab
 
     steps:
       - name: Checkout code
