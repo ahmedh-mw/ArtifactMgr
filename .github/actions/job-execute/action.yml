@@ -26,19 +26,19 @@ runs:
       run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
     - name: Job Execute for Windows
-      if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') }} && (inputs.use-matlab-plugin != 'true') }}
+      if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin != 'true') }}
       working-directory: ${{ env.SOURCECODE_FOLDER }}
       shell: pwsh
       run: ../shell_commands.bat
 
     - name: Job Execute for Linux/MacOS
-      if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') }} && (inputs.use-matlab-plugin != 'true') }}
+      if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin != 'true') }}
       working-directory: ${{ env.SOURCECODE_FOLDER }}
       shell: bash
       run: ../shell_commands.sh
 
     - name: Run script
-      if: (inputs.enable-dryrun != 'true') }} && (inputs.use-matlab-plugin == 'true') }}
+      if: ${{ (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin == 'true') }}
       uses: matlab-actions/run-command@v2
       working-directory: ${{ env.SOURCECODE_FOLDER }}
       with:
