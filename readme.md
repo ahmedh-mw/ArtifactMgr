@@ -82,7 +82,7 @@ There are three sub activities :
     - Tasks Execution
     - Generate Final Report if GenerateReport is enabled
     - Upload using 'branchName' field
-    - Upload to CI platform if CollectArtifacts is enabled
+    - Upload to CI platform if EnableArtifactCollection is enabled
 
 ## 2. Serial Stages example
 - JOB1: Start Job
@@ -98,4 +98,4 @@ There are three sub activities :
     - Tasks Execution
     - Generate Final Report if GenerateReport is enabled
     - Upload using 'branchName' field
-    - Upload to CI platform if CollectArtifacts is enabled
+    - Upload to CI platform if EnableArtifactCollection is enabled

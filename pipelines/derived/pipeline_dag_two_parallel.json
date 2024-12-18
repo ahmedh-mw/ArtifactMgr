@@ -229,6 +229,6 @@
     },
     "Pipeline" :{
         "GenerateReport": true,
-        "CollectArtifacts": true
+        "EnableArtifactCollection": true
     }
 }
