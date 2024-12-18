@@ -61,14 +61,14 @@
         "comment__RunnerType_____" : "defaul/containert",
         "RunnerType" : "default",
         "_RunnerLabel" : "ex:padv_win_agents - Update this value at Repository variables",
-        "_ImageTag" : "ex:localhost:5000/matlab_padv:R2024b - Update this value at Repository variables",
-        "_ImageArgs" : "Add directly yo container-job.yml",
+        "_IMAGE_TAG" : "ex:localhost:5000/matlab_padv:R2024b - Update this value at Repository variables",
+        "_IMAGE_ARGS" : "Add directly to container-job.yml",
 
         "_PYTHON_ALIAS" : "ex:python3 - Update this value at Repository variables",
         "_SOURCECODE_FOLDER" : "ex:scm - Update this value at Repository variables",
 
-        "_ContinueOnError" : "ex:false - Update this value at Repository variables",
-        "_SubmodulesMode" : "ex:false - Update this value at Repository variables",
+        "_CONTINUE_ON_ERROR" : "ex:false - Update this value at Repository variables",
+        "_SUBMODULES_MODE" : "ex:false - Update this value at Repository variables",
         "IncrementalPipelineEnabled" : true,
         "MatlabInstrallationPath" : "D:\\sb\\BR24b_1211\\matlab\\bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",

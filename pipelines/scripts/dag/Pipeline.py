@@ -36,9 +36,9 @@ class Pipeline:
         self.ImageTag = self._pipelineObject.get(self._IMAGE_TAG_FIELD)
         self.ImageArgs = self._pipelineObject.get(self._IMAGE_ARGS_FIELD)
                 
-        self.ContinueOnError = Utils.getBoolean(pipelineObject, self._pipelineObject[self._CONTINUE_ON_ERROR_FIELD], False)
-        self.SubmodulesMode = Utils.getBoolean(pipelineObject, self._pipelineObject[self._SUBMODULES_MODE_FIELD], False)
-        self.IncrementalPipelineEnabled = Utils.getBoolean(pipelineObject, self._pipelineObject[self._INCREMENTAL_PIPELINE_ENABLED_FIELD], True)
+        self.ContinueOnError = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._CONTINUE_ON_ERROR_FIELD), False)
+        self.SubmodulesMode = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._SUBMODULES_MODE_FIELD), False)
+        self.IncrementalPipelineEnabled = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._INCREMENTAL_PIPELINE_ENABLED_FIELD), True)
         self.MatlabInstrallationPath = self._pipelineObject.get(self._MATLAB_INSTALLATION_PATH_FIELD)
         self.MatlabLaunchCmd = self._pipelineObject.get(self._MATLAB_LAUNCH_CMD_FIELD)
         self.MatlabStartupOptions = self._pipelineObject.get(self._MATLAB_STARTUP_OPTIONS_FIELD)
