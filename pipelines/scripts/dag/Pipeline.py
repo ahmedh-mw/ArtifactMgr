@@ -57,4 +57,4 @@ class Pipeline:
         self.OutputsPaths = None
         self.BranchesOutputsPaths = defaultdict(list)
         
-        print(self)
+        print(vars(self))
