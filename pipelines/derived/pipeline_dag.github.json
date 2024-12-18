@@ -48,8 +48,7 @@
                 "openProject(pwd);",
                 "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
                 "cd('..');delete('derived/dmrs/*.dmr');",
-                "rptObj=padv.ProcessAdvisorReportGenerator(Process = 'CIPipeline', Format='pdf', OutputPath='04_Results/ProcessAdvisorReport');",
-                "rptObj.generateReport();"
+                "{{generate-report}};"
             ],
             "Outputs" : [
                 {"Path":"derived"},
@@ -78,7 +77,7 @@
 
         "ProcessName" : "CIPipeline",
         "GenerateReport": true,
-        "ReportPath" : "ProcessAdvisorReport",
+        "ReportPath" : "04_Results/ProcessAdvisorReport",
         "ReportFormat" : "pdf",
 
         "EnableArtifactCollection": true,     

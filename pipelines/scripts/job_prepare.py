@@ -23,8 +23,10 @@ def build_shell_commands(dag, currentJob):
     for command in currentJob.Commands:
         if "{{runprocess}}" in command:
             command = command.replace("{{runprocess}}", build_runprocess_command(dag, currentJob))
+        elif "{{generate-report}}" in command:
+            command = command.replace("{{generate-report}}", build_generate_report_command(dag))
+            
         commands += f"\t{command}\n"
-    
     # commands += "\tvarargout{1}=0;\n"
     commands += "end"
 
@@ -36,7 +38,13 @@ def build_shell_commands(dag, currentJob):
         shellCommandsFilePath += ".bat"
     else:
         shellCommandsFilePath += ".sh"
-    files.add_file(shellCommandsFilePath, f"matlab -batch \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_NAME}\"")
+    
+    shellCommand = f"{dag.Pipeline.MatlabLaunchCmd} {dag.Pipeline.MatlabStartupOptions}"
+    if dag.Pipeline.AddBatchStartupOption:
+        shellCommand += " -batch"
+    shellCommand += " \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_NAME}\""
+    files.add_file(shellCommandsFilePath, shellCommand)
+    
     files.set_execute_flag(shellCommandsFilePath)
 
 def build_runprocess_command(dag, currentJob):
@@ -51,6 +59,15 @@ def build_runprocess_command(dag, currentJob):
             arguments.append(f"{arg}={str(argValue).lower()}")
     
     return f"[~,exitCode] = runprocess( {','.join(arguments)})"
+
+def build_generate_report_command(dag):
+    arguments = []
+    arguments.append(f"Process = '{dag.Pipeline.ProcessName}'")
+    arguments.append(f"Format = '{dag.Pipeline.ReportFormat}'")
+    arguments.append(f"OutputPath = '{dag.Pipeline.ReportPath}'")
+    command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
+    command += f"rptObj.generateReport()"
+    return command
 
 if __name__ == "__main__":
     args = parseArguments()

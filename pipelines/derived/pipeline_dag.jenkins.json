@@ -75,7 +75,7 @@
         
         "ProcessName" : "CIPipeline",
         "GenerateReport": true,
-        "ReportPath" : "ProcessAdvisorReport",
+        "ReportPath" : "04_Results/ProcessAdvisorReport",
         "ReportFormat" : "pdf",
 
         "EnableArtifactCollection": true,
