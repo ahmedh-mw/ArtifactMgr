@@ -22,6 +22,8 @@ def parseArguments():
     return args
 
 def replace_env_variables(expression):
+    if expression is None:
+        return
     pattern = re.compile(r'\$(\w+)')
     def replace_match(match):
         var_name = match.group(1)
