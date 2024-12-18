@@ -8,7 +8,7 @@ from config import *
 
 logger = logging.getLogger()
 _MATLAB_JOB_COMMANDS_FILE_NAME = 'matlab_job_commands'
-_MATLAB_JOB_COMMANDS_FILE_PATH = "{_MATLAB_JOB_COMMANDS_FILE_NAME}.m"
+_MATLAB_JOB_COMMANDS_FILE_PATH = f"{_MATLAB_JOB_COMMANDS_FILE_NAME}.m"
 _SHELL_COMMANDS_FILE_PATH = 'shell_commands'
 
 def parseArguments():
