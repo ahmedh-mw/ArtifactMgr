@@ -69,9 +69,9 @@ if __name__ == "__main__":
     if dag.Pipeline.MatlabLaunchCmd: 
         variables[dag.Pipeline._MATLAB_LAUNCH_CMD_FIELD] = dag.Pipeline.MatlabLaunchCmd
     if dag.Pipeline.MatlabLaunchCmd: 
-        variables[dag.Pipeline._MATLAB_STARTUP_OPTIONS_FIELD] = dag.Pipeline.MatlabLaunchCmd
+        variables[dag.Pipeline._MATLAB_STARTUP_OPTIONS_FIELD] = dag.Pipeline.MatlabStartupOptions
     if dag.Pipeline.AddBatchStartupOption: 
-        variables[dag.Pipeline.AddBatchStartupOption] = str(dag.Pipeline.AddBatchStartupOption).lower()
+        variables[dag.Pipeline._ADD_BATCH_STARTUP_OPTIONS_FIELD] = str(dag.Pipeline.AddBatchStartupOption).lower()
     if dag.Pipeline.ProcessName: 
         variables[dag.Pipeline._PROCESS_NAME_FIELD] = dag.Pipeline.ProcessName
     if dag.Pipeline.GenerateReport: 
