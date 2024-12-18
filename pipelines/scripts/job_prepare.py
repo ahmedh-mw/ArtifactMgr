@@ -42,7 +42,7 @@ def build_shell_commands(dag, currentJob):
     shellCommand = f"{dag.Pipeline.MatlabLaunchCmd} {dag.Pipeline.MatlabStartupOptions}"
     if dag.Pipeline.AddBatchStartupOption:
         shellCommand += " -batch"
-    shellCommand += " \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_NAME}\""
+    shellCommand += f" \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_NAME}\""
     files.add_file(shellCommandsFilePath, shellCommand)
     
     files.set_execute_flag(shellCommandsFilePath)
