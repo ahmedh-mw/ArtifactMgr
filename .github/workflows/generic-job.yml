@@ -12,11 +12,11 @@ jobs:
     name: Generic Job
     runs-on: ${{ vars.RUNNER_LABEL }}
     env:
-      WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
-      SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
-      SCRIPTS_LOCATION: "${{ env.SOURCECODE_FOLDER }}/pipelines/scripts"
+      WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
+      SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
+      SCRIPTS_LOCATION: "${{ vars.SOURCECODE_FOLDER || 'scm' }}/pipelines/scripts"
 
     steps:
       - name: Checkout code
