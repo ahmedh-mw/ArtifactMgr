@@ -1,6 +1,5 @@
 {
     "ENABLE_CI_DRYRUN" : "false",
-    "PYTHON_ALIAS" : "ex:python3 - Update this value at Repository variables",
     
     "PROJECT_NAME" : "$GITHUB_WORKFLOW",
     "CURRENT_RUN_ID": "$GITHUB_RUN_NUMBER",
