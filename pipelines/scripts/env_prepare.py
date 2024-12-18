@@ -29,9 +29,7 @@ def replace_env_variables(expression):
     result = pattern.sub(replace_match, expression)
     return result
 
-def loadPipelineVariables(variables):
-    os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
-    dag = DAG(getDagPath())
+def loadPipelineVariables(variables, dag):
     if dag.Pipeline.RunnerType: 
         variables[dag.Pipeline._RUNNER_TYPE_FIELD] = dag.Pipeline.RunnerType
     if dag.Pipeline.RunnerLabel: 
@@ -82,7 +80,9 @@ if __name__ == "__main__":
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
 
-    loadPipelineVariables(variables)
+    os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
+    dag = DAG(getDagPath())
+    loadPipelineVariables(variables, dag)
 
     if args.platform == "jenkins":
         content = str()
