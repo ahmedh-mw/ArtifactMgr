@@ -35,7 +35,7 @@ def build_shell_commands(dag, currentJob):
         shellCommandsFilePath += ".bat"
     else:
         shellCommandsFilePath += ".sh"
-    files.add_file(shellCommandsFilePath, "matlab -batch \"addpath(fileparts(pwd));matlab_job_commands\"")
+    files.add_file(shellCommandsFilePath, f"matlab -batch \"addpath(fileparts(pwd));{_MATLAB_JOB_COMMANDS_FILE_PATH}\"")
     files.set_execute_flag(shellCommandsFilePath)
 
 def build_runprocess_command(dag, currentJob):
