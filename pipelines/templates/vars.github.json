@@ -7,6 +7,5 @@
 
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
-    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.github.json",
-    "SCRIPTS_LOCATION" : "$SOURCECODE_FOLDER/pipelines/scripts"
+    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.github.json"
 }

@@ -16,6 +16,7 @@ jobs:
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
+      SCRIPTS_LOCATION: "${{ env.SOURCECODE_FOLDER }}/pipelines/scripts"
 
     steps:
       - name: Checkout code
@@ -25,7 +26,7 @@ jobs:
           submodules: ${{ env.SUBMODULES_MODE }}
 
       - name: Load environment variables
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SOURCECODE_FOLDER }}/pipelines/scripts/env_prepare.py --platform github"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/env_prepare.py --platform github"
 
       - name: Clean Workspace
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_clean.py"
