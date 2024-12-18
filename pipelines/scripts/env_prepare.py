@@ -42,6 +42,9 @@ def loadPipelineVariables(variables, dag):
         variables[dag.Pipeline._CONTINUE_ON_ERROR_FIELD] = str(dag.Pipeline.CONTINUE_ON_ERROR).lower()
     if dag.Pipeline.SUBMODULES_MODE: 
         variables[dag.Pipeline._SUBMODULES_MODE_FIELD] = dag.Pipeline.SUBMODULES_MODE
+    if dag.Pipeline.USE_MATLAB_PLUGIN: 
+        variables[dag.Pipeline._USE_MATLAB_PLUGIN_FIELD] = dag.Pipeline.USE_MATLAB_PLUGIN
+        
     if dag.Pipeline.IncrementalPipelineEnabled:
         variables[dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD] = str(dag.Pipeline.IncrementalPipelineEnabled).lower()
     if dag.Pipeline.MatlabInstrallationPath: 
