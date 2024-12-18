@@ -76,7 +76,6 @@ if __name__ == "__main__":
     elif args.platform == "github":
         variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_GUTHUB_VARIABLES_PATH)
     
-    print(variables_file_path)
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
 
