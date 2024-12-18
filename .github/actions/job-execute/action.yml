@@ -37,9 +37,8 @@ runs:
       shell: bash
       run: ../shell_commands.sh
 
-    - name: Run script
+    - name: Job Execute using MATLAB plugin
       if: ${{ (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin == 'true') }}
       uses: matlab-actions/run-command@v2
-      working-directory: ${{ env.SOURCECODE_FOLDER }}
       with:
         command: "addpath(fileparts(pwd));matlab_job_commands"
