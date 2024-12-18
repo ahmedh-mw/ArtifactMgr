@@ -41,4 +41,4 @@ runs:
       if: ${{ (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin == 'true') }}
       uses: matlab-actions/run-command@v2
       with:
-        command: "addpath(fileparts(pwd));matlab_job_commands"
+        command: "cd('${{ env.SOURCECODE_FOLDER }}');addpath(fileparts(pwd));matlab_job_commands"
