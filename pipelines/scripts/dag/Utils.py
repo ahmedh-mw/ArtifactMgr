@@ -9,8 +9,8 @@ class Utils:
     def getBoolean(jsonObject, fieldName, defaultValue=False):
         item = jsonObject.get(fieldName)
         if item is None:
-            listObject = defaultValue
-        return listObject
+            item = defaultValue
+        return item
     
     def getDic(jsonObject, fieldName, defaultValue={}):
         dic = jsonObject.get(fieldName)
