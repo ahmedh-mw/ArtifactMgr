@@ -29,42 +29,24 @@ def replace_env_variables(expression):
     result = pattern.sub(replace_match, expression)
     return result
 
+def loadVariableKey(variables, key, value):
+    if value is not None:
+        if value is bool:
+            variables[key] = str(value).lower()
+        elif value is str:
+            variables[key] = value
+
 def loadPipelineVariables(variables, dag):
-    if dag.Pipeline.RUNNER_TYPE: 
-        variables[dag.Pipeline._RUNNER_TYPE_FIELD] = dag.Pipeline.RUNNER_TYPE
-    if dag.Pipeline.RUNNER_LABEL: 
-        variables[dag.Pipeline._RUNNER_LABEL_FIELD] = dag.Pipeline.RUNNER_LABEL
-    if dag.Pipeline.IMAGE_TAG: 
-        variables[dag.Pipeline._IMAGE_TAG_FIELD] = dag.Pipeline.IMAGE_TAG
-    if dag.Pipeline.IMAGE_ARGS: 
-        variables[dag.Pipeline._IMAGE_ARGS_FIELD] = dag.Pipeline.IMAGE_ARGS
-    if dag.Pipeline.CONTINUE_ON_ERROR: 
-        variables[dag.Pipeline._CONTINUE_ON_ERROR_FIELD] = str(dag.Pipeline.CONTINUE_ON_ERROR).lower()
-    if dag.Pipeline.SUBMODULES_MODE: 
-        variables[dag.Pipeline._SUBMODULES_MODE_FIELD] = dag.Pipeline.SUBMODULES_MODE
-    if dag.Pipeline.USE_MATLAB_PLUGIN: 
-        variables[dag.Pipeline._USE_MATLAB_PLUGIN_FIELD] = str(dag.Pipeline.USE_MATLAB_PLUGIN).lower()
-        
-    if dag.Pipeline.IncrementalPipelineEnabled:
-        variables[dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD] = str(dag.Pipeline.IncrementalPipelineEnabled).lower()
-    if dag.Pipeline.MatlabInstrallationPath: 
-        variables[dag.Pipeline._MATLAB_INSTALLATION_PATH_FIELD] = dag.Pipeline.MatlabInstrallationPath
-    if dag.Pipeline.MatlabLaunchCmd: 
-        variables[dag.Pipeline._MATLAB_LAUNCH_CMD_FIELD] = dag.Pipeline.MatlabLaunchCmd
-    if dag.Pipeline.MatlabLaunchCmd: 
-        variables[dag.Pipeline._MATLAB_STARTUP_OPTIONS_FIELD] = dag.Pipeline.MatlabStartupOptions
-    if dag.Pipeline.AddBatchStartupOption: 
-        variables[dag.Pipeline._ADD_BATCH_STARTUP_OPTIONS_FIELD] = str(dag.Pipeline.AddBatchStartupOption).lower()
-    if dag.Pipeline.ProcessName: 
-        variables[dag.Pipeline._PROCESS_NAME_FIELD] = dag.Pipeline.ProcessName
-    if dag.Pipeline.GenerateReport: 
-        variables[dag.Pipeline._GENERATE_REPORT] = str(dag.Pipeline.GenerateReport).lower()
-    if dag.Pipeline.ReportPath: 
-        variables[dag.Pipeline._REPORT_PATH_FIELD] = dag.Pipeline.ReportPath
-    if dag.Pipeline.ReportFormat: 
-        variables[dag.Pipeline._REPORT_FORMAT_FIELD] = dag.Pipeline.ReportFormat
-    if dag.Pipeline.EnableArtifactCollection: 
-        variables[dag.Pipeline._ENABLE_ARTIFACTS_COLLECTION_FIELD] = str(dag.Pipeline.EnableArtifactCollection).lower()
+    loadVariableKey(variables, dag.Pipeline._RUNNER_TYPE_FIELD, dag.Pipeline.RUNNER_TYPE)
+    loadVariableKey(variables, dag.Pipeline._RUNNER_LABEL_FIELD, dag.Pipeline.RUNNER_LABEL)
+    loadVariableKey(variables, dag.Pipeline._IMAGE_TAG_FIELD, dag.Pipeline.IMAGE_TAG)
+    loadVariableKey(variables, dag.Pipeline._IMAGE_ARGS_FIELD, dag.Pipeline.IMAGE_ARGS)
+    loadVariableKey(variables, dag.Pipeline._CONTINUE_ON_ERROR_FIELD, dag.Pipeline.CONTINUE_ON_ERROR)
+    loadVariableKey(variables, dag.Pipeline._SUBMODULES_MODE_FIELD, dag.Pipeline.SUBMODULES_MODE)
+    loadVariableKey(variables, dag.Pipeline._USE_MATLAB_PLUGIN_FIELD, dag.Pipeline.USE_MATLAB_PLUGIN)
+    loadVariableKey(variables, dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD, dag.Pipeline.IncrementalPipelineEnabled)
+    loadVariableKey(variables, dag.Pipeline._GENERATE_REPORT_FIELD, dag.Pipeline.GenerateReport)
+    loadVariableKey(variables, dag.Pipeline._ENABLE_ARTIFACTS_COLLECTION_FIELD, dag.Pipeline.EnableArtifactCollection)
     
 if __name__ == "__main__":
     args = parseArguments()

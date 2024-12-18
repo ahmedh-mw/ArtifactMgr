@@ -22,7 +22,7 @@ class Pipeline:
     _ADD_BATCH_STARTUP_OPTIONS_FIELD = 'AddBatchStartupOption'
     
     _PROCESS_NAME_FIELD = 'ProcessName'
-    _GENERATE_REPORT = 'GenerateReport'
+    _GENERATE_REPORT_FIELD = 'GenerateReport'
     _REPORT_PATH_FIELD = 'ReportPath'
     _REPORT_FORMAT_FIELD = 'ReportFormat'
 
@@ -47,7 +47,7 @@ class Pipeline:
         self.AddBatchStartupOption = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._ADD_BATCH_STARTUP_OPTIONS_FIELD), True)
         
         self.ProcessName = self._pipelineObject.get(self._PROCESS_NAME_FIELD)
-        self.GenerateReport = Utils.getBoolean(pipelineObject, self._pipelineObject[self._GENERATE_REPORT], True)
+        self.GenerateReport = Utils.getBoolean(pipelineObject, self._pipelineObject[self._GENERATE_REPORT_FIELD], True)
         self.ReportPath = self._pipelineObject.get(self._REPORT_PATH_FIELD)
         self.ReportFormat = self._pipelineObject.get(self._REPORT_FORMAT_FIELD)
 
