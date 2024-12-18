@@ -31,9 +31,9 @@ def replace_env_variables(expression):
 
 def loadVariableKey(variables, key, value):
     if value is not None:
-        if value is bool:
+        if isinstance(value, bool):
             variables[key] = str(value).lower()
-        elif value is str:
+        elif isinstance(value, str):
             variables[key] = value
 
 def loadPipelineVariables(variables, dag):
