@@ -10,9 +10,7 @@ from config import *
 logger = logging.getLogger()
 _ENVIRONMENT_JENKINS_VARIABLES_PATH = 'pipelines/templates/vars.jenkins.json'
 _GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
-
 _ENVIRONMENT_GUTHUB_VARIABLES_PATH = 'pipelines/templates/vars.github.json'
-_MATLAB_INSTALLATION_PATH_KEY = 'MATLAB_INSTALLATION_PATH'
 _DAG_RELATIVE_PATH_FIELD = 'DAG_RELATIVE_PATH'
 
 def parseArguments():
@@ -31,23 +29,7 @@ def replace_env_variables(expression):
     result = pattern.sub(replace_match, expression)
     return result
 
-if __name__ == "__main__":
-    args = parseArguments()
-    logger.log(core.HEADER_LOG, core.SECTION_START)
-    logger.log(core.HEADER_LOG, f"{core.SECTION_NAME} ENVIRONMENT VARIABLES PREPARE")
-    logger.log(core.HEADER_LOG, core.SECTION_END)
-    
-    logger.info(f"Prepare environemnt variables")
-    
-    if args.platform == "jenkins":
-        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
-    elif args.platform == "github":
-        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_GUTHUB_VARIABLES_PATH)
-    
-    print(variables_file_path)
-    with open(variables_file_path, 'r') as variables_file:
-        variables = json.load(variables_file)
-
+def loadPipelineVariables(variables):
     os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
     dag = DAG(getDagPath())
     if dag.Pipeline.RunnerType: 
@@ -82,32 +64,51 @@ if __name__ == "__main__":
         variables[dag.Pipeline._REPORT_FORMAT_FIELD] = dag.Pipeline.ReportFormat
     if dag.Pipeline.EnableArtifactCollection: 
         variables[dag.Pipeline._ENABLE_ARTIFACTS_COLLECTION_FIELD] = str(dag.Pipeline.EnableArtifactCollection).lower()
+    
+if __name__ == "__main__":
+    args = parseArguments()
+    logger.log(core.HEADER_LOG, core.SECTION_START)
+    logger.log(core.HEADER_LOG, f"{core.SECTION_NAME} ENVIRONMENT VARIABLES PREPARE")
+    logger.log(core.HEADER_LOG, core.SECTION_END)
+    
+    logger.info(f"Prepare environemnt variables")
+    
+    if args.platform == "jenkins":
+        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
+    elif args.platform == "github":
+        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_GUTHUB_VARIABLES_PATH)
+    
+    print(variables_file_path)
+    with open(variables_file_path, 'r') as variables_file:
+        variables = json.load(variables_file)
+
+    loadPipelineVariables(variables)
 
     if args.platform == "jenkins":
         content = str()
+        if dag.Pipeline.MatlabInstrallationPath:
+            if os.name == 'nt':           # isWindows
+                content += f"env.PATH = \"{dag.Pipeline.MatlabInstrallationPath};$PATH\"\n"
+            else:
+                content += f"env.PATH = \"{dag.Pipeline.MatlabInstrallationPath}:$PATH\"\n"
+                    
         for key, value in variables.items():
             content += f"env.{key} = \"{value}\"\n"
-            if key == _MATLAB_INSTALLATION_PATH_KEY:
-                if os.name == 'nt':           # isWindows
-                    content += f"env.PATH = \"{value};$PATH\"\n"
-                else:
-                    content += f"env.PATH = \"{value}:$PATH\"\n"
-
+            
         content += "return this"
-        print(content)
         jenkinsFilePath = os.path.join(WORKSPACE_PATH, _GROOVY_ENVIRONMENT_VARIABLES_PATH)
-        print(jenkinsFilePath)
         files.add_file(jenkinsFilePath, content)
     elif args.platform == "github":
         with open(os.environ['GITHUB_ENV'], 'a') as github_env:
+            if dag.Pipeline.MatlabInstrallationPath:
+                envPATH = os.environ.get('PATH')
+                if os.name == 'nt':           # isWindows
+                    github_env.write(f"PATH={dag.Pipeline.MatlabInstrallationPath};{envPATH}\n")
+                else:
+                    github_env.write(f"PATH={dag.Pipeline.MatlabInstrallationPath}:{envPATH}\n")
+                
             for key, value in variables.items():
                 value = replace_env_variables(value)
                 github_env.write(f"{key}={value}\n")
-                if key == _MATLAB_INSTALLATION_PATH_KEY:
-                    envPATH = os.environ.get('PATH')
-                    if os.name == 'nt':           # isWindows
-                        github_env.write(f"PATH={value};{envPATH}\n")
-                    else:
-                        github_env.write(f"PATH={value}:{envPATH}\n")
         
     logger.log(core.HEADER_LOG, core.SECTION_END)
