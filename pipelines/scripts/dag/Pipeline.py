@@ -42,7 +42,7 @@ class Pipeline:
         self.MatlabInstrallationPath = self._pipelineObject.get(self._MATLAB_INSTALLATION_PATH_FIELD)
         self.MatlabLaunchCmd = self._pipelineObject.get(self._MATLAB_LAUNCH_CMD_FIELD)
         self.MatlabStartupOptions = self._pipelineObject.get(self._MATLAB_STARTUP_OPTIONS_FIELD)
-        self.AddBatchStartupOption = self._pipelineObject.get(self._ADD_BATCH_STARTUP_OPTIONS_FIELD)
+        self.AddBatchStartupOption = Utils.getBoolean(pipelineObject, self._pipelineObject.get(self._ADD_BATCH_STARTUP_OPTIONS_FIELD), True)
         
         self.ProcessName = self._pipelineObject.get(self._PROCESS_NAME_FIELD)
         self.GenerateReport = Utils.getBoolean(pipelineObject, self._pipelineObject[self._GENERATE_REPORT], True)

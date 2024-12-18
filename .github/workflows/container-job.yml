@@ -20,6 +20,7 @@ jobs:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
+      SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       HOME: /home/matlab
 
     steps:
@@ -27,6 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: ${{ env.SOURCECODE_FOLDER }}
+          submodules: ${{ env.SUBMODULES_MODE }}
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SOURCECODE_FOLDER }}/pipelines/scripts/env_prepare.py --platform github"
