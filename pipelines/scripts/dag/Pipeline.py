@@ -56,3 +56,5 @@ class Pipeline:
         self.RunprocessOptions = Utils.getDic(pipelineObject, self._RUN_PROCESS_OPTIONS_DIC, {})
         self.OutputsPaths = None
         self.BranchesOutputsPaths = defaultdict(list)
+        
+        print(self)
