@@ -68,6 +68,8 @@
 
         "_CONTINUE_ON_ERROR" : "ex:false - Update this value at Repository variables",
         "_SUBMODULES_MODE" : "ex:false - Update this value at Repository variables",
+        "USE_MATLAB_PLUGIN" : true,
+
         "IncrementalPipelineEnabled" : true,
         "MatlabInstrallationPath" : "D:\\sb\\BR24b_1211\\matlab\\bin",
         "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",

@@ -41,6 +41,7 @@ jobs:
         uses: ./scm/.github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
+          use-matlab-plugin: ${{ env.USE_MATLAB_PLUGIN }}
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
 
       - name: Upload Artifacts
