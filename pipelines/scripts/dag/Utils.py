@@ -17,3 +17,14 @@ class Utils:
         if dic is None:
             dic = defaultValue
         return dic
+    
+    def dictEncode(obj):
+        if isinstance(obj, dict):
+            objDict = obj
+        else:
+            objDict = vars(obj)
+        result = dict(objDict)
+        for k in list(result.keys()):
+            if k.startswith('_'):
+                del result[k]          
+        return result

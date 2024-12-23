@@ -12,7 +12,7 @@ if WORKSPACE_PATH_KEY is None:
 
 WORKSPACE_PATH = os.environ.get(WORKSPACE_PATH_KEY)
 if WORKSPACE_PATH is None:
-    WORKSPACE_PATH = 'C:\\Data\\repos\\ArtifactsManagement'
+    WORKSPACE_PATH = 'C:\\Data\\repos\\gh\\ArtifactMgr'
 
 DONWLOADS_FOLDER = os.environ.get('DONWLOADS_FOLDER')
 if DONWLOADS_FOLDER is None:
@@ -24,7 +24,7 @@ if UPLOADS_FOLDER is None:
 
 SOURCECODE_FOLDER = os.environ.get('SOURCECODE_FOLDER')
 if SOURCECODE_FOLDER is None:
-    SOURCECODE_FOLDER = 'scm'
+    SOURCECODE_FOLDER = ''
 
 PROJECT_NAME = os.environ.get('PROJECT_NAME')
 if PROJECT_NAME is None:

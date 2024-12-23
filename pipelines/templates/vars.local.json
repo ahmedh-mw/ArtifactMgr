@@ -1,0 +1,13 @@
+{
+    "ENABLE_CI_DRYRUN" : "false",
+    
+    "PROJECT_NAME" : "JOB_NAME",
+    "CURRENT_RUN_ID": "BUILD_NUMBER",
+    "REPO_BRANCH_NAME": "main",
+
+    "DONWLOADS_FOLDER" : "_downloads_",
+    "UPLOADS_FOLDER" : "_uploads_",
+    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.json",
+    "SOURCECODE_FOLDER" : "",
+    "SCRIPTS_LOCATION" : "pipelines/scripts"
+}

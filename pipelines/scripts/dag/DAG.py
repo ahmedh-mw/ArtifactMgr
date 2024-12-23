@@ -5,6 +5,7 @@ import logging
 import json
 from .Job import Job
 from .Pipeline import Pipeline
+from .Utils import Utils
 from collections import defaultdict
 
 logger = logging.getLogger()
@@ -19,14 +20,16 @@ class DAG:
         self.Jobs = self._getJobs()
         self.Pipeline = self._getPipeline()
         self._updateSuccessorJobs()
-        self.StartJob = self._updateStartJob()
-        self.EndJob = self._updateEndJob()
+        startJob = self._updateStartJob()
+        self.StartJobName = startJob.Name
+        endJob = self._updateEndJob()
+        self.EndJobName = endJob.Name
         self._pipelineOutputsPaths = set()
-        self._traverseJobs(self.StartJob, [])    # IsStartingNewBranch, BranchName, Pipeline.OutputsPaths
-        self.Pipeline.OutputsPaths = list(self._pipelineOutputsPaths)
-        self._traverseJobs_BuildBranchesOutputsPaths(self.StartJob, [])
+        self._traverseJobs(startJob, [])    # IsStartingNewBranch, BranchName, Pipeline.OutputsPaths
+        self.Pipeline.OutputsPaths = self.removeDescendantFolders(list(self._pipelineOutputsPaths))
+        self._traverseJobs_BuildBranchesOutputsPaths(startJob, [])
         self._updateBranchesOutputsPaths()
-        self.StartJob.DownloadBranchName = self.EndJob.BranchName
+        startJob.DownloadBranchName = endJob.BranchName
         # Debugging: for _,job in dag.Jobs.items(): vars(job)
 
     def getJobUploadPaths(self, job):
@@ -44,6 +47,13 @@ class DAG:
             brancheshNames.add(predecessorJob.BranchName)
         return list(brancheshNames)
 
+    def dictEncode(self):
+        result = Utils.dictEncode(self)
+        # del result["Jobs"]
+        result["Pipeline"] = Utils.dictEncode(result["Pipeline"])
+        # print(result["Pipeline"])
+        result["Jobs"] = {jobName: Utils.dictEncode(job) for jobName, job in result["Jobs"].items()}
+        return result
     #################################################################
     #                Private traverse methds
     ################################################################

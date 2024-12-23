@@ -7,7 +7,9 @@
                 "padv.util.saveArtifactDatabase('derived/dmrs/base.dmr');"
             ],
             "Outputs" : [
-                {"Path":"derived"}
+                {"Path":"derived"},
+                {"Path":"xx"},
+                {"Path":"yy"}
             ]
         },
         "AHRS_Voter_CollectMetrics" : {
@@ -52,8 +54,7 @@
                 "rptObj.generateReport();"
             ],
             "Outputs" : [
-                {"Path":"derived"},
-                {"Path": "04_Results"}
+                {"Path":"derived"}
             ]
         }
     },
