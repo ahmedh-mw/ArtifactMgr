@@ -5,6 +5,7 @@ import logging
 import json
 from .Job import Job
 from .Pipeline import Pipeline
+from .Branch import Branch
 from .Utils import Utils
 from collections import defaultdict
 
@@ -25,8 +26,10 @@ class DAG:
         endJob = self._updateEndJob()
         self.EndJobName = endJob.Name
         self._pipelineOutputsPaths = set()
+        self.Branches = dict()
         self._traverseJobs(startJob, [])    # IsStartingNewBranch, BranchName, Pipeline.OutputsPaths
         self.Pipeline.OutputsPaths = self.removeDescendantFolders(list(self._pipelineOutputsPaths))
+        # Branch names for all jobs need to be calculated before building OutputPaths
         self._traverseJobs_BuildBranchesOutputsPaths(startJob, [])
         self._updateBranchesOutputsPaths()
         startJob.DownloadBranchName = endJob.BranchName
@@ -49,10 +52,9 @@ class DAG:
 
     def dictEncode(self):
         result = Utils.dictEncode(self)
-        # del result["Jobs"]
         result["Pipeline"] = Utils.dictEncode(result["Pipeline"])
-        # print(result["Pipeline"])
         result["Jobs"] = {jobName: Utils.dictEncode(job) for jobName, job in result["Jobs"].items()}
+        result["Branches"] = {branchName: Utils.dictEncode(branch) for branchName, branch in result["Branches"].items()}
         return result
     #################################################################
     #                Private traverse methds
@@ -86,9 +88,13 @@ class DAG:
         ##############################################
         if currentJob.IsStartingNewBranch:
             currentJob.BranchName = currentJob.Name
+            jobBranch = Branch(currentJob.BranchName)
+            self.Branches[currentJob.BranchName] = jobBranch
         else:
             currentJob.BranchName = predecessorJob.BranchName
+            jobBranch = self.Branches[currentJob.BranchName]
        
+        jobBranch.JobsNames.append(currentJob.Name)
         ##############################################
         #       Update Pipeline.OutputsPaths
         ##############################################
@@ -103,18 +109,23 @@ class DAG:
                 self._traverseJobs(successorJob, visitedJobs)
 
     def _traverseJobs_BuildBranchesOutputsPaths(self, currentJob, visitedJobs):
-        _branchOutputs = set(self.Pipeline.BranchesOutputsPaths[currentJob.BranchName])
+        ##############################################
+        #       Build BranchesOutputsPaths
+        ##############################################
+        _branchOutputs = set(self.Branches[currentJob.BranchName].OutputsPaths)
         for predecessorJobName in currentJob.PredecessorJobsNames:      # Add all incoming branches
             if predecessorJobName not in visitedJobs:
                 predecessorJob = self.getJob(predecessorJobName)
                 self._traverseJobs_BuildBranchesOutputsPaths(predecessorJob, visitedJobs)
             predecessorJob = self.getJob(predecessorJobName)
-            predecessorBranchOutputs = self.Pipeline.BranchesOutputsPaths[predecessorJob.BranchName]
+            predecessorBranchOutputs = self.Branches[predecessorJob.BranchName].OutputsPaths
             _branchOutputs.update(predecessorBranchOutputs)
 
         _branchOutputs.update(currentJob.Outputs.keys())
-        self.Pipeline.BranchesOutputsPaths[currentJob.BranchName] = list(_branchOutputs)
-
+        self.Branches[currentJob.BranchName].OutputsPaths = list(_branchOutputs)
+        ##############################################
+        #       Traverse forward
+        ##############################################
         visitedJobs.append(currentJob.Name)
         for successorJobName in currentJob.SuccessorJobsNames:
             if successorJobName not in visitedJobs:
@@ -122,8 +133,8 @@ class DAG:
                 self._traverseJobs_BuildBranchesOutputsPaths(successorJob, visitedJobs)
 
     def _updateBranchesOutputsPaths(self):
-        for branchName, outputsPaths in self.Pipeline.BranchesOutputsPaths.items():
-            self.Pipeline.BranchesOutputsPaths[branchName] = self.removeDescendantFolders(outputsPaths)
+        for branchName, branch in self.Branches.items():
+            branch.OutputsPaths = self.removeDescendantFolders(branch.OutputsPaths)
 
     def _updateSuccessorJobs(self):
         for jobName,job in self.Jobs.items():

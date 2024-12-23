@@ -62,8 +62,8 @@ if __name__ == "__main__":
         conflictFiles = dict()
         for branchName in predecessorJobsBranchesNames:
             logger.debug(f"== Branch Name: {branchName}")
-            branchOutputPaths = dag.Pipeline.BranchesOutputsPaths[branchName]
-            for outputPath in branchOutputPaths:
+            branchOutputsPaths = dag.Branches[branchName].OutputsPaths
+            for outputPath in branchOutputsPaths:
                 branchPath = os.path.join(downloadsPath, branchName)
                 fullOutputPath = os.path.join(branchPath, outputPath)
                 filesList = files.list_folder_files(fullOutputPath)

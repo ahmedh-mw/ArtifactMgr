@@ -28,22 +28,6 @@
                 {"Path": "04_Results/AHRS_Voter/metrics"}
             ]
         },
-        "AHRS_Voter_CollectMetrics2" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics"],
-            "Commands": [
-                "openProject(pwd);",
-                "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/AHRS_Voter.dmr');",
-                "exit(exitCode);"
-            ],
-            "Tasks": [
-                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
-            ],
-            "Outputs" : [
-                {"Path":"derived"},
-                {"Path": "04_Results/AHRS_Voter/metrics"}
-            ]
-        },
         "Actuator_Control_CollectMetrics" : {
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
@@ -60,24 +44,8 @@
                 {"Path": "04_Results/Actuator_Control/metrics"}
             ]
         },
-        "Actuator_Control_CollectMetrics2" : {
-            "Flow_Predecessor_Jobs":["Actuator_Control_CollectMetrics"],
-            "Commands": [
-                "openProject(pwd);",
-                "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/Actuator_Control.dmr');",
-                "exit(exitCode);"
-            ],
-            "Tasks": [
-                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
-            ],
-            "Outputs" : [
-                {"Path":"derived"},
-                {"Path": "04_Results/Actuator_Control/metrics"}
-            ]
-        },
         "end" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics2", "Actuator_Control_CollectMetrics2"],
+            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics", "Actuator_Control_CollectMetrics"],
             "Commands": [
                 "openProject(pwd);",
                 "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
