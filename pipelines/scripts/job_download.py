@@ -49,7 +49,7 @@ if __name__ == "__main__":
         predecessorJobsBranchesNames = [currentJob.DownloadBranchName]
         artifactsService.downloadFromLastSuccessfulRun(relativeRepoBranchPath, predecessorJobsBranchesNames, downloadsPath)
     else:
-        predecessorJobsBranchesNames = dag.getPredecessorJobsBranchesNames(currentJob)
+        predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
         artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, predecessorJobsBranchesNames, downloadsPath)
     
     ############################################################

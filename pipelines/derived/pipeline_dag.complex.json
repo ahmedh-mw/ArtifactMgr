@@ -1,0 +1,149 @@
+{
+    "Jobs" : {
+        "start" : {
+            "Flow_Predecessor_Jobs":[],
+            "Commands": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path":"start"}
+            ]
+        },
+        "job1" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob1"}
+            ]
+        },
+        "job2" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob2"}
+            ]
+        },
+        "job3" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob3"}
+            ]
+        },
+        "job4" : {
+            "Flow_Predecessor_Jobs":["job1", "job2"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob4"}
+            ]
+        },
+        "job5" : {
+            "Flow_Predecessor_Jobs":["job2", "job3"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob5"}
+            ]
+        },
+        "job6" : {
+            "Flow_Predecessor_Jobs":["job1"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob6"}
+            ]
+        },
+        "job7" : {
+            "Flow_Predecessor_Jobs":["job4"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob6"}
+            ]
+        },
+        "job8" : {
+            "Flow_Predecessor_Jobs":["job4", "job5"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob6"}
+            ]
+        },
+        "job9" : {
+            "Flow_Predecessor_Jobs":["job5"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob6"}
+            ]
+        },
+        "job10" : {
+            "Flow_Predecessor_Jobs":["job3"],
+            "Commands": [],
+            "Tasks": [],
+            "Outputs" : [
+                {"Path":"derived"},
+                {"Path": "joob6"}
+            ]
+        },
+        "end" : {
+            "Flow_Predecessor_Jobs":["job6", "job7", "job8", "job9", "job10"],
+            "Commands": [
+                "openProject(pwd);",
+                "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
+                "cd('..');delete('derived/dmrs/*.dmr');",
+                "rptObj=padv.ProcessAdvisorReportGenerator(Process = 'CIPipeline', Format='pdf', OutputPath='04_Results/ProcessAdvisorReport');",
+                "rptObj.generateReport();"
+            ],
+            "Outputs" : [
+                {"Path":"derived"}
+            ]
+        }
+    },
+    "Pipeline" :{
+        "comment__RUNNER_TYPE_____" : "defaul/container",
+        "RUNNER_TYPE" : "default",
+        "RUNNER_LABEL" : "padv_win_agents",
+        "IMAGE_TAG" : "matlab_padv:R2024b",
+        "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+
+        "CONTINUE_ON_ERROR" : false,
+        "_SUBMODULES_MODE" : "Configured from Jenkins pipeline scm settings",
+        "USE_MATLAB_PLUGIN" : false,
+
+        "IncrementalPipelineEnabled" : true,
+        "MatlabInstrallationPath" : "D:/sb/Bslcicd_1217/matlab/bin",
+        "MatlabInstrallationPath____" : "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
+        "MatlabLaunchCmd" : "matlab",
+        "MatlabStartupOptions" : "-nodesktop -logfile output.log",
+        "AddBatchStartupOption" : true,
+        
+        "ProcessName" : "CIPipeline",
+        "GenerateReport": true,
+        "ReportPath" : "04_Results/ProcessAdvisorReport",
+        "ReportFormat" : "pdf",
+
+        "EnableArtifactCollection": true,
+
+        "RunprocessOptions": {
+            "Force" : false,
+            "RerunFailedTasks": false,
+            "RerunErroredTasks": false,
+            "GenerateJUnitForProcess": true,
+            "MakeSureOutputArtifactsWriteable": true,
+            "ExitInBatchMode": false
+        }
+    }
+}

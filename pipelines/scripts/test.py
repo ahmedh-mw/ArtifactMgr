@@ -3,6 +3,7 @@ sys.path.insert(0, '..')
 sys.path.insert(0, '.')
 from utils import core
 from dag import DAG
+from dag import DAGMerger
 from utils import files
 import os
 import json
@@ -24,8 +25,11 @@ if __name__ == "__main__":
         variables = json.load(variables_file)
 
     os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
-    dag = DAG(getDagPath())
-    
+    dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
+
+    dagMerger = DAGMerger(dag.Branches)
+    dagMerger.getMergingSequence(["job4", "job9", "job6"])
+
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
     logger.log(core.HEADER_LOG, core.SECTION_END)

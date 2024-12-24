@@ -9,7 +9,9 @@ class Branch:
 
     def __init__(self, branchName):
         self.Name = branchName
-        self.PredecessorBranchesNames = []
-        self.SuccessorBranchesNames = []
-        self.OutputsPaths = []
-        self.JobsNames = []
+        self.PredecessorBranchesNames = None
+        self.AllPredecessorBranchesNames = None
+        self.SuccessorBranchesNames = set()
+        self.OutputsPaths = set()
+        self.JobsNames = set()
+        self.Level = -1

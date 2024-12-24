@@ -7,6 +7,7 @@ from .Job import Job
 from .Pipeline import Pipeline
 from .Branch import Branch
 from .Utils import Utils
+from collections import deque
 from collections import defaultdict
 
 logger = logging.getLogger()
@@ -31,7 +32,7 @@ class DAG:
         self.Pipeline.OutputsPaths = self.removeDescendantFolders(list(self._pipelineOutputsPaths))
         # Branch names for all jobs need to be calculated before building OutputPaths
         self._traverseJobs_BuildBranchesOutputsPaths(startJob, [])
-        self._updateBranchesOutputsPaths()
+        self._calculateBranchesLevels()
         startJob.DownloadBranchName = endJob.BranchName
         # Debugging: for _,job in dag.Jobs.items(): vars(job)
 
@@ -41,20 +42,21 @@ class DAG:
         if job.IsStartingNewBranch: # New branch will be created, so upload all artifacts
             return self.Pipeline.OutputsPaths
         else:
-            return list(job.Outputs.keys())
+            return set(job.Outputs.keys())
    
     def getPredecessorJobsBranchesNames(self, job):
         brancheshNames = set()
         for predecessorJobName in job.PredecessorJobsNames:
             predecessorJob = self.Jobs[predecessorJobName]
             brancheshNames.add(predecessorJob.BranchName)
-        return list(brancheshNames)
+        return brancheshNames
 
     def dictEncode(self):
         result = Utils.dictEncode(self)
         result["Pipeline"] = Utils.dictEncode(result["Pipeline"])
         result["Jobs"] = {jobName: Utils.dictEncode(job) for jobName, job in result["Jobs"].items()}
         result["Branches"] = {branchName: Utils.dictEncode(branch) for branchName, branch in result["Branches"].items()}
+        # result["Branches"] = {branchName: branchName for branchName, branch in result["Branches"].items()}
         return result
     #################################################################
     #                Private traverse methds
@@ -89,12 +91,12 @@ class DAG:
         if currentJob.IsStartingNewBranch:
             currentJob.BranchName = currentJob.Name
             jobBranch = Branch(currentJob.BranchName)
-            self.Branches[currentJob.BranchName] = jobBranch
+            self.Branches[currentJob.BranchName] = jobBranch    
         else:
             currentJob.BranchName = predecessorJob.BranchName
             jobBranch = self.Branches[currentJob.BranchName]
        
-        jobBranch.JobsNames.append(currentJob.Name)
+        jobBranch.JobsNames.add(currentJob.Name)
         ##############################################
         #       Update Pipeline.OutputsPaths
         ##############################################
@@ -112,17 +114,26 @@ class DAG:
         ##############################################
         #       Build BranchesOutputsPaths
         ##############################################
-        _branchOutputs = set(self.Branches[currentJob.BranchName].OutputsPaths)
+        jobBranch = self.Branches[currentJob.BranchName]
         for predecessorJobName in currentJob.PredecessorJobsNames:      # Add all incoming branches
             if predecessorJobName not in visitedJobs:
                 predecessorJob = self.getJob(predecessorJobName)
                 self._traverseJobs_BuildBranchesOutputsPaths(predecessorJob, visitedJobs)
             predecessorJob = self.getJob(predecessorJobName)
             predecessorBranchOutputs = self.Branches[predecessorJob.BranchName].OutputsPaths
-            _branchOutputs.update(predecessorBranchOutputs)
+            jobBranch.OutputsPaths.update(predecessorBranchOutputs)
 
-        _branchOutputs.update(currentJob.Outputs.keys())
-        self.Branches[currentJob.BranchName].OutputsPaths = list(_branchOutputs)
+        jobBranch.OutputsPaths.update(currentJob.Outputs.keys())
+        ##############################################
+        #       Build PredecessorBranchesNames & SuccessorBranchesNames
+        ##############################################
+        if currentJob.IsStartingNewBranch:
+            jobBranch.PredecessorBranchesNames = self.getPredecessorJobsBranchesNames(currentJob)
+            jobBranch.AllPredecessorBranchesNames = set(jobBranch.PredecessorBranchesNames)
+            for predecessorBranchName in jobBranch.PredecessorBranchesNames:
+                predecessorBranch = self.Branches[predecessorBranchName]
+                predecessorBranch.SuccessorBranchesNames.add(currentJob.BranchName)
+            
         ##############################################
         #       Traverse forward
         ##############################################
@@ -132,9 +143,20 @@ class DAG:
                 successorJob = self.getJob(successorJobName)
                 self._traverseJobs_BuildBranchesOutputsPaths(successorJob, visitedJobs)
 
-    def _updateBranchesOutputsPaths(self):
-        for branchName, branch in self.Branches.items():
-            branch.OutputsPaths = self.removeDescendantFolders(branch.OutputsPaths)
+    def _calculateBranchesLevels(self):
+        startJob = self.getJob(self.StartJobName)
+        levelBranch = self.Branches[startJob.BranchName]
+        levelBranch.Level = 0
+        nextLevelQueue = deque([levelBranch])
+
+        while len(nextLevelQueue) > 0:
+            levelBranch = nextLevelQueue.popleft()
+            for successorBranchName in levelBranch.SuccessorBranchesNames:
+                successorBranch = self.Branches[successorBranchName]
+                successorBranch.AllPredecessorBranchesNames.update(levelBranch.AllPredecessorBranchesNames)
+                if successorBranch.Level == -1:
+                    successorBranch.Level = levelBranch.Level + 1
+                    nextLevelQueue.append(successorBranch)
 
     def _updateSuccessorJobs(self):
         for jobName,job in self.Jobs.items():
@@ -169,10 +191,10 @@ class DAG:
     ################################################
     def removeDescendantFolders(self, folder_list):
         folder_list = sorted(folder_list)
-        result = []
+        result = set()
         for folder in folder_list:
             if not any(folder.startswith(ancestor + "/") for ancestor in result):
-                result.append(folder)
+                result.add(folder)
         return result
 
     def getJob(self, jobName):

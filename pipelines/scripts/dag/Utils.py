@@ -26,5 +26,7 @@ class Utils:
         result = dict(objDict)
         for k in list(result.keys()):
             if k.startswith('_'):
-                del result[k]          
+                del result[k]
+            elif isinstance(result[k], set):
+                result[k] = list(result[k])
         return result
