@@ -52,3 +52,5 @@ _downloads_/
 !pipelines/derived/**
 
 data*.json
+test*.html
+pipelines/scripts/lib/
