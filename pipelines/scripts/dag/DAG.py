@@ -89,9 +89,10 @@ class DAG:
         #       Update BranchName
         ##############################################
         if currentJob.IsStartingNewBranch:
-            currentJob.BranchName = currentJob.Name
-            jobBranch = Branch(currentJob.BranchName)
-            self.Branches[currentJob.BranchName] = jobBranch    
+            branchName = f"br_{currentJob.Name}"
+            currentJob.BranchName = branchName
+            jobBranch = Branch(branchName)
+            self.Branches[branchName] = jobBranch    
         else:
             currentJob.BranchName = predecessorJob.BranchName
             jobBranch = self.Branches[currentJob.BranchName]

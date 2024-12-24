@@ -19,6 +19,26 @@ class DAGMerger:
     def __init__(self, branches):
         self._branches = dict(branches)
 
+    def getMergingSequence(self, branchesNamesList):
+        mergingMap = dict()
+        self._addBranchesToMergingMap(mergingMap, branchesNamesList)
+        nextMerge = self._getNextBranchesToMerge(mergingMap)
+        while(nextMerge is not None):
+            mergedBranches = list(nextMerge[_BRANCHES_TO_MERGE_FIELD])
+            tempCounter = 1
+            tempDMR = f"{nextMerge[_BASE_BRANCH_FIELD]}_{str(tempCounter)}"
+            nextBranchToMerge = mergedBranches[0]
+            for anotherBranchToMerge in mergedBranches[1:]:
+                print(f"{nextMerge[_BASE_BRANCH_FIELD]} <= {nextBranchToMerge} + {anotherBranchToMerge} == {tempDMR}")
+                nextBranchToMerge = tempDMR
+                tempCounter += 1
+                tempDMR = f"{nextMerge[_BASE_BRANCH_FIELD]}_{str(tempCounter)}"
+            
+            self._removeMergedBranches(mergingMap, nextMerge[_BRANCHES_TO_MERGE_FIELD])
+            replacementBranchName = self._createMergeReplacementBranch(nextMerge[_BASE_BRANCH_FIELD], nextBranchToMerge)
+            self._addBranchesToMergingMap(mergingMap, [replacementBranchName])
+            nextMerge = self._getNextBranchesToMerge(mergingMap)
+            
     def _addBranchesToMergingMap(self, mergingMap, branchesNamesList):
         for branchName in branchesNamesList:
             branch = self._branches[branchName]
@@ -63,24 +83,3 @@ class DAGMerger:
         newBranch.AllPredecessorBranchesNames.add(baseBranch)
         self._branches[branchName] = newBranch
         return newBranch.Name
-        
-
-    def getMergingSequence(self, branchesNamesList):
-        mergingMap = dict()
-        self._addBranchesToMergingMap(mergingMap, branchesNamesList)
-        nextMerge = self._getNextBranchesToMerge(mergingMap)
-        while(nextMerge is not None):
-            mergedBranches = list(nextMerge[_BRANCHES_TO_MERGE_FIELD])
-            tempCounter = 1
-            tempDMR = f"{nextMerge[_BASE_BRANCH_FIELD]}_{str(tempCounter)}"
-            nextBranchToMerge = mergedBranches[0]
-            for anotherBranchToMerge in mergedBranches[1:]:
-                print(f"{nextMerge[_BASE_BRANCH_FIELD]} <= {nextBranchToMerge} + {anotherBranchToMerge} == {tempDMR}")
-                nextBranchToMerge = tempDMR
-                tempCounter += 1
-                tempDMR = f"{nextMerge[_BASE_BRANCH_FIELD]}_{str(tempCounter)}"
-            
-            self._removeMergedBranches(mergingMap, nextMerge[_BRANCHES_TO_MERGE_FIELD])
-            replacementBranchName = self._createMergeReplacementBranch(nextMerge[_BASE_BRANCH_FIELD], nextBranchToMerge)
-            self._addBranchesToMergingMap(mergingMap, [replacementBranchName])
-            nextMerge = self._getNextBranchesToMerge(mergingMap)

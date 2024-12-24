@@ -1,5 +1,5 @@
 from utils import core
-from dag import DAG
+from dag import DAG, DAGMerger
 from utils import files
 import os
 import argparse
@@ -7,6 +7,7 @@ import logging
 from config import *
 
 logger = logging.getLogger()
+_DMR_MERGING_FOLDER = '_dmr_merging_'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Download job artifacts.', prog='job_download.py')
@@ -58,6 +59,9 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, f"{core.GROUP_START} Merging artifacts")
     mergingFolder = os.path.join(downloadsPath, currentJob.BranchName)
     if len(predecessorJobsBranchesNames) > 1: # Merging is required
+        ###################################
+        #           Merging Artifacts
+        ###################################
         uniqueFiles = dict()
         conflictFiles = dict()
         for branchName in predecessorJobsBranchesNames:
@@ -94,6 +98,11 @@ if __name__ == "__main__":
         logger.info(f"conflictFiles: {conflictFiles}")
         if len(conflictFiles) > 0:
             raise Exception(f"Conflicts found")
+        
+        dagMerger = DAGMerger(dag.Branches)
+        ###################################
+        #           Merging DMRs
+        ###################################
     else:    # Merging is not required
         logger.info(f"Merging is not required")
         branchName = predecessorJobsBranchesNames[0]

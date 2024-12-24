@@ -75,11 +75,13 @@ if __name__ == "__main__":
     # dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
     
-    dagMerger = DAGMerger(dag.Branches)
-    dagMerger.getMergingSequence(["job11", "job21", "job31", "job41"])
+   
 
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
 
     drawDAG(dag)
+
+    dagMerger = DAGMerger(dag.Branches)
+    dagMerger.getMergingSequence(["br_job11", "br_job21", "br_job31", "br_job41"])
     logger.log(core.HEADER_LOG, core.SECTION_END)
