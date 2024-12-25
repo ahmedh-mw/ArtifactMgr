@@ -63,7 +63,8 @@ if __name__ == "__main__":
         dagMerger = DAGMerger(dag.Branches)
         dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
         dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
-        files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequence, indent=4))
+        dmrsMergeSequenceList = ut.dictEncode(dmrsMergeSequence)
+        files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequenceList, indent=4))
         baseDMRsToDownload = set()
         for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
             baseBranchDmrFile = os.path.join(requiredBaseDMRBranchName, _DMR_RELATIVE_PATH)

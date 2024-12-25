@@ -54,3 +54,4 @@ _downloads_/
 data*.json
 test*.html
 pipelines/scripts/lib/
+lib

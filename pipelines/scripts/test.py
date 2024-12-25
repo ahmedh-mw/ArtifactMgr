@@ -2,12 +2,13 @@ import sys
 sys.path.insert(0, '..')
 sys.path.insert(0, '.')
 from utils import core
-from dag import DAG
-from dag import DAGMerger
+from dag import DAG, DAGMerger
+from dag import Utils as ut
 from utils import files
 import os
 import json
 import logging
+import pathlib
 from config import *
 
 logger = logging.getLogger()
@@ -48,7 +49,7 @@ def drawDAG(dag):
 
     net = Network(directed = True)
     layout = { "randomSeed": None,
-            "hierarchical": {"enabled": True, "levelSeparation": 200, "direction": 'LR', "sortMethod": 'directed'}
+            "hierarchical": {"enabled": True, "levelSeparation": 500, "direction": 'LR', "sortMethod": 'directed'}
         }
     nodes_options = {"borderWidth": 2, "shape" : "ellipse", "font" : {"size" : 30}}
     net.options.layout = layout
@@ -67,13 +68,16 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, f"{core.SECTION_NAME} TEST")
     logger.log(core.HEADER_LOG, core.SECTION_END)
 
-    variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
+    # variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
+    variables_file_path = "D:/repos/gh/ArtifactMgr/pipelines/templates/vars.local.json"
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
 
     os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
     # dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
-    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
+    # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
+    # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
     
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
@@ -81,6 +85,7 @@ if __name__ == "__main__":
     drawDAG(dag)
 
     dagMerger = DAGMerger(dag.Branches)
-    dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_job11", "br_job21", "br_job31", "br_job41"])
-    # files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequence, indent=4))
+    dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_AHRS_Voter_CollectMetrics", "br_Actuator_Control_CollectMetrics"])
+    sequenceList = ut.dictEncode(dmrsMergeSequence)
+    files.add_file(f"{pathlib.Path().resolve()}/data.test.json", json.dumps(sequenceList, indent=4))
     logger.log(core.HEADER_LOG, core.SECTION_END)
