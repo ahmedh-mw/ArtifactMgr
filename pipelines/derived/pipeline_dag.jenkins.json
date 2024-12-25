@@ -7,7 +7,7 @@
                 "padv.internal.updateProjectArtifacts(currentProject=cp);"
             ]
         },
-        "AHRS_Voter_CollectMetrics" : {
+        "AHRS_Voter_Collect_Model_Maintainability_Metrics" : {
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
                 "cp=openProject(pwd);",
@@ -18,7 +18,205 @@
                 "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
             ],
             "Outputs" : [
-                {"Path": "04_Results/AHRS_Voter/metrics"}
+                {"Path": "PA_Results/AHRS_Voter/metrics"}
+            ]
+        },
+        "AHRS_Voter_Generate_Simulink_Web_View" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Collect_Model_Maintainability_Metrics"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/webview"}
+            ]
+        },
+        "AHRS_Voter_Check_Modeling_Standards" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Generate_Simulink_Web_View"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/model_standards_results"}
+            ]
+        },
+        "AHRS_Voter_Find_Clones_Across_Model" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Check_Modeling_Standards"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter"}
+            ]
+        },
+        "AHRS_Voter_Find_Library_Clones" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Find_Clones_Across_Model"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter"}
+            ]
+        },
+        "AHRS_Voter_Detect_Design_Errors" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Find_Library_Clones"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/design_error_detections"}
+            ]
+        },
+        "AHRS_Voter_Generate_Model_Comparison" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Detect_Design_Errors"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/model_comparison"}
+            ]
+        },
+        "AHRS_Voter_Run_Tests" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Generate_Model_Comparison"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|ced877ff-cfb8-4fa8-9bbf-aaa29b1d926b",
+                "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|d3a72cc8-687b-44ae-a909-7eff803b455b",
+                "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|74194125-b632-41a1-b96d-b3364441277f"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/test_results"}
+            ]
+        },
+        "AHRS_Voter_Merge_Test_Results" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Run_Tests"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/test_results"}
+            ]
+        },
+        "AHRS_Voter_Collect_Model_Testing_Metrics" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Merge_Test_Results"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/metrics"}
+            ]
+        },
+        "AHRS_Voter_Reference_Model_Code_Generation" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Collect_Model_Testing_Metrics"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/external_code_cache"}
+            ]
+        },
+        "AHRS_Voter_Reference_Model_Code_Analysis" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Reference_Model_Code_Generation"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/bug_finder"}
+            ]
+        },
+        "AHRS_Voter_Ref_Model_Code_Proving" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Reference_Model_Code_Analysis"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/code_prover"}
+            ]
+        },
+        "AHRS_Voter_Ref_Model_Code_Inspection" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Ref_Model_Code_Proving"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/code_inspection"}
+            ]
+        },
+        "AHRS_Voter_Generate_SDD_Report" : {
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Ref_Model_Code_Inspection"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+            ],
+            "Outputs" : [
+                {"Path": "PA_Results/AHRS_Voter/system_design_description"}
             ]
         },
         "Actuator_Control_CollectMetrics" : {
@@ -78,7 +276,7 @@
             ]
         },
         "end" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics", "Actuator_Control_CollectMetrics", 
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Generate_SDD_Report", "Actuator_Control_CollectMetrics", 
                 "Flight_Control_CollectMetrics", "InnerLoop_Control_CollectMetrics", "OuterLoop_Control_CollectMetrics"],
             "Commands": [
                 "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",

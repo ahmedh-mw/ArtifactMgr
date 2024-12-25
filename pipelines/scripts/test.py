@@ -84,8 +84,8 @@ if __name__ == "__main__":
 
     drawDAG(dag)
 
-    dagMerger = DAGMerger(dag.Branches)
-    dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_AHRS_Voter_CollectMetrics", "br_Actuator_Control_CollectMetrics"])
-    sequenceList = ut.dictEncode(dmrsMergeSequence)
-    files.add_file(f"{pathlib.Path().resolve()}/data.test.json", json.dumps(sequenceList, indent=4))
+    # dagMerger = DAGMerger(dag.Branches)
+    # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_AHRS_Voter_CollectMetrics", "br_Actuator_Control_CollectMetrics"])
+    # sequenceList = ut.dictEncode(dmrsMergeSequence)
+    # files.add_file(f"{pathlib.Path().resolve()}/data.test.json", json.dumps(sequenceList, indent=4))
     logger.log(core.HEADER_LOG, core.SECTION_END)

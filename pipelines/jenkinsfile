@@ -9,7 +9,21 @@ node{
     activity.addParallelStages('Iterations',
         [
             'AHRS_Voter' : { 
-                activity.addStage('AHRS_Voter_CollectMetrics')()
+                activity.addStage('AHRS_Voter_Collect_Model_Maintainability_Metrics')()
+                activity.addStage('AHRS_Voter_Generate_Simulink_Web_View')()
+                activity.addStage('AHRS_Voter_Check_Modeling_Standards')()
+                activity.addStage('AHRS_Voter_Find_Clones_Across_Model')()
+                activity.addStage('AHRS_Voter_Find_Library_Clones')()
+                activity.addStage('AHRS_Voter_Detect_Design_Errors')()
+                activity.addStage('AHRS_Voter_Generate_Model_Comparison')()
+                activity.addStage('AHRS_Voter_Generate_SDD_Report')()
+                activity.addStage('AHRS_Voter_Run_Tests')()
+                activity.addStage('AHRS_Voter_Merge_Test_Results')()
+                activity.addStage('AHRS_Voter_Collect_Model_Testing_Metrics')()
+                activity.addStage('AHRS_Voter_Reference_Model_Code_Generation')()
+                activity.addStage('AHRS_Voter_Reference_Model_Code_Analysis')()
+                activity.addStage('AHRS_Voter_Ref_Model_Code_Proving')()
+                activity.addStage('AHRS_Voter_Ref_Model_Code_Inspection')()
             },
             'Actuator_Control' : {
                 activity.addStage('Actuator_Control_CollectMetrics')()
