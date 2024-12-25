@@ -10,7 +10,7 @@ from config import *
 logger = logging.getLogger()
 
 _DERIVED_FOLDER = 'derived'
-_DMR_RELATIVE_PATH = f"{_DERIVED_FOLDER}/artifacts.dmr"
+_DMR_FILE_NAME = 'artifacts.dmr'
 _DMR_EXTENSION = 'dmr'
 _DMR_MERGE_SEQ_FILE_NAME = 'dmrsMergeSequence.json'
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
             logger.debug(f"== Branch Name: {branchName}")
             ###############################################################3
             logger.info(f">>> Move branch dmr file")
-            srcBranchDmrFilePath = os.path.join(downloadsPath, branchName, _DMR_RELATIVE_PATH)
+            srcBranchDmrFilePath = os.path.join(downloadsPath, branchName, _DMR_FOLDER, _DMR_FILE_NAME)
             destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{branchName}.{_DMR_EXTENSION}")
             files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
             ###############################################################3
@@ -129,8 +129,8 @@ if __name__ == "__main__":
         ##############################################
         logger.info(f">>> Move required base branch dmr files") 
         # Move required base branches to DMR merging folder
-        for baseBrancheName in baseDMRsToDownload:
-            srcBranchDmrFilePath = os.path.join(downloadsPath, baseBrancheName, _DMR_RELATIVE_PATH)
+        for baseBrancheName in requiredBaseDMRsBranchesNames:
+            srcBranchDmrFilePath = os.path.join(downloadsPath, baseBrancheName, _DMR_FOLDER, _DMR_FILE_NAME)
             destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{baseBrancheName}.{_DMR_EXTENSION}")
             files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
     else:    # Merging is not required

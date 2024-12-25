@@ -70,7 +70,7 @@
                 "cp=openProject(pwd);",
                 "{{generate-report}};"
             ],
-            "Outputs" : []
+            "Outputs" : ["04_Results/Report"]
         }
     },
     "Pipeline" :{
@@ -93,7 +93,7 @@
         
         "ProcessName" : "CIPipeline",
         "GenerateReport": true,
-        "ReportPath" : "04_Results/ProcessAdvisorReport",
+        "ReportPath" : "04_Results/Report/ProcessAdvisorReport",
         "ReportFormat" : "pdf",
 
         "EnableArtifactCollection": true,

@@ -66,7 +66,7 @@ def build_generate_report_command(dag):
     arguments.append(f"Format = '{dag.Pipeline.ReportFormat}'")
     arguments.append(f"OutputPath = '{dag.Pipeline.ReportPath}'")
     command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
-    command += f"rptObj.generateReport()"
+    command += f"\trptObj.generateReport()"
     return command
 
 if __name__ == "__main__":
