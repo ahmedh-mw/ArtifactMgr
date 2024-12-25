@@ -70,7 +70,9 @@
                 "cp=openProject(pwd);",
                 "{{generate-report}};"
             ],
-            "Outputs" : ["04_Results/Report"]
+            "Outputs" : [
+                {"Path": "04_Results/Report"}
+            ]
         }
     },
     "Pipeline" :{
