@@ -61,7 +61,7 @@ if __name__ == "__main__":
     dmrMergingPath = os.path.join(WORKSPACE_PATH, DMR_MERGING_FOLDER)
     # Download required base DMR files
     if len(predecessorJobsBranchesNames) > 1: # Merging is required
-        logger.debug(f"Download required base branch dmr files")
+        logger.info(f">>> Download required base branch dmr files")
         dagMerger = DAGMerger(dag.Branches)
         dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
         dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
@@ -87,11 +87,9 @@ if __name__ == "__main__":
         for branchName in predecessorJobsBranchesNames:
             logger.debug(f"== Branch Name: {branchName}")
             ###############################################################3
-            logger.debug(f"Move branch dmr file")
+            logger.info(f">>> Move branch dmr file")
             srcBranchDmrFilePath = os.path.join(downloadsPath, branchName, _DMR_RELATIVE_PATH)
             destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{branchName}.{_DMR_EXTENSION}")
-            print(srcBranchDmrFilePath)
-            print(destBranchDmrFilePath)
             files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
             ###############################################################3
             branchOutputsPaths = dag.Branches[branchName].OutputsPaths
@@ -129,10 +127,10 @@ if __name__ == "__main__":
         ###############################################
         #           Move Required base branches DMRs
         ##############################################
-        logger.debug(f"Move required base branch dmr files") 
+        logger.info(f">>> Move required base branch dmr files") 
         # Move required base branches to DMR merging folder
         for baseBrancheName in baseDMRsToDownload:
-            srcBranchDmrFilePath = os.path.join(WORKSPACE_PATH, baseBrancheName, _DMR_RELATIVE_PATH)
+            srcBranchDmrFilePath = os.path.join(downloadsPath, baseBrancheName, _DMR_RELATIVE_PATH)
             destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{baseBrancheName}.{_DMR_EXTENSION}")
             files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
     else:    # Merging is not required
