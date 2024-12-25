@@ -77,22 +77,8 @@
                 {"Path": "PA_Results/AHRS_Voter"}
             ]
         },
-        "AHRS_Voter_Detect_Design_Errors" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_Find_Library_Clones"],
-            "Commands": [
-                "cp=openProject(pwd);",
-                "[~,exitCode]={{runprocess}};",
-                "exit(exitCode);"
-            ],
-            "Tasks": [
-                "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
-            ],
-            "Outputs" : [
-                {"Path": "PA_Results/AHRS_Voter/design_error_detections"}
-            ]
-        },
         "AHRS_Voter_Generate_Model_Comparison" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_Detect_Design_Errors"],
+            "Flow_Predecessor_Jobs":["AHRS_Voter_Find_Library_Clones"],
             "Commands": [
                 "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
