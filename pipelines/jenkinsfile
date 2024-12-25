@@ -10,12 +10,20 @@ node{
         [
             'AHRS_Voter' : { 
                 activity.addStage('AHRS_Voter_CollectMetrics')()
-                activity.addStage('AHRS_Voter_CollectMetrics2')()
             },
             'Actuator_Control' : {
                 activity.addStage('Actuator_Control_CollectMetrics')()
-                activity.addStage('Actuator_Control_CollectMetrics2')() 
-            }
+            },
+            'Flight_Control' : { 
+                activity.addStage('Flight_Control_CollectMetrics')()
+            },
+            'InnerLoop_Control' : { 
+                activity.addStage('InnerLoop_Control_CollectMetrics')()
+            },
+            'OuterLoop_Control' : { 
+                activity.addStage('OuterLoop_Control_CollectMetrics')()
+            },
+
         ]
     )()
     activity.addStage('end')()
