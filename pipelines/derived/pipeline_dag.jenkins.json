@@ -21,7 +21,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/metrics"
+                "Path": "PA_Results/AHRS_Voter/metrics"
               }
             ]
           },
@@ -39,7 +39,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/webview"
+                "Path": "PA_Results/AHRS_Voter/webview"
               }
             ]
           },
@@ -57,7 +57,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/model_standards_results"
+                "Path": "PA_Results/AHRS_Voter/model_standards_results"
               }
             ]
           },
@@ -75,7 +75,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter"
+                "Path": "PA_Results/AHRS_Voter"
               }
             ]
           },
@@ -93,7 +93,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter"
+                "Path": "PA_Results/AHRS_Voter"
               }
             ]
           },
@@ -111,7 +111,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/design_error_detections"
+                "Path": "PA_Results/AHRS_Voter/design_error_detections"
               }
             ]
           },
@@ -129,7 +129,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/model_comparison"
+                "Path": "PA_Results/AHRS_Voter/model_comparison"
               }
             ]
           },
@@ -147,7 +147,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/system_design_description"
+                "Path": "PA_Results/AHRS_Voter/system_design_description"
               }
             ]
           },
@@ -167,7 +167,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/test_results"
+                "Path": "PA_Results/test_results"
               }
             ]
           },
@@ -185,7 +185,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/test_results"
+                "Path": "PA_Results/test_results"
               }
             ]
           },
@@ -203,7 +203,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/metrics"
+                "Path": "PA_Results/AHRS_Voter/metrics"
               }
             ]
           },
@@ -221,7 +221,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/external_code_cache"
+                "Path": "PA_Results/AHRS_Voter/external_code_cache"
               }
             ]
           },
@@ -239,7 +239,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/bug_finder"
+                "Path": "PA_Results/AHRS_Voter/bug_finder"
               }
             ]
           },
@@ -257,7 +257,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/code_prover"
+                "Path": "PA_Results/AHRS_Voter/code_prover"
               }
             ]
           },
@@ -275,7 +275,7 @@
             ],
             "Outputs": [
               {
-                "path": "PA_Results/AHRS_Voter/code_inspection"
+                "Path": "PA_Results/AHRS_Voter/code_inspection"
               }
             ]
           },
