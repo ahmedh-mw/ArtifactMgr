@@ -67,6 +67,7 @@
             "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics2", "Actuator_Control_CollectMetrics2"],
             "Commands": [
                 "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+                "padv.util.checkOutdatedResults();",
                 "cp=openProject(pwd);",
                 "{{generate-report}};"
             ],
