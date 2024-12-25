@@ -21,7 +21,7 @@ _DAG_RELATIVE_PATH_FIELD = 'DAG_RELATIVE_PATH'
 # pip install pyvis
 import networkx as nx
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from pyvis.network import Network
 from pyvis.options import Layout
 
@@ -73,13 +73,14 @@ if __name__ == "__main__":
 
     os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
     # dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
-    dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json") 
-   
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
+    
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
 
     drawDAG(dag)
 
     dagMerger = DAGMerger(dag.Branches)
-    dagMerger.getMergingSequence(["br_job11", "br_job21", "br_job31", "br_job41"])
+    dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_job11", "br_job21", "br_job31", "br_job41"])
+    # files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequence, indent=4))
     logger.log(core.HEADER_LOG, core.SECTION_END)
