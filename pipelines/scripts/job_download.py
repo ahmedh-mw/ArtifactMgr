@@ -1,5 +1,5 @@
 from utils import core
-from dag import DAG, DAGMerger
+from dag import DAG, DAGMerger, Utils
 from utils import files
 import os
 import argparse
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         dagMerger = DAGMerger(dag.Branches)
         dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
         dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
-        dmrsMergeSequenceList = ut.dictEncode(dmrsMergeSequence)
+        dmrsMergeSequenceList = Utils.dictEncode(dmrsMergeSequence)
         files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequenceList, indent=4))
         baseDMRsToDownload = set()
         for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
