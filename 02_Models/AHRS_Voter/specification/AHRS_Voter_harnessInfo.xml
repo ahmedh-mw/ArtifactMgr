@@ -3,16 +3,16 @@
   <Harness>
     <P Name="Name">AHRS_Voter_Harness_HLR_11</P>
     <P Name="Description">Test harness for HLR_11.</P>
-    <P Name="CreatedBy">rsnah</P>
+    <P Name="CreatedBy">The MathWorks, Inc.</P>
     <P Name="CreatedOn">Fri Feb 02 10:39:51 2018</P>
-    <P Name="ModifiedBy">emitra</P>
-    <P Name="LastSaved">Wed Jun 17 10:51:57 2020</P>
+    <P Name="ModifiedBy">The MathWorks, Inc.</P>
+    <P Name="LastSaved">Thu Dec 05 04:13:56 2024</P>
     <P Name="Owner">bd</P>
     <P Name="OwnerType">BD_HARNESS</P>
     <P Name="OwnerPath">.</P>
     <P Name="Directory"/>
     <P Name="FileName">AHRS_Voter_Harness_HLR_11.slx</P>
-    <P Name="SavedVersion">10.2</P>
+    <P Name="SavedVersion">24.2</P>
     <P Name="HarnessUUID">41cf3191-ff18-4726-a00a-6eae8f4b97df</P>
     <P Name="HarnessConnectionsMap">0,1,2|0|0,0,0,0||</P>
     <P Name="VerificationMode">0</P>
@@ -42,16 +42,16 @@
   <Harness>
     <P Name="Name">AHRS_Voter_Harness_HLR_12</P>
     <P Name="Description">Test harness for HLR_12.</P>
-    <P Name="CreatedBy">rsnah</P>
+    <P Name="CreatedBy">The MathWorks, Inc.</P>
     <P Name="CreatedOn">Fri Feb 02 14:07:50 2018</P>
-    <P Name="ModifiedBy">emitra</P>
-    <P Name="LastSaved">Wed Jun 17 10:52:22 2020</P>
+    <P Name="ModifiedBy">The MathWorks, Inc.</P>
+    <P Name="LastSaved">Thu Dec 05 04:14:14 2024</P>
     <P Name="Owner">bd</P>
     <P Name="OwnerType">BD_HARNESS</P>
     <P Name="OwnerPath">.</P>
     <P Name="Directory"/>
     <P Name="FileName">AHRS_Voter_Harness_HLR_12.slx</P>
-    <P Name="SavedVersion">10.2</P>
+    <P Name="SavedVersion">24.2</P>
     <P Name="HarnessUUID">fb55bb59-d443-40c0-af02-2c73b21e019d</P>
     <P Name="HarnessConnectionsMap">0,1,2|0|0,0,0,0||</P>
     <P Name="VerificationMode">0</P>
@@ -81,16 +81,16 @@
   <Harness>
     <P Name="Name">AHRS_Voter_Harness_HLR_13</P>
     <P Name="Description">Test harness for HLR_13.</P>
-    <P Name="CreatedBy">rsnah</P>
+    <P Name="CreatedBy">The MathWorks, Inc.</P>
     <P Name="CreatedOn">Fri Feb 02 14:32:46 2018</P>
-    <P Name="ModifiedBy">emitra</P>
-    <P Name="LastSaved">Wed Jun 17 10:52:54 2020</P>
+    <P Name="ModifiedBy">The MathWorks, Inc.</P>
+    <P Name="LastSaved">Thu Dec 05 04:14:31 2024</P>
     <P Name="Owner">bd</P>
     <P Name="OwnerType">BD_HARNESS</P>
     <P Name="OwnerPath">.</P>
     <P Name="Directory"/>
     <P Name="FileName">AHRS_Voter_Harness_HLR_13.slx</P>
-    <P Name="SavedVersion">10.2</P>
+    <P Name="SavedVersion">24.2</P>
     <P Name="HarnessUUID">67fb3fc0-cf62-4f31-9b6a-3025b0045129</P>
     <P Name="HarnessConnectionsMap">0,1,2|0|0,0,0,0||</P>
     <P Name="VerificationMode">0</P>
