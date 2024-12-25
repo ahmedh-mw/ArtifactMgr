@@ -6,6 +6,7 @@
     "REPO_BRANCH_NAME": "$GITHUB_REF_NAME",
 
     "DONWLOADS_FOLDER" : "_downloads_",
+    "DMR_MERGING_FOLDER" : "_dmr_merging_",
     "UPLOADS_FOLDER" : "_uploads_",
     "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.github.json"
 }

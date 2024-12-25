@@ -3,13 +3,8 @@
         "start" : {
             "Flow_Predecessor_Jobs":[],
             "Commands": [
-                "openProject(pwd);",
-                "padv.util.saveArtifactDatabase('derived/dmrs/base.dmr');"
-            ],
-            "Outputs" : [
-                {"Path":"derived"},
-                {"Path":"xx"},
-                {"Path":"yy"}
+                "cp=openProject(pwd);",
+                "padv.internal.updateProjectArtifacts(currentProject=cp);"
             ]
         },
         "AHRS_Voter_CollectMetrics" : {
@@ -17,14 +12,12 @@
             "Commands": [
                 "openProject(pwd);",
                 "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/AHRS_Voter.dmr');",
                 "exit(exitCode);"
             ],
             "Tasks": [
                 "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
             ],
             "Outputs" : [
-                {"Path":"derived"},
                 {"Path": "04_Results/AHRS_Voter/metrics"}
             ]
         },
@@ -33,14 +26,12 @@
             "Commands": [
                 "openProject(pwd);",
                 "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/AHRS_Voter.dmr');",
                 "exit(exitCode);"
             ],
             "Tasks": [
                 "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
             ],
             "Outputs" : [
-                {"Path":"derived"},
                 {"Path": "04_Results/AHRS_Voter/metrics"}
             ]
         },
@@ -49,14 +40,12 @@
             "Commands": [
                 "openProject(pwd);",
                 "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/Actuator_Control.dmr');",
                 "exit(exitCode);"
             ],
             "Tasks": [
                 "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
             ],
             "Outputs" : [
-                {"Path":"derived"},
                 {"Path": "04_Results/Actuator_Control/metrics"}
             ]
         },
@@ -65,14 +54,12 @@
             "Commands": [
                 "openProject(pwd);",
                 "{{runprocess}};",
-                "padv.util.saveArtifactDatabase('derived/dmrs/Actuator_Control.dmr');",
                 "exit(exitCode);"
             ],
             "Tasks": [
                 "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
             ],
             "Outputs" : [
-                {"Path":"derived"},
                 {"Path": "04_Results/Actuator_Control/metrics"}
             ]
         },

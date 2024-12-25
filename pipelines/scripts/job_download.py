@@ -4,10 +4,14 @@ from utils import files
 import os
 import argparse
 import logging
+import json
 from config import *
 
 logger = logging.getLogger()
-_DMR_MERGING_FOLDER = '_dmr_merging_'
+
+_DMR_RELATIVE_PATH = 'derived/artifacts.dmr'
+_DMR_EXTENSION = 'dmr'
+_DMR_MERGE_SEQ_FILE_NAME = 'dmrsMergeSequence.json'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Download job artifacts.', prog='job_download.py')
@@ -53,6 +57,19 @@ if __name__ == "__main__":
         predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
         artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, predecessorJobsBranchesNames, downloadsPath)
     
+    dmrMergingPath = os.path.join(WORKSPACE_PATH, DMR_MERGING_FOLDER)
+    # Download required base DMR files
+    if len(predecessorJobsBranchesNames) > 1: # Merging is required
+        dagMerger = DAGMerger(dag.Branches)
+        dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
+        dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
+        files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequence, indent=4))
+        baseDMRsToDownload = set()
+        for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
+            baseBranchDmrFile = os.path.join(requiredBaseDMRBranchName, _DMR_RELATIVE_PATH)
+            baseDMRsToDownload.add(baseBranchDmrFile)
+        artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, baseDMRsToDownload, downloadsPath)
+
     ############################################################
     #           Merging
     ############################################################
@@ -66,6 +83,12 @@ if __name__ == "__main__":
         conflictFiles = dict()
         for branchName in predecessorJobsBranchesNames:
             logger.debug(f"== Branch Name: {branchName}")
+            ###############################################################3
+            logger.debug(f"Move branch dmr file") 
+            srcBranchDmrFilePath = os.path.join(WORKSPACE_PATH, branchName, _DMR_RELATIVE_PATH)
+            destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{branchName}.{_DMR_EXTENSION}")
+            files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
+            ###############################################################3
             branchOutputsPaths = dag.Branches[branchName].OutputsPaths
             for outputPath in branchOutputsPaths:
                 branchPath = os.path.join(downloadsPath, branchName)
@@ -98,11 +121,15 @@ if __name__ == "__main__":
         logger.info(f"conflictFiles: {conflictFiles}")
         if len(conflictFiles) > 0:
             raise Exception(f"Conflicts found")
-        
-        dagMerger = DAGMerger(dag.Branches)
-        ###################################
-        #           Merging DMRs
-        ###################################
+        ###############################################
+        #           Move Required base branches DMRs
+        ##############################################
+        logger.debug(f"Move branch dmr file") 
+        # Move required base branches to DMR merging folder
+        for baseBrancheName in baseDMRsToDownload:
+            srcBranchDmrFilePath = os.path.join(WORKSPACE_PATH, baseBrancheName, _DMR_RELATIVE_PATH)
+            destBranchDmrFilePath = os.path.join(dmrMergingPath, f"{baseBrancheName}.{_DMR_EXTENSION}")
+            files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
     else:    # Merging is not required
         logger.info(f"Merging is not required")
         branchName = predecessorJobsBranchesNames[0]
@@ -111,7 +138,7 @@ if __name__ == "__main__":
             files.move_folder(branchPath, mergingFolder)
 
     ############################################################
-    #           Move to project folder
+    #           Move artifacts to project folder
     ############################################################
     logger.log(core.HEADER_LOG, f"{core.GROUP_START} Moving artifacts to project folder")
     srcArtifactsFolder = mergingFolder

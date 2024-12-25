@@ -73,10 +73,8 @@ if __name__ == "__main__":
 
     os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
     # dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
-    dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
-    
+    dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json") 
    
-
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
 

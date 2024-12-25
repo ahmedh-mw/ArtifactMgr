@@ -18,6 +18,10 @@ DONWLOADS_FOLDER = os.environ.get('DONWLOADS_FOLDER')
 if DONWLOADS_FOLDER is None:
     DONWLOADS_FOLDER = '_downloads_'
 
+DMR_MERGING_FOLDER = os.environ.get('DMR_MERGING_FOLDER')
+if DMR_MERGING_FOLDER is None:
+    DMR_MERGING_FOLDER = '_dmr_merging_'
+
 UPLOADS_FOLDER = os.environ.get('UPLOADS_FOLDER')
 if UPLOADS_FOLDER is None:
     UPLOADS_FOLDER = '_uploads_'
