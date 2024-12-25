@@ -36,8 +36,7 @@ if __name__ == "__main__":
     uploadPaths = dag.getJobUploadPaths(currentJob)
     if _DERIVED_FOLDER not in uploadPaths:
         uploadPaths.append(_DERIVED_FOLDER)
-    uploadPaths.sort()
-    logger.info(f"uploadPaths: {uploadPaths}")
+    logger.info(f"uploadPaths: {sorted(uploadPaths)}")
 
     srcFolder = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
     uploadsFolder = os.path.join(WORKSPACE_PATH, UPLOADS_FOLDER)
