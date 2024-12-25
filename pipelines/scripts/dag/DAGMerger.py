@@ -15,6 +15,7 @@ logger = logging.getLogger()
 _BRANCHES_TO_MERGE_FIELD = 'BranchesToMerge'
 _LEVEL_FIELD = 'Level'
 _BASE_BRANCH_FIELD = 'BaseBranch'
+_DMR_EXTENSION = 'dmr'
 
 class DAGMerger:  
     def __init__(self, branches):
@@ -35,10 +36,10 @@ class DAGMerger:
             nextBranchToMerge = mergedBranches[0]
             for anotherBranchToMerge in mergedBranches[1:]:
                 dmrsMergeSequence.append( DMRMergeStep( 
-                    base=requiredBaseDMRBranchName,
-                    ours=nextBranchToMerge,
-                    theirs=anotherBranchToMerge,
-                    merged= tempDMR) )
+                    base=f"{requiredBaseDMRBranchName}.{_DMR_EXTENSION}",
+                    ours=f"{nextBranchToMerge}.{_DMR_EXTENSION}",
+                    theirs=f"{anotherBranchToMerge}.{_DMR_EXTENSION}",
+                    merged= f"{tempDMR}.{_DMR_EXTENSION}") )
                 logger.info(f"BASE: {requiredBaseDMRBranchName}: {nextBranchToMerge} + {anotherBranchToMerge} ==> {tempDMR}")
                 nextBranchToMerge = tempDMR
                 tempCounter += 1
