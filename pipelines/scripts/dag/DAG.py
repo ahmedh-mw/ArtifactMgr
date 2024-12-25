@@ -29,7 +29,7 @@ class DAG:
         self._pipelineOutputsPaths = set()
         self.Branches = dict()
         self._traverseJobs(startJob, [])    # IsStartingNewBranch, BranchName, Pipeline.OutputsPaths
-        self.Pipeline.OutputsPaths = self.removeDescendantFolders(list(self._pipelineOutputsPaths))
+        self.Pipeline.OutputsPaths = self.removeDescendantFolders(self._pipelineOutputsPaths)
         # Branch names for all jobs need to be calculated before building OutputPaths
         self._traverseJobs_BuildBranchesOutputsPaths(startJob, [])
         self._calculateBranchesLevels()
