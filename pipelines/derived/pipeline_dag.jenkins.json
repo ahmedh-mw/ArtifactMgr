@@ -21,20 +21,6 @@
                 {"Path": "04_Results/AHRS_Voter/metrics"}
             ]
         },
-        "AHRS_Voter_CollectMetrics2" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics"],
-            "Commands": [
-                "cp=openProject(pwd);",
-                "[~,exitCode]={{runprocess}};",
-                "exit(exitCode);"
-            ],
-            "Tasks": [
-                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
-            ],
-            "Outputs" : [
-                {"Path": "04_Results/AHRS_Voter/metrics"}
-            ]
-        },
         "Actuator_Control_CollectMetrics" : {
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
@@ -49,22 +35,51 @@
                 {"Path": "04_Results/Actuator_Control/metrics"}
             ]
         },
-        "Actuator_Control_CollectMetrics2" : {
-            "Flow_Predecessor_Jobs":["Actuator_Control_CollectMetrics"],
+        "Flight_Control_CollectMetrics" : {
+            "Flow_Predecessor_Jobs":["start"],
             "Commands": [
                 "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
             "Tasks": [
-                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
+                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx"
             ],
             "Outputs" : [
-                {"Path": "04_Results/Actuator_Control/metrics"}
+                {"Path": "04_Results/Flight_Control/metrics"}
+            ]
+        },
+        "InnerLoop_Control_CollectMetrics" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
+            ],
+            "Outputs" : [
+                {"Path": "04_Results/InnerLoop_Control/metrics"}
+            ]
+        },
+        "OuterLoop_Control_CollectMetrics" : {
+            "Flow_Predecessor_Jobs":["start"],
+            "Commands": [
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "exit(exitCode);"
+            ],
+            "Tasks": [
+                "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
+            ],
+            "Outputs" : [
+                {"Path": "04_Results/OuterLoop_Control/metrics"}
             ]
         },
         "end" : {
-            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics2", "Actuator_Control_CollectMetrics2"],
+            "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics", "Actuator_Control_CollectMetrics", 
+                "Flight_Control_CollectMetrics", "InnerLoop_Control_CollectMetrics", "OuterLoop_Control_CollectMetrics"],
             "Commands": [
                 "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
                 "padv.util.checkOutdatedResults();",
