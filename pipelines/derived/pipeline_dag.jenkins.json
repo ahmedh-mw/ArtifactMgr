@@ -10,7 +10,7 @@
         "AHRS_Voter_CollectMetrics" : {
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
-                "openProject(pwd);",
+                "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
@@ -24,7 +24,7 @@
         "AHRS_Voter_CollectMetrics2" : {
             "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics"],
             "Commands": [
-                "openProject(pwd);",
+                "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
@@ -38,7 +38,7 @@
         "Actuator_Control_CollectMetrics" : {
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
-                "openProject(pwd);",
+                "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
@@ -52,7 +52,7 @@
         "Actuator_Control_CollectMetrics2" : {
             "Flow_Predecessor_Jobs":["Actuator_Control_CollectMetrics"],
             "Commands": [
-                "openProject(pwd);",
+                "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
@@ -66,10 +66,9 @@
         "end" : {
             "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics2", "Actuator_Control_CollectMetrics2"],
             "Commands": [
-                "openProject(pwd);",
-                "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
-                "rptObj=padv.ProcessAdvisorReportGenerator(Process = 'CIPipeline', Format='pdf', OutputPath='04_Results/ProcessAdvisorReport');",
-                "rptObj.generateReport();"
+                "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+                "cp=openProject(pwd);",
+                "{{generate-report}};"
             ],
             "Outputs" : []
         }
