@@ -58,7 +58,7 @@ def build_runprocess_command(dag, currentJob):
         for arg, argValue in runrocessOptions.items():
             arguments.append(f"{arg}={str(argValue).lower()}")
     
-    return f"[~,exitCode] = runprocess( {','.join(arguments)})"
+    return f"runprocess( {','.join(arguments)})"
 
 def build_generate_report_command(dag):
     arguments = []

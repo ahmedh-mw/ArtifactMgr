@@ -11,7 +11,7 @@
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
                 "openProject(pwd);",
-                "{{runprocess}};",
+                "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
             "Tasks": [
@@ -25,7 +25,7 @@
             "Flow_Predecessor_Jobs":["AHRS_Voter_CollectMetrics"],
             "Commands": [
                 "openProject(pwd);",
-                "{{runprocess}};",
+                "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
             "Tasks": [
@@ -39,7 +39,7 @@
             "Flow_Predecessor_Jobs":["start"],
             "Commands": [
                 "openProject(pwd);",
-                "{{runprocess}};",
+                "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
             "Tasks": [
@@ -53,7 +53,7 @@
             "Flow_Predecessor_Jobs":["Actuator_Control_CollectMetrics"],
             "Commands": [
                 "openProject(pwd);",
-                "{{runprocess}};",
+                "[~,exitCode]={{runprocess}};",
                 "exit(exitCode);"
             ],
             "Tasks": [
@@ -68,13 +68,10 @@
             "Commands": [
                 "openProject(pwd);",
                 "padv.util.mergeArtifactDatabases('Base', 'derived/dmrs/base.dmr', 'Branches', {'derived/dmrs/AHRS_Voter.dmr', 'derived/dmrs/Actuator_Control.dmr'}, 'Merged', 'derived/artifacts.dmr', 'CheckOutdatedResults', true);",
-                "cd('..');delete('derived/dmrs/*.dmr');",
                 "rptObj=padv.ProcessAdvisorReportGenerator(Process = 'CIPipeline', Format='pdf', OutputPath='04_Results/ProcessAdvisorReport');",
                 "rptObj.generateReport();"
             ],
-            "Outputs" : [
-                {"Path":"derived"}
-            ]
+            "Outputs" : []
         }
     },
     "Pipeline" :{
