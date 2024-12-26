@@ -184,11 +184,27 @@
         "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
         "padv.util.checkOutdatedResults();",
         "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
         "{{generate-report}};",
         "cp.close();",
-        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);"
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks":[
+        "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/HighLevelReqs.slreqx",
+        "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/SystemReqs.slreqx"
       ],
       "Outputs": [
+        {"Path": "03_Code"},
+        {"Path": "PA_Results/bug_finder"},
+        {"Path": "PA_Results/code_prover"},
+        {"Path": "PA_Results/code_inspection"},
+        {"Path": "PA_Results/SystemReqs/report"},
+        {"Path": "PA_Results/HighLevelReqs/report"},
         {"Path": "PA_Results/Report"}
       ]
     }
