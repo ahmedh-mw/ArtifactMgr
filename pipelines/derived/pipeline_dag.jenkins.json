@@ -97,27 +97,9 @@
               }
             ]
           },
-          "AHRS_Voter_Detect_Design_Errors": {
-            "Flow_Predecessor_Jobs": [
-              "AHRS_Voter_Find_Library_Clones"
-            ],
-            "Commands": [
-              "cp=openProject(pwd);",
-              "[~,exitCode]={{runprocess}};",
-              "exit(exitCode);"
-            ],
-            "Tasks": [
-              "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
-            ],
-            "Outputs": [
-              {
-                "Path": "PA_Results/AHRS_Voter/design_error_detections"
-              }
-            ]
-          },
           "AHRS_Voter_Generate_Model_Comparison": {
             "Flow_Predecessor_Jobs": [
-              "AHRS_Voter_Detect_Design_Errors"
+              "AHRS_Voter_Find_Library_Clones"
             ],
             "Commands": [
               "cp=openProject(pwd);",
@@ -352,7 +334,7 @@
     "Pipeline" :{
         "comment__RUNNER_TYPE_____" : "default/container",
         "RUNNER_TYPE" : "default",
-        "RUNNER_LABEL" : "padv_linux_agents",
+        "RUNNER_LABEL" : "padv_win_agents",
         "IMAGE_TAG" : "matlab_padv:R2024b",
         "IMAGE_ARGS" : "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
 
