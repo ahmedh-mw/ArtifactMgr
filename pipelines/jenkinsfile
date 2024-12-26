@@ -16,7 +16,7 @@ node{
                 activity.addStage('AHRS_Voter_Find_Library_Clones')()
                 // activity.addStage('AHRS_Voter_Detect_Design_Errors')()
                 activity.addStage('AHRS_Voter_Generate_Model_Comparison')()
-                activity.addStage('AHRS_Voter_Generate_SDD_Report')()
+                // activity.addStage('AHRS_Voter_Generate_SDD_Report')()
                 activity.addStage('AHRS_Voter_Run_Tests')()
                 activity.addStage('AHRS_Voter_Merge_Test_Results')()
                 activity.addStage('AHRS_Voter_Collect_Model_Testing_Metrics')()

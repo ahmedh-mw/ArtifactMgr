@@ -115,27 +115,9 @@
               }
             ]
           },
-          "AHRS_Voter_Generate_SDD_Report": {
-            "Flow_Predecessor_Jobs": [
-              "AHRS_Voter_Generate_Model_Comparison"
-            ],
-            "Commands": [
-              "cp=openProject(pwd);",
-              "[~,exitCode]={{runprocess}};",
-              "exit(exitCode);"
-            ],
-            "Tasks": [
-              "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
-            ],
-            "Outputs": [
-              {
-                "Path": "PA_Results/AHRS_Voter/system_design_description"
-              }
-            ]
-          },
           "AHRS_Voter_Run_Tests": {
             "Flow_Predecessor_Jobs": [
-              "AHRS_Voter_Generate_SDD_Report"
+              "AHRS_Voter_Generate_Model_Comparison"
             ],
             "Commands": [
               "cp=openProject(pwd);",
