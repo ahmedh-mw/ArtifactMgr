@@ -27,7 +27,6 @@ def build_shell_commands(dag, currentJob):
             command = command.replace("{{generate-report}}", build_generate_report_command(dag))
             
         commands += f"\t{command}\n"
-    # commands += "\tvarargout{1}=0;\n"
     commands += "end"
 
     jobCommandsFilePath = os.path.join(WORKSPACE_PATH, _MATLAB_JOB_COMMANDS_FILE_PATH)
