@@ -167,7 +167,8 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/OuterLoop_Control"}
+        {"Path": "PA_Results/OuterLoop_Control"},
+        {"Path": "PA_Results/test_results"}
       ]
     },
     
