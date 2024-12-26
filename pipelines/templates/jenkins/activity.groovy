@@ -21,7 +21,7 @@ def addStage(jobName) {
                     _getStageBody(jobName);
                 }
             } else if ("$AGENT_TYPE" == "container") {
-                node("$AGENT_LABEL") {
+                node("$RUNNER_LABEL") {
                     skipDefaultCheckout()
                     cleanWs()
                     checkout scm
