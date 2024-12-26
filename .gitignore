@@ -42,7 +42,6 @@ shell_commands.sh
 04_Results/
 PA_Results/
 derived/
-common/
 task*/
 tasks/
 __pycache__/
@@ -56,3 +55,5 @@ data*.json
 test*.html
 pipelines/scripts/lib/
 lib
+matlab_job_commands*
+out*.log
