@@ -125,14 +125,14 @@ function processmodel(pm)
     if includeTestsPerTestCaseTask
         milTask = pm.addTask(padv.builtin.task.RunTestsPerTestCase(IterationQuery=findTestsForModel));
         % Configure the tests per testcase task
-        milTask.OutputDirectory = fullfile(defaultTestResultPath,'test_results');
+        milTask.OutputDirectory = defaultTestResultPath;
     end
 
     %% Merge test results
     % Tools required: Simulink Test (and optionally Simulink Coverage)
     if includeTestsPerTestCaseTask && includeMergeTestResultsTask
         mergeTestTask = pm.addTask(padv.builtin.task.MergeTestResults(IterationQuery=findModelsWithTests));
-        mergeTestTask.ReportPath = fullfile(defaultTestResultPath,'test_results');
+        mergeTestTask.ReportPath = defaultTestResultPath;
     end
 	
     %% Collect Model Testing Metrics
