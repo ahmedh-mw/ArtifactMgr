@@ -35,7 +35,8 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/AHRS_Voter"}
+        {"Path": "PA_Results/AHRS_Voter"},
+        {"Path": "PA_Results/test_results"}
       ]
     },
     
@@ -162,7 +163,8 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/OuterLoop_Control"}
+        {"Path": "PA_Results/OuterLoop_Control"},
+        {"Path": "PA_Results/test_results"}
       ]
     },
     
@@ -176,8 +178,8 @@
       ],
       "Commands": [
         "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
-        "padv.util.checkOutdatedResults();",
         "cp=openProject(pwd);",
+        "padv.util.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
         "[~,exitCode]={{runprocess}};",
         "{{generate-report}};",
         "cp.close();",

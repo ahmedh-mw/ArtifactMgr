@@ -35,8 +35,8 @@ function processmodel(pm)
 
     % Set default root directory for task results
     pm.DefaultOutputDirectory = fullfile('$PROJECTROOT$', 'PA_Results');
-    defaultResultPath = fullfile( ...
-        '$DEFAULTOUTPUTDIR$','$ITERATIONARTIFACT$');
+    defaultResultPath = fullfile('$DEFAULTOUTPUTDIR$','$ITERATIONARTIFACT$');
+    defaultTestResultPath = fullfile('$DEFAULTOUTPUTDIR$','test_results');
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Define Shared Queries
@@ -125,14 +125,14 @@ function processmodel(pm)
     if includeTestsPerTestCaseTask
         milTask = pm.addTask(padv.builtin.task.RunTestsPerTestCase(IterationQuery=findTestsForModel));
         % Configure the tests per testcase task
-        milTask.OutputDirectory = fullfile(defaultResultPath,'test_results');
+        milTask.OutputDirectory = fullfile(defaultTestResultPath,'test_results');
     end
 
     %% Merge test results
     % Tools required: Simulink Test (and optionally Simulink Coverage)
     if includeTestsPerTestCaseTask && includeMergeTestResultsTask
         mergeTestTask = pm.addTask(padv.builtin.task.MergeTestResults(IterationQuery=findModelsWithTests));
-        mergeTestTask.ReportPath = fullfile(defaultResultPath,'test_results');
+        mergeTestTask.ReportPath = fullfile(defaultTestResultPath,'test_results');
     end
 	
     %% Collect Model Testing Metrics
