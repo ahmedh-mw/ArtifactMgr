@@ -57,6 +57,7 @@
         }
     },
     "Pipeline" :{
+        "RepoFallbackBranches": ["main"],
         "comment__RUNNER_TYPE_____" : "defaul/containert",
         "RUNNER_TYPE" : "default",
         "_RUNNER_LABEL" : "ex:padv_win_agents - Update this value at Repository variables",

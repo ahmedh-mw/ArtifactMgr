@@ -1313,6 +1313,7 @@
     }
   },
   "Pipeline": {
+    "RepoFallbackBranches": ["main"],
     "comment__RUNNER_TYPE_____": "default/container",
     "RUNNER_TYPE": "default",
     "RUNNER_LABEL": "padv_win_agents",

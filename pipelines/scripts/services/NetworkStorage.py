@@ -8,17 +8,28 @@ logger = logging.getLogger()
 class NetworkStorage:
     _LAST_SUCCESSFUL_RUNID_FILENAME = '__lastSuccessfulRunId__'
 
-    def __init__(self, root_folder, incrementalPipelineEnabled):
+    def __init__(self, root_folder):
         self.root_folder = root_folder
-        self.incrementalPipelineEnabled = incrementalPipelineEnabled
 
-    def downloadFromLastSuccessfulRun(self, relativeRepoBranchPath, artifactsFolders, downloadsPath):
-        if artifactsFolders is None or len(artifactsFolders) == 0 or not self.incrementalPipelineEnabled:
+    def downloadFromLastSuccessfulRun(self, projectName, lookupBranches, artifactsFolders, downloadsPath):
+        if artifactsFolders is None or len(artifactsFolders) == 0:
             return
         
-        lastSuccessfulRunId = self.getLastSuccessfulRunId(relativeRepoBranchPath)
+        lastSuccessfulRunId = None
+        visitedBranch = set()
+        for lookupBranch in lookupBranches:
+            logger.info(f"Looking up artifactory at branch: {lookupBranch}")
+            if lookupBranch not in visitedBranch:
+                visitedBranch.add(lookupBranch)
+                relativeRepoBranchPath = os.path.join(projectName, lookupBranch)
+                lastSuccessfulRunId = self.getLastSuccessfulRunId(relativeRepoBranchPath)
+                if lastSuccessfulRunId is not None:
+                    break
+                else:
+                    logger.info(f"Checking fallback branch")
+        
         if lastSuccessfulRunId is None:
-            return None
+            return False
         else:
             self.download(relativeRepoBranchPath, lastSuccessfulRunId, artifactsFolders, downloadsPath)
 

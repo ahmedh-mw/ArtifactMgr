@@ -52,8 +52,7 @@ if os.name == 'nt':           # isWindows
     NETWORK_STORAGE_PATH = "C:\\Data\\artifactory"
 else:
     NETWORK_STORAGE_PATH = "/home/ahmedh/artifactory"
-artifactsService = NetworkStorage(NETWORK_STORAGE_PATH, INCREMENTAL_PIPELINE_ENABLED == 'true')
-# artifactsService = Artifactory(root_folder)
+artifactsService = NetworkStorage(NETWORK_STORAGE_PATH)
 
 def getDagPath():
     dagPath = os.environ.get('DAG_PATH')

@@ -36,8 +36,7 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/AHRS_Voter"},
-        {"Path": "PA_Results/test_results"}
+        {"Path": "PA_Results/AHRS_Voter"}
       ]
     },
     
@@ -167,8 +166,7 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/OuterLoop_Control"},
-        {"Path": "PA_Results/test_results"}
+        {"Path": "PA_Results/OuterLoop_Control"}
       ]
     },
     
@@ -210,6 +208,7 @@
     }
   },
   "Pipeline": {
+    "RepoFallbackBranches": ["main"],
     "comment__RUNNER_TYPE_____": "default/container",
     "RUNNER_TYPE": "default",
     "RUNNER_LABEL": "padv_win_agents",
