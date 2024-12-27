@@ -93,7 +93,7 @@ def _getStageBody(jobName){
             currentBuild.result = 'FAILURE'
             unstable('Job failed!')
         }else{
-            throw e
+            throw exception
         }
     }
 }

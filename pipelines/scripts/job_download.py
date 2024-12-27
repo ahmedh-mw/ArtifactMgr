@@ -52,8 +52,10 @@ if __name__ == "__main__":
 
     predecessorJobsBranchesNames = None
     if currentJob.IsStartJob:
-        predecessorJobsBranchesNames = [currentJob.DownloadBranchName]
-        artifactsService.downloadFromLastSuccessfulRun(relativeRepoBranchPath, predecessorJobsBranchesNames, downloadsPath)
+        if dag.Pipeline.IncrementalPipelineEnabled:
+            predecessorJobsBranchesNames = [currentJob.DownloadBranchName]
+            lookupBranches = [REPO_BRANCH_NAME] + dag.Pipeline.RepoFallbackBranches
+            artifactsService.downloadFromLastSuccessfulRun(PROJECT_NAME, lookupBranches, predecessorJobsBranchesNames, downloadsPath)
     else:
         predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
         artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, predecessorJobsBranchesNames, downloadsPath)
