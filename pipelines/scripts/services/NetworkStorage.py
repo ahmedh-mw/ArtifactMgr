@@ -12,13 +12,22 @@ class NetworkStorage:
         self.root_folder = root_folder
         self.incrementalPipelineEnabled = incrementalPipelineEnabled
 
-    def downloadFromLastSuccessfulRun(self, relativeRepoBranchPath, artifactsFolders, downloadsPath):
+    def downloadFromLastSuccessfulRun(self, projectName, lookupBranches, artifactsFolders, downloadsPath):
         if artifactsFolders is None or len(artifactsFolders) == 0 or not self.incrementalPipelineEnabled:
             return
         
-        lastSuccessfulRunId = self.getLastSuccessfulRunId(relativeRepoBranchPath)
+        lastSuccessfulRunId = None
+        visitedBranch = set()
+        for lookupBranch in lookupBranches:
+            if lookupBranch not in visitedBranch:
+                visitedBranch.add(lookupBranch)
+                relativeRepoBranchPath = os.path.join(projectName, lookupBranch)
+                lastSuccessfulRunId = self.getLastSuccessfulRunId(relativeRepoBranchPath)
+                if lastSuccessfulRunId is not None:
+                    break
+        
         if lastSuccessfulRunId is None:
-            return None
+            return False
         else:
             self.download(relativeRepoBranchPath, lastSuccessfulRunId, artifactsFolders, downloadsPath)
 

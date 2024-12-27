@@ -37,6 +37,7 @@ def loadVariableKey(variables, key, value):
             variables[key] = value
 
 def loadPipelineVariables(variables, dag):
+    loadVariableKey(variables, dag.Pipeline._FALLBACK_BRANCH, dag.Pipeline.FALLBACK_BRANCH)
     loadVariableKey(variables, dag.Pipeline._RUNNER_TYPE_FIELD, dag.Pipeline.RUNNER_TYPE)
     loadVariableKey(variables, dag.Pipeline._RUNNER_LABEL_FIELD, dag.Pipeline.RUNNER_LABEL)
     loadVariableKey(variables, dag.Pipeline._IMAGE_TAG_FIELD, dag.Pipeline.IMAGE_TAG)
