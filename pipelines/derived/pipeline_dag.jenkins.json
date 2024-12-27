@@ -185,7 +185,7 @@
         "cp=openProject(pwd);",
         "[~,exitCode]={{runprocess}};",
         "{{generate-report}};",
-        "padv.util.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
+        "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
         "cp.close();",
         "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
         "exit(exitCode);"
