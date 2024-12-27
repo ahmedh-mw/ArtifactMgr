@@ -18,12 +18,15 @@ class NetworkStorage:
         lastSuccessfulRunId = None
         visitedBranch = set()
         for lookupBranch in lookupBranches:
+            logger.info(f"Looking up artifactory at branch: {lookupBranch}")
             if lookupBranch not in visitedBranch:
                 visitedBranch.add(lookupBranch)
                 relativeRepoBranchPath = os.path.join(projectName, lookupBranch)
                 lastSuccessfulRunId = self.getLastSuccessfulRunId(relativeRepoBranchPath)
                 if lastSuccessfulRunId is not None:
                     break
+                else:
+                    logger.info(f"Checking fallback branch")
         
         if lastSuccessfulRunId is None:
             return False
