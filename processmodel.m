@@ -125,16 +125,14 @@ function processmodel(pm)
     if includeTestsPerTestCaseTask
         milTask = pm.addTask(padv.builtin.task.RunTestsPerTestCase(IterationQuery=findTestsForModel));
         % Configure the tests per testcase task
-        milTask.OutputDirectory = fullfile( ...
-            '$PROJECTROOT$','PA_Results','test_results');
+        milTask.OutputDirectory = fullfile(defaultResultPath,'test_results');
     end
 
     %% Merge test results
     % Tools required: Simulink Test (and optionally Simulink Coverage)
     if includeTestsPerTestCaseTask && includeMergeTestResultsTask
         mergeTestTask = pm.addTask(padv.builtin.task.MergeTestResults(IterationQuery=findModelsWithTests));
-        mergeTestTask.ReportPath = fullfile( ...
-            '$PROJECTROOT$','PA_Results','test_results');
+        mergeTestTask.ReportPath = fullfile(defaultResultPath,'test_results');
     end
 	
     %% Collect Model Testing Metrics
@@ -155,8 +153,7 @@ function processmodel(pm)
         codegenTask.TreatAsRefModel = true;
         codegenTask.Title = "Reference Model Code Generation";
         codegenTask.GenerateExternalCodeCache = true;
-        codegenTask.ExternalCodeCacheDirectory = fullfile( ...
-            '$DEFAULTOUTPUTDIR$', '$ITERATIONARTIFACT$', 'external_code_cache');
+        codegenTask.ExternalCodeCacheDirectory = fullfile(defaultResultPath, 'external_code_cache');
     end
 
     if includeTopGenerateCodeTask && includeRefGenerateCodeTask
