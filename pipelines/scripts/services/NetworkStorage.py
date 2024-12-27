@@ -8,12 +8,11 @@ logger = logging.getLogger()
 class NetworkStorage:
     _LAST_SUCCESSFUL_RUNID_FILENAME = '__lastSuccessfulRunId__'
 
-    def __init__(self, root_folder, incrementalPipelineEnabled):
+    def __init__(self, root_folder):
         self.root_folder = root_folder
-        self.incrementalPipelineEnabled = incrementalPipelineEnabled
 
     def downloadFromLastSuccessfulRun(self, projectName, lookupBranches, artifactsFolders, downloadsPath):
-        if artifactsFolders is None or len(artifactsFolders) == 0 or not self.incrementalPipelineEnabled:
+        if artifactsFolders is None or len(artifactsFolders) == 0:
             return
         
         lastSuccessfulRunId = None

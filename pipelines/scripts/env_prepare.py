@@ -37,7 +37,6 @@ def loadVariableKey(variables, key, value):
             variables[key] = value
 
 def loadPipelineVariables(variables, dag):
-    loadVariableKey(variables, dag.Pipeline._FALLBACK_BRANCH, dag.Pipeline.FALLBACK_BRANCH)
     loadVariableKey(variables, dag.Pipeline._RUNNER_TYPE_FIELD, dag.Pipeline.RUNNER_TYPE)
     loadVariableKey(variables, dag.Pipeline._RUNNER_LABEL_FIELD, dag.Pipeline.RUNNER_LABEL)
     loadVariableKey(variables, dag.Pipeline._IMAGE_TAG_FIELD, dag.Pipeline.IMAGE_TAG)
@@ -45,9 +44,6 @@ def loadPipelineVariables(variables, dag):
     loadVariableKey(variables, dag.Pipeline._CONTINUE_ON_ERROR_FIELD, dag.Pipeline.CONTINUE_ON_ERROR)
     loadVariableKey(variables, dag.Pipeline._SUBMODULES_MODE_FIELD, dag.Pipeline.SUBMODULES_MODE)
     loadVariableKey(variables, dag.Pipeline._USE_MATLAB_PLUGIN_FIELD, dag.Pipeline.USE_MATLAB_PLUGIN)
-    loadVariableKey(variables, dag.Pipeline._INCREMENTAL_PIPELINE_ENABLED_FIELD, dag.Pipeline.IncrementalPipelineEnabled)
-    loadVariableKey(variables, dag.Pipeline._GENERATE_REPORT_FIELD, dag.Pipeline.GenerateReport)
-    loadVariableKey(variables, dag.Pipeline._ENABLE_ARTIFACTS_COLLECTION_FIELD, dag.Pipeline.EnableArtifactCollection)
     
 if __name__ == "__main__":
     args = parseArguments()

@@ -59,6 +59,7 @@
         }
     },
     "Pipeline" :{
+        "REPO_FALLBACK_BRANCHES": ["main"],
         "comment__RUNNER_TYPE_____" : "defaul/container",
         "RUNNER_TYPE" : "default",
         "RUNNER_LABEL" : "padv_win_agents",

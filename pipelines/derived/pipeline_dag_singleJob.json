@@ -28,6 +28,7 @@
         }
     },
     "Pipeline" :{
+        "REPO_FALLBACK_BRANCHES": ["main"],
         "GenerateReport": true,
         "EnableArtifactCollection": true,
         "ProcessName" : "CIPipeline",

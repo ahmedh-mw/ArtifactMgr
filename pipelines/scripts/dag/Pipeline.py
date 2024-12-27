@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger()
 
 class Pipeline:
-    _FALLBACK_BRANCH = 'FALLBACK_BRANCH'
+    _REPO_FALLBACK_BRANCHES_FIELD = 'REPO_FALLBACK_BRANCHES'
     _RUNNER_TYPE_FIELD = 'RUNNER_TYPE'
     _RUNNER_LABEL_FIELD = 'RUNNER_LABEL'
     _IMAGE_TAG_FIELD = 'IMAGE_TAG'
@@ -32,7 +32,7 @@ class Pipeline:
     
     def __init__(self, pipelineObject):
         self._pipelineObject = pipelineObject
-        self.FALLBACK_BRANCH = self._pipelineObject.get(self._FALLBACK_BRANCH)
+        self.RepoFallbackBranches = Utils.getList(self._REPO_FALLBACK_BRANCHES_FIELD)
         self.RUNNER_TYPE = self._pipelineObject.get(self._RUNNER_TYPE_FIELD)
         self.RUNNER_LABEL = self._pipelineObject.get(self._RUNNER_LABEL_FIELD)
         self.IMAGE_TAG = self._pipelineObject.get(self._IMAGE_TAG_FIELD)
