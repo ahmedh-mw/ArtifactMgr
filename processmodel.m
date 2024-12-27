@@ -36,7 +36,7 @@ function processmodel(pm)
     % Set default root directory for task results
     pm.DefaultOutputDirectory = fullfile('$PROJECTROOT$', 'PA_Results');
     defaultResultPath = fullfile('$DEFAULTOUTPUTDIR$','$ITERATIONARTIFACT$');
-    defaultTestResultPath = fullfile('$DEFAULTOUTPUTDIR$','test_results');
+    defaultTestResultPath = fullfile(defaultResultPath','test_results');
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Define Shared Queries

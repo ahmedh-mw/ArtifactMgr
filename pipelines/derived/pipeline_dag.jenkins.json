@@ -36,7 +36,9 @@
       ],
       "Outputs": [
         {"Path": "PA_Results/AHRS_Voter"},
-        {"Path": "PA_Results/test_results"}
+        {"Path": "PA_Results/HLR_11/test_results"},
+        {"Path": "PA_Results/HLR_12/test_results"},
+        {"Path": "PA_Results/HLR_13/test_results"}
       ]
     },
     
@@ -164,7 +166,9 @@
       ],
       "Outputs": [
         {"Path": "PA_Results/OuterLoop_Control"},
-        {"Path": "PA_Results/test_results"}
+        {"Path": "PA_Results/HLR_6/test_results"},
+        {"Path": "PA_Results/HLR_7/test_results"},
+        {"Path": "PA_Results/HLR_8/test_results"}
       ]
     },
     
