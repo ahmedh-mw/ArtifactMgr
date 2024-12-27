@@ -228,7 +228,7 @@
         }
     },
     "Pipeline" :{
-        "REPO_FALLBACK_BRANCHES": ["main"],
+        "RepoFallbackBranches": ["main"],
         "GenerateReport": true,
         "EnableArtifactCollection": true
     }

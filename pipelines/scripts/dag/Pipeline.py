@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger()
 
 class Pipeline:
-    _REPO_FALLBACK_BRANCHES_FIELD = 'REPO_FALLBACK_BRANCHES'
+    _REPO_FALLBACK_BRANCHES_FIELD = 'RepoFallbackBranches'
     _RUNNER_TYPE_FIELD = 'RUNNER_TYPE'
     _RUNNER_LABEL_FIELD = 'RUNNER_LABEL'
     _IMAGE_TAG_FIELD = 'IMAGE_TAG'
