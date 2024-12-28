@@ -1,0 +1,232 @@
+{
+  "Jobs": {
+    "start": {
+      "Flow_Predecessor_Jobs": [],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "padv.internal.updateProjectArtifacts(currentProject=cp);"
+      ]
+    },
+    "AHRS_Voter": {
+      "Flow_Predecessor_Jobs": [
+        "start"
+      ],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|ced877ff-cfb8-4fa8-9bbf-aaa29b1d926b",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|d3a72cc8-687b-44ae-a909-7eff803b455b",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|74194125-b632-41a1-b96d-b3364441277f",
+        "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+        "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+      ],
+      "Outputs": [
+        "PA_Results/AHRS_Voter",
+        "PA_Results/HLR_11/test_results",
+        "PA_Results/HLR_12/test_results",
+        "PA_Results/HLR_13/test_results"
+      ]
+    },
+    "Actuator_Control": {
+      "Flow_Predecessor_Jobs": [
+        "start"
+      ],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+        "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
+      ],
+      "Outputs": [
+        "PA_Results/Actuator_Control"
+      ]
+    },
+    "Flight_Control": {
+      "Flow_Predecessor_Jobs": [
+        "start"
+      ],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
+        "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx"
+      ],
+      "Outputs": [
+        "PA_Results/Flight_Control"
+      ]
+    },
+    "InnerLoop_Control": {
+      "Flow_Predecessor_Jobs": [
+        "start"
+      ],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+        "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
+      ],
+      "Outputs": [
+        "PA_Results/InnerLoop_Control"
+      ]
+    },
+    "OuterLoop_Control": {
+      "Flow_Predecessor_Jobs": [
+        "start"
+      ],
+      "Commands": [
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|862932e4-be44-4f66-9abe-fb313da73c0d",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|70d344b2-d65f-4872-9e4b-cef338e618a5",
+        "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|51b0cb29-34f5-4c04-9104-4f3b0b48dda9",
+        "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+        "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
+      ],
+      "Outputs": [
+        "PA_Results/OuterLoop_Control",
+        "PA_Results/HLR_6/test_results",
+        "PA_Results/HLR_7/test_results",
+        "PA_Results/HLR_8/test_results"
+      ]
+    },
+    "end": {
+      "Flow_Predecessor_Jobs": [
+        "AHRS_Voter",
+        "Actuator_Control",
+        "Flight_Control",
+        "InnerLoop_Control",
+        "OuterLoop_Control"
+      ],
+      "Commands": [
+        "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "{{generate-report}};",
+        "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [
+        "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
+        "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/HighLevelReqs.slreqx",
+        "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/SystemReqs.slreqx"
+      ],
+      "Outputs": [
+        "03_Code",
+        "PA_Results/bug_finder",
+        "PA_Results/code_prover",
+        "PA_Results/code_inspection",
+        "PA_Results/SystemReqs/report",
+        "PA_Results/HighLevelReqs/report",
+        "PA_Results/Report"
+      ]
+    }
+  },
+  "Pipeline": {
+    "RepoFallbackBranches": [
+      "main"
+    ],
+    "comment__RUNNER_TYPE_____": "default/container",
+    "RUNNER_TYPE": "default",
+    "RUNNER_LABEL": "padv_win_agents",
+    "IMAGE_TAG": "matlab_padv:R2024b",
+    "IMAGE_ARGS": "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
+    "CONTINUE_ON_ERROR": false,
+    "_SUBMODULES_MODE": "Configured from Jenkins pipeline scm settings",
+    "USE_MATLAB_PLUGIN": false,
+    "IncrementalPipelineEnabled": true,
+    "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin",
+    "MatlabInstrallationPath____": "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
+    "MatlabLaunchCmd": "matlab",
+    "MatlabStartupOptions": "-nodesktop -logfile output.log",
+    "AddBatchStartupOption": true,
+    "ProcessName": "CIPipeline",
+    "GenerateReport": true,
+    "ReportPath": "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport",
+    "ReportFormat": "pdf",
+    "EnableArtifactCollection": true,
+    "RunprocessOptions": {
+      "Force": false,
+      "RerunFailedTasks": false,
+      "RerunErroredTasks": false,
+      "GenerateJUnitForProcess": true,
+      "MakeSureOutputArtifactsWriteable": true,
+      "ExitInBatchMode": false
+    }
+  }
+}
