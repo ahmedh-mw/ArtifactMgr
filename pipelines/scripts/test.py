@@ -77,7 +77,8 @@ if __name__ == "__main__":
     # dag = DAG("C:/Data/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
-    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
+    # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.github.json")
     
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
