@@ -7,7 +7,7 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "$GITHUB_JOB"
+      job-name: '${{ github.job }}'
 
   #######################################################################
   #                 AHRS_Voter
