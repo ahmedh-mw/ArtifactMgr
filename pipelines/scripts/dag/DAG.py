@@ -203,7 +203,7 @@ class DAG:
     
     def _getJobs(self):
         jobsObjects = self._dagObject[self._JOBS_DIC].items()
-        jobs = {jobName: Job(jobName, jobObject) for jobName, jobObject in jobsObjects}
+        jobs = {jobName: Job(jobName, jobObject) for jobName, jobObject in jobsObjects if not jobName.startswith("__comment__")}
         return jobs
 
     def _getPipeline(self):
