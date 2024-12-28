@@ -9,44 +9,92 @@ jobs:
     with:
       job-name: start
 
-  AHRS_Voter:
+  AHRS_Voter_Collect_Model_Maintainability_Metrics:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: AHRS_Voter
+      job-name: ${{github.job}}
 
-  Actuator_Control:
+  AHRS_Voter_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: Actuator_Control
+      job-name: ${{github.job}}
 
-  Flight_Control:
+  AHRS_Voter_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: Flight_Control
+      job-name: ${{github.job}}
 
-  InnerLoop_Control:
+  AHRS_Voter_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: InnerLoop_Control
+      job-name: ${{github.job}}
 
-  OuterLoop_Control:
+  AHRS_Voter_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: OuterLoop_Control
+      job-name: ${{github.job}}
+
+
+
+
+
+
+  AHRS_Voter_Detect_Design_Errors:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: ${{github.job}}
+
+  AHRS_Voter_Generate_Model_Comparison:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: ${{github.job}}
+
+  AHRS_Voter_Generate_SDD_Report:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: ${{github.job}}
+
+  AHRS_Voter_Run_Tests:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: ${{github.job}}
+
+  AHRS_Voter_Merge_Test_Results:
+    needs: AHRS_Voter_Run_Tests
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: ${{github.job}}
+
+
+
+
+
+
+
+
 
   end:
     needs: [AHRS_Voter, Actuator_Control, Flight_Control, InnerLoop_Control, OuterLoop_Control]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: end
+      job-name: ${{github.job}}
