@@ -7,7 +7,7 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: "${{ env.GITHUB_JOB }}"
 
   #######################################################################
   #                 AHRS_Voter
@@ -17,98 +17,98 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Detect_Design_Errors:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Generate_Model_Comparison:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Generate_SDD_Report:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Run_Tests:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Merge_Test_Results:
     needs: AHRS_Voter_Run_Tests
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Collect_Model_Testing_Metrics:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Reference_Model_Code_Generation:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Ref_Model_Code_Proving:
     needs: AHRS_Voter_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   AHRS_Voter_Ref_Model_Code_Inspection:
     needs: AHRS_Voter_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 Actuator_Control
@@ -118,84 +118,84 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Detect_Design_Errors:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Generate_Model_Comparison:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Generate_SDD_Report:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Collect_Model_Testing_Metrics:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Reference_Model_Code_Generation:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Ref_Model_Code_Proving:
     needs: Actuator_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Actuator_Control_Ref_Model_Code_Inspection:
     needs: Actuator_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 Flight_Control
@@ -205,56 +205,56 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Detect_Design_Errors:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Generate_Model_Comparison:
     needs: Actuator_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Flight_Control_Generate_SDD_Report:
     needs: Actuator_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 InnerLoop_Control
@@ -264,84 +264,84 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Detect_Design_Errors:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Generate_Model_Comparison:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Generate_SDD_Report:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Collect_Model_Testing_Metrics:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Reference_Model_Code_Generation:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Ref_Model_Code_Proving:
     needs: InnerLoop_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   InnerLoop_Control_Ref_Model_Code_Inspection:
     needs: InnerLoop_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 OuterLoop_Control
@@ -351,98 +351,98 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Generate_Simulink_Web_View:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Check_Modeling_Standards:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Find_Clones_Across_Model:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Find_Library_Clones:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Detect_Design_Errors:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Generate_Model_Comparison:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Generate_SDD_Report:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Run_Tests:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Merge_Test_Results:
     needs: OuterLoop_Control_Run_Tests
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Collect_Model_Testing_Metrics:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Reference_Model_Code_Generation:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Ref_Model_Code_Proving:
     needs: OuterLoop_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   OuterLoop_Control_Ref_Model_Code_Inspection:
     needs: OuterLoop_Control_Reference_Model_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 Merging Code Generation
@@ -458,7 +458,7 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   #######################################################################
   #                 Top Model tasks 
@@ -468,28 +468,28 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Top_Model_Code_Analysis:
     needs: Merging_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Top_Model_Code_Proving:
     needs: Merging_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Top_Model_Code_Inspection:
     needs: Merging_Code_Generation
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
   #######################################################################
   #                 Generate_requirements_report
   #######################################################################
@@ -498,14 +498,14 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
 
   Generate_requirements_report_SystemReqs:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
   #######################################################################
   #                 end
   #######################################################################
@@ -577,4 +577,4 @@ jobs:
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: ${{ env.GITHUB_JOB }}
+      job-name: ${{github.job}}
