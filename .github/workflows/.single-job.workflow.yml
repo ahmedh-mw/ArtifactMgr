@@ -68,15 +68,29 @@ jobs:
     with:
       job-name: "AHRS_Voter_Generate_SDD_Report"
 
-  AHRS_Voter_Run_Tests:
+  AHRS_Voter_Run_Tests_HLR_11:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "AHRS_Voter_Run_Tests"
+      job-name: "AHRS_Voter_Run_Tests_HLR_11"
+
+  AHRS_Voter_Run_Tests_HLR_12:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_Run_Tests_HLR_12"
+
+  AHRS_Voter_Run_Tests_HLR_13:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_Run_Tests_HLR_13"
 
   AHRS_Voter_Merge_Test_Results:
-    needs: AHRS_Voter_Run_Tests
+    needs: [AHRS_Voter_Run_Tests_HLR_11, AHRS_Voter_Run_Tests_HLR_12, AHRS_Voter_Run_Tests_HLR_13]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
@@ -402,15 +416,29 @@ jobs:
     with:
       job-name: "OuterLoop_Control_Generate_SDD_Report"
 
-  OuterLoop_Control_Run_Tests:
+  OuterLoop_Control_Run_Tests_HLR_6:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "OuterLoop_Control_Run_Tests"
+      job-name: "OuterLoop_Control_Run_Tests_HLR_6"
+
+  OuterLoop_Control_Run_Tests_HLR_7:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "OuterLoop_Control_Run_Tests_HLR_7"
+
+  OuterLoop_Control_Run_Tests_HLR_8:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "OuterLoop_Control_Run_Tests_HLR_8"
 
   OuterLoop_Control_Merge_Test_Results:
-    needs: OuterLoop_Control_Run_Tests
+    needs: [OuterLoop_Control_Run_Tests_HLR_6, OuterLoop_Control_Run_Tests_HLR_7, OuterLoop_Control_Run_Tests_HLR_8]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
