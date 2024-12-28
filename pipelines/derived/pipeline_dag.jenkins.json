@@ -35,10 +35,10 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/AHRS_Voter"},
-        {"Path": "PA_Results/HLR_11/test_results"},
-        {"Path": "PA_Results/HLR_12/test_results"},
-        {"Path": "PA_Results/HLR_13/test_results"}
+                "PA_Results/AHRS_Voter",
+                "PA_Results/HLR_11/test_results",
+                "PA_Results/HLR_12/test_results",
+                "PA_Results/HLR_13/test_results"
       ]
     },
     
@@ -70,7 +70,7 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/Actuator_Control"}
+                "PA_Results/Actuator_Control"
       ]
     },
     
@@ -98,7 +98,7 @@
         "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/Flight_Control"}
+                "PA_Results/Flight_Control"
       ]
     },
     
@@ -130,7 +130,7 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/InnerLoop_Control"}
+                "PA_Results/InnerLoop_Control"
       ]
     },
     
@@ -165,10 +165,10 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
       ],
       "Outputs": [
-        {"Path": "PA_Results/OuterLoop_Control"},
-        {"Path": "PA_Results/HLR_6/test_results"},
-        {"Path": "PA_Results/HLR_7/test_results"},
-        {"Path": "PA_Results/HLR_8/test_results"}
+                "PA_Results/OuterLoop_Control",
+                "PA_Results/HLR_6/test_results",
+                "PA_Results/HLR_7/test_results",
+                "PA_Results/HLR_8/test_results"
       ]
     },
     
@@ -199,18 +199,20 @@
         "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/SystemReqs.slreqx"
       ],
       "Outputs": [
-        {"Path": "03_Code"},
-        {"Path": "PA_Results/bug_finder"},
-        {"Path": "PA_Results/code_prover"},
-        {"Path": "PA_Results/code_inspection"},
-        {"Path": "PA_Results/SystemReqs/report"},
-        {"Path": "PA_Results/HighLevelReqs/report"},
-        {"Path": "PA_Results/Report"}
+                "03_Code",
+                "PA_Results/bug_finder",
+                "PA_Results/code_prover",
+                "PA_Results/code_inspection",
+                "PA_Results/SystemReqs/report",
+                "PA_Results/HighLevelReqs/report",
+                "PA_Results/Report"
       ]
     }
   },
   "Pipeline": {
-    "RepoFallbackBranches": ["main"],
+        "RepoFallbackBranches": [
+            "main"
+        ],
     "comment__RUNNER_TYPE_____": "default/container",
     "RUNNER_TYPE": "default",
     "RUNNER_LABEL": "padv_win_agents",
