@@ -82,7 +82,15 @@
       },
       "AHRS_Voter_Merge_Test_Results": {
           "Flow_Predecessor_Jobs": [ "AHRS_Voter_Run_Tests_HLR_11", "AHRS_Voter_Run_Tests_HLR_12", "AHRS_Voter_Run_Tests_HLR_13" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+          "Commands": [ 
+              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "cp=openProject(pwd);",
+              "[~,exitCode]={{runprocess}};",
+              "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
+              "cp.close();",
+              "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+              "exit(exitCode);"
+          ],
           "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
           "Outputs": [ "PA_Results/AHRS_Voter/test_results" ]
       },
@@ -390,7 +398,15 @@
       },
       "OuterLoop_Control_Merge_Test_Results": {
           "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Run_Tests_HLR_6", "OuterLoop_Control_Run_Tests_HLR_7", "OuterLoop_Control_Run_Tests_HLR_8" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+          "Commands": [ 
+              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "cp=openProject(pwd);",
+              "[~,exitCode]={{runprocess}};",
+              "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
+              "cp.close();",
+              "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+              "exit(exitCode);"
+          ],
           "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
           "Outputs": [ "PA_Results/OuterLoop_Control/test_results" ]
       },
