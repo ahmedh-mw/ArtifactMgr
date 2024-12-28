@@ -35,15 +35,12 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
       ],
       "Outputs": [
-                "PA_Results/AHRS_Voter",
-                "PA_Results/HLR_11/test_results",
-                "PA_Results/HLR_12/test_results",
-                "PA_Results/HLR_13/test_results"
+        "PA_Results/AHRS_Voter",
+        "PA_Results/HLR_11/test_results",
+        "PA_Results/HLR_12/test_results",
+        "PA_Results/HLR_13/test_results"
       ]
     },
-    
-
-
     "Actuator_Control": {
       "Flow_Predecessor_Jobs": [
         "start"
@@ -70,12 +67,9 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
       ],
       "Outputs": [
-                "PA_Results/Actuator_Control"
+        "PA_Results/Actuator_Control"
       ]
     },
-    
-
-
     "Flight_Control": {
       "Flow_Predecessor_Jobs": [
         "start"
@@ -98,12 +92,9 @@
         "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx"
       ],
       "Outputs": [
-                "PA_Results/Flight_Control"
+        "PA_Results/Flight_Control"
       ]
     },
-    
-
-
     "InnerLoop_Control": {
       "Flow_Predecessor_Jobs": [
         "start"
@@ -130,11 +121,9 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
       ],
       "Outputs": [
-                "PA_Results/InnerLoop_Control"
+        "PA_Results/InnerLoop_Control"
       ]
     },
-    
-
     "OuterLoop_Control": {
       "Flow_Predecessor_Jobs": [
         "start"
@@ -165,13 +154,12 @@
         "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
       ],
       "Outputs": [
-                "PA_Results/OuterLoop_Control",
-                "PA_Results/HLR_6/test_results",
-                "PA_Results/HLR_7/test_results",
-                "PA_Results/HLR_8/test_results"
+        "PA_Results/OuterLoop_Control",
+        "PA_Results/HLR_6/test_results",
+        "PA_Results/HLR_7/test_results",
+        "PA_Results/HLR_8/test_results"
       ]
     },
-    
     "end": {
       "Flow_Predecessor_Jobs": [
         "AHRS_Voter",
@@ -190,7 +178,7 @@
         "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
         "exit(exitCode);"
       ],
-      "Tasks":[
+      "Tasks": [
         "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
         "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
         "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
@@ -199,20 +187,20 @@
         "padv.builtin.task.GenerateRequirementsReport|mwreq_file|ProcessAdvisorExample|01_Requirements/SystemReqs.slreqx"
       ],
       "Outputs": [
-                "03_Code",
-                "PA_Results/bug_finder",
-                "PA_Results/code_prover",
-                "PA_Results/code_inspection",
-                "PA_Results/SystemReqs/report",
-                "PA_Results/HighLevelReqs/report",
-                "PA_Results/Report"
+        "03_Code",
+        "PA_Results/bug_finder",
+        "PA_Results/code_prover",
+        "PA_Results/code_inspection",
+        "PA_Results/SystemReqs/report",
+        "PA_Results/HighLevelReqs/report",
+        "PA_Results/Report"
       ]
     }
   },
   "Pipeline": {
-        "RepoFallbackBranches": [
-            "main"
-        ],
+    "RepoFallbackBranches": [
+      "main"
+    ],
     "comment__RUNNER_TYPE_____": "default/container",
     "RUNNER_TYPE": "default",
     "RUNNER_LABEL": "padv_win_agents",
