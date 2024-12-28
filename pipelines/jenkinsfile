@@ -24,7 +24,7 @@ node{
         [
             'Merging_Code_Generation': { activity.addStage('Merging_Code_Generation')()},
             'AHRS_Voter_Merge_Test_Results' : { activity.addStage('AHRS_Voter_Merge_Test_Results')() },
-            'OuterLoop_Control_Merge_Test_Results' : { activity.addStage('OuterLoop_Control_Merge_Test_Results')() }
+            'OuterLoop_Control_Merge_Test_Results' : { activity.addStage('OuterLoop_Control_Merge_Test_Results')() },
 
             'Generate_requirements_report_HighLevelReqs' : { activity.addStage('Generate_requirements_report_HighLevelReqs')()},
             'Generate_requirements_report_SystemReqs' : { activity.addStage('Generate_requirements_report_SystemReqs')()},
