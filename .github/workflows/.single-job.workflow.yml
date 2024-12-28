@@ -92,9 +92,9 @@ jobs:
 
 
 
-  end:
-    needs: [AHRS_Voter, Actuator_Control, Flight_Control, InnerLoop_Control, OuterLoop_Control]
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: ${{github.job}}
+  # end:
+  #   needs: [AHRS_Voter, Actuator_Control, Flight_Control, InnerLoop_Control, OuterLoop_Control]
+  #   if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+  #   uses: ./.github/workflows/generic-job.yml
+  #   with:
+  #     job-name: ${{github.job}}
