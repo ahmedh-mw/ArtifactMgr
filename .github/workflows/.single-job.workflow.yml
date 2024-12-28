@@ -9,50 +9,43 @@ jobs:
     with:
       job-name: start
 
-  AHRS_Voter_CollectMetrics:
+  AHRS_Voter:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: AHRS_Voter_CollectMetrics
+      job-name: AHRS_Voter
 
-  AHRS_Voter_CollectMetrics2:
-    needs: AHRS_Voter_CollectMetrics
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: AHRS_Voter_CollectMetrics
-
-  AHRS_Voter_CollectMetrics3:
-    needs: AHRS_Voter_CollectMetrics2
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: AHRS_Voter_CollectMetrics
-
-  Actuator_Control_CollectMetrics:
+  Actuator_Control:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: Actuator_Control_CollectMetrics
+      job-name: Actuator_Control
 
-  Actuator_Control_CollectMetrics2:
+  Flight_Control:
     needs: Actuator_Control_CollectMetrics
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: Actuator_Control_CollectMetrics
+      job-name: Flight_Control
 
-  Actuator_Control_CollectMetrics3:
+  InnerLoop_Control:
     needs: Actuator_Control_CollectMetrics2
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: Actuator_Control_CollectMetrics
+      job-name: InnerLoop_Control
+
+  OuterLoop_Control:
+    needs: Actuator_Control_CollectMetrics2
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: OuterLoop_Control
 
   end:
-    needs: [AHRS_Voter_CollectMetrics3, Actuator_Control_CollectMetrics3]
+    needs: [AHRS_Voter, Actuator_Control, Flight_Control, InnerLoop_Control, OuterLoop_Control]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
