@@ -42,7 +42,7 @@ class DAG:
         if job.IsStartingNewBranch: # New branch will be created, so upload all artifacts
             return self.Pipeline.OutputsPaths
         else:
-            return set(job.Outputs.keys())
+            return set(job.Outputs)
    
     def getPredecessorJobsBranchesNames(self, job):
         brancheshNames = set()
@@ -101,7 +101,7 @@ class DAG:
         ##############################################
         #       Update Pipeline.OutputsPaths
         ##############################################
-        self._pipelineOutputsPaths.update(currentJob.Outputs.keys())
+        self._pipelineOutputsPaths.update(currentJob.Outputs)
         ##############################################
         #       Traverse forward
         ##############################################
@@ -124,7 +124,7 @@ class DAG:
             predecessorBranchOutputs = self.Branches[predecessorJob.BranchName].OutputsPaths
             jobBranch.OutputsPaths.update(predecessorBranchOutputs)
 
-        jobBranch.OutputsPaths.update(currentJob.Outputs.keys())
+        jobBranch.OutputsPaths.update(currentJob.Outputs)
         ##############################################
         #       Build PredecessorBranchesNames & SuccessorBranchesNames
         ##############################################

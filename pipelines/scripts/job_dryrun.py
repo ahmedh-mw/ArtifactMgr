@@ -18,7 +18,9 @@ import logging
 from config import *
 
 logger = logging.getLogger()
+_DRYRUN_FILE_NAME = "dryrun.txt"
 _DUMMY_CONTENT = 'Dummy content'
+
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Job dryrun.', prog='job_dryrun.py')
@@ -29,16 +31,24 @@ def parseArguments():
 def dryrun(jobName):
     dag = DAG(getDagPath())
     job = dag.getJob(jobName)
-    for outputPath, dirFiles in job.Outputs.items():
+    
+    for outputPath in job.Outputs:
         dir_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, outputPath)
         logger.info(f"{core.GROUP_START} Building directory: {dir_path}")
         files.create_folder(dir_path)
-        for file in dirFiles:
-            full_path = os.path.join(dir_path, file)
-            logger.info(f"Adding file: {full_path}")
-            file_dir_path = os.path.dirname(full_path)
-            files.create_folder(file_dir_path)
-            files.add_file(full_path, _DUMMY_CONTENT)
+        full_path = os.path.join(dir_path, _DRYRUN_FILE_NAME)
+        files.add_file(full_path, _DUMMY_CONTENT)
+        
+    # for outputPath, dirFiles in job.Outputs.items():
+        # dir_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, outputPath)
+        # logger.info(f"{core.GROUP_START} Building directory: {dir_path}")
+        # files.create_folder(dir_path)
+        # for file in dirFiles:
+        #     full_path = os.path.join(dir_path, file)
+        #     logger.info(f"Adding file: {full_path}")
+        #     file_dir_path = os.path.dirname(full_path)
+        #     files.create_folder(file_dir_path)
+        #     files.add_file(full_path, _DUMMY_CONTENT)
 
 if __name__ == "__main__":
     args = parseArguments()
