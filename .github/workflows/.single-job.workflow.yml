@@ -24,21 +24,21 @@ jobs:
       job-name: Actuator_Control
 
   Flight_Control:
-    needs: Actuator_Control_CollectMetrics
+    needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Flight_Control
 
   InnerLoop_Control:
-    needs: Actuator_Control_CollectMetrics2
+    needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: InnerLoop_Control
 
   OuterLoop_Control:
-    needs: Actuator_Control_CollectMetrics2
+    needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
