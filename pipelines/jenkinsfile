@@ -22,10 +22,7 @@ node{
     )()
     activity.addParallelStages('Merge_Code_And_Tests',
         [
-            'Merging_Code_Generation': { 
-                activity.addStage('Merging_Code_Generation')()
-                activity.addStage('Top_Model_Code_Generation')()
-            },
+            'Merging_Code_Generation': { activity.addStage('Top_Model_Code_Generation')() },
             'AHRS_Voter_Merge_Test_Results' : { activity.addStage('AHRS_Voter_Merge_Test_Results')() },
             'OuterLoop_Control_Merge_Test_Results' : { activity.addStage('OuterLoop_Control_Merge_Test_Results')() },
 
