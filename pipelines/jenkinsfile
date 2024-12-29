@@ -22,14 +22,15 @@ node{
     )()
     activity.addParallelStages('Merge_Code_And_Tests',
         [
-            'Merging_Code_Generation': { activity.addStage('Merging_Code_Generation')()},
+            'Merging_Code_Generation': { 
+                activity.addStage('Merging_Code_Generation')()
+                activity.addStage('Top_Model_Code_Generation')()
+            },
             'AHRS_Voter_Merge_Test_Results' : { activity.addStage('AHRS_Voter_Merge_Test_Results')() },
             'OuterLoop_Control_Merge_Test_Results' : { activity.addStage('OuterLoop_Control_Merge_Test_Results')() },
 
             'Generate_requirements_report_HighLevelReqs' : { activity.addStage('Generate_requirements_report_HighLevelReqs')()},
             'Generate_requirements_report_SystemReqs' : { activity.addStage('Generate_requirements_report_SystemReqs')()},
-
-            'Top_Model_Code_Generation' : { activity.addStage('Top_Model_Code_Generation')()},
         ]
     )()
     activity.addParallelStages('Iterations',
@@ -37,7 +38,7 @@ node{
             'Top_Model_Code_Analysis' : { activity.addStage('Top_Model_Code_Analysis')()},
             'Top_Model_Code_Proving' : { activity.addStage('Top_Model_Code_Proving')()},
             'Top_Model_Code_Inspection' : { activity.addStage('Top_Model_Code_Inspection')()},
-            
+
             'AHRS_Voter_Collect_Model_Maintainability_Metrics' : { activity.addStage('AHRS_Voter_Collect_Model_Maintainability_Metrics')()},
             'AHRS_Voter_Generate_Simulink_Web_View' : { activity.addStage('AHRS_Voter_Generate_Simulink_Web_View')()},
             'AHRS_Voter_Check_Modeling_Standards' : { activity.addStage('AHRS_Voter_Check_Modeling_Standards')()},
