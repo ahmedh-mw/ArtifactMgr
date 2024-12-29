@@ -35,10 +35,12 @@ node{
     )()
     activity.addParallelStages('Iterations',
         [
-            'Top_Model_Code_Analysis' : { activity.addStage('Top_Model_Code_Analysis')()},
-            'Top_Model_Code_Proving' : { activity.addStage('Top_Model_Code_Proving')()},
-            'Top_Model_Code_Inspection' : { activity.addStage('Top_Model_Code_Inspection')()},
-
+            'Top_Model_Code_Analysis_Proving_Inspection' : { 
+                activity.addStage('Top_Model_Code_Analysis')()
+                activity.addStage('Top_Model_Code_Proving')()
+                activity.addStage('Top_Model_Code_Inspection')()
+            },
+            
             'AHRS_Voter_Collect_Model_Maintainability_Metrics' : { activity.addStage('AHRS_Voter_Collect_Model_Maintainability_Metrics')()},
             'AHRS_Voter_Generate_Simulink_Web_View' : { activity.addStage('AHRS_Voter_Generate_Simulink_Web_View')()},
             'AHRS_Voter_Check_Modeling_Standards' : { activity.addStage('AHRS_Voter_Check_Modeling_Standards')()},

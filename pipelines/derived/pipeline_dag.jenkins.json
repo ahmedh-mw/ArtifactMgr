@@ -423,13 +423,13 @@
           "Outputs": [ "PA_Results/bug_finder" ]
       },
       "Top_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
+          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Analysis" ],
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
           "Outputs": [ "PA_Results/code_prover" ]
       },
       "Top_Model_Code_Inspection": {
-          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
+          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Proving" ],
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
           "Outputs": [ "PA_Results/code_inspection" ]
@@ -508,8 +508,6 @@
               "OuterLoop_Control_Merge_Test_Results",
               "OuterLoop_Control_Collect_Model_Testing_Metrics",
               
-              "Top_Model_Code_Analysis",
-              "Top_Model_Code_Proving",
               "Top_Model_Code_Inspection",
 
               "Generate_requirements_report_HighLevelReqs",
