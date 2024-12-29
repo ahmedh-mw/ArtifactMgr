@@ -83,7 +83,7 @@
       "AHRS_Voter_Merge_Test_Results": {
           "Flow_Predecessor_Jobs": [ "AHRS_Voter_Run_Tests_HLR_11", "AHRS_Voter_Run_Tests_HLR_12", "AHRS_Voter_Run_Tests_HLR_13" ],
           "Commands": [ 
-              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "[~,exitCode]={{runprocess}};",
               "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
@@ -362,7 +362,7 @@
       "OuterLoop_Control_Merge_Test_Results": {
           "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Run_Tests_HLR_6", "OuterLoop_Control_Run_Tests_HLR_7", "OuterLoop_Control_Run_Tests_HLR_8" ],
           "Commands": [ 
-              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "[~,exitCode]={{runprocess}};",
               "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
@@ -397,7 +397,7 @@
               "OuterLoop_Control_Reference_Model_Code_Generation"
           ],
           "Commands": [
-              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "padv.internal.updateProjectArtifacts(currentProject=cp);",
               "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
@@ -517,7 +517,7 @@
               "Generate_requirements_report_SystemReqs"
           ],
           "Commands": [
-              "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+              "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "padv.internal.updateProjectArtifacts(currentProject=cp);",
               "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
