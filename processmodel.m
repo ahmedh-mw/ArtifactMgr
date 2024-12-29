@@ -141,6 +141,7 @@ function processmodel(pm)
         mtMetricTask.Title = message('padv_spkg:builtin_text:ModelTestingMetricDemoTaskTitle').getString();
         mtMetricTask.Dashboard = "ModelUnitTesting";
         mtMetricTask.ReportName = "$ITERATIONARTIFACT$_ModelTesting";
+        mtMetricTask.ReportPath = fullfile(defaultResultPath, 'testing_metrics');
     end	
 
     %% Generate Code

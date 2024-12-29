@@ -49,13 +49,14 @@ def drawDAG(dag):
 
     net = Network(directed = True)
     layout = { "randomSeed": None,
-            "hierarchical": {"enabled": True, "levelSeparation": 500, "direction": 'LR', "sortMethod": 'directed'}
+            "hierarchical": {"enabled": True, "levelSeparation": 700, "nodeSpacing": 100, "direction": 'LR', "sortMethod": 'directed'}
         }
     nodes_options = {"borderWidth": 2, "shape" : "ellipse", "font" : {"size" : 30}}
     net.options.layout = layout
     net.options.edges.smooth.type = 'cubicBezier'
     net.options.nodes = nodes_options
-    net.height = "900"
+    net.height = "1200"
+    net.toggle_physics(False)
     
     # net.show_buttons() # Show part 3 in the plot (optional)
     net.from_nx(G, default_node_size=30) # Create directly from nx graph

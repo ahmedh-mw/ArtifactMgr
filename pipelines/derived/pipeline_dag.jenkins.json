@@ -97,7 +97,7 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-      "Outputs": [ "PA_Results/AHRS_Voter/metrics" ]
+      "Outputs": [ "PA_Results/AHRS_Voter/testing_metrics" ]
     },
     "AHRS_Voter_Reference_Model_Code_Generation": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -161,7 +161,7 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-      "Outputs": [ "PA_Results/Actuator_Control/metrics" ]
+      "Outputs": [ "PA_Results/Actuator_Control/testing_metrics" ]
     },
     "Actuator_Control_Reference_Model_Code_Generation": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -277,7 +277,7 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/InnerLoop_Control/metrics" ]
+      "Outputs": [ "PA_Results/InnerLoop_Control/testing_metrics" ]
     },
     "InnerLoop_Control_Reference_Model_Code_Generation": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -372,7 +372,7 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/OuterLoop_Control/metrics" ]
+      "Outputs": [ "PA_Results/OuterLoop_Control/testing_metrics" ]
     },
     "OuterLoop_Control_Reference_Model_Code_Generation": {
       "Flow_Predecessor_Jobs": [ "start" ],
