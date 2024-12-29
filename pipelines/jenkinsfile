@@ -46,7 +46,7 @@ node{
             'AHRS_Voter_Generate_Model_Comparison' : { activity.addStage('AHRS_Voter_Generate_Model_Comparison')()},
             'AHRS_Voter_Generate_SDD_Report' : { activity.addStage('AHRS_Voter_Generate_SDD_Report')()},
             'AHRS_Voter_Collect_Model_Testing_Metrics' : { activity.addStage('AHRS_Voter_Collect_Model_Testing_Metrics')()},
-            'AHRS_Voter_Ref_Model_Code_Proving' : { activity.addStage('AHRS_Voter_Ref_Model_Code_Proving')()},
+            // 'AHRS_Voter_Ref_Model_Code_Proving' : { activity.addStage('AHRS_Voter_Ref_Model_Code_Proving')()},
             // 'AHRS_Voter_Ref_Model_Code_Inspection' : { activity.addStage('AHRS_Voter_Ref_Model_Code_Inspection')()},
 
             // 'AHRS_Voter' : { 
@@ -80,7 +80,7 @@ node{
             'Actuator_Control_Generate_Model_Comparison' : { activity.addStage('Actuator_Control_Generate_Model_Comparison')()},
             'Actuator_Control_Generate_SDD_Report' : { activity.addStage('Actuator_Control_Generate_SDD_Report')()},
             'Actuator_Control_Collect_Model_Testing_Metrics' : { activity.addStage('Actuator_Control_Collect_Model_Testing_Metrics')()},
-            'Actuator_Control_Ref_Model_Code_Proving' : { activity.addStage('Actuator_Control_Ref_Model_Code_Proving')()},
+            // 'Actuator_Control_Ref_Model_Code_Proving' : { activity.addStage('Actuator_Control_Ref_Model_Code_Proving')()},
             // 'Actuator_Control_Ref_Model_Code_Inspection' : { activity.addStage('Actuator_Control_Ref_Model_Code_Inspection')()},
             
             // 'Actuator_Control' : {
@@ -131,7 +131,7 @@ node{
             'InnerLoop_Control_Generate_Model_Comparison' : { activity.addStage('InnerLoop_Control_Generate_Model_Comparison')()},
             'InnerLoop_Control_Generate_SDD_Report' : { activity.addStage('InnerLoop_Control_Generate_SDD_Report')()},
             'InnerLoop_Control_Collect_Model_Testing_Metrics' : { activity.addStage('InnerLoop_Control_Collect_Model_Testing_Metrics')()},
-            'InnerLoop_Control_Ref_Model_Code_Proving' : { activity.addStage('InnerLoop_Control_Ref_Model_Code_Proving')()},
+            // 'InnerLoop_Control_Ref_Model_Code_Proving' : { activity.addStage('InnerLoop_Control_Ref_Model_Code_Proving')()},
             // 'InnerLoop_Control_Ref_Model_Code_Inspection' : { activity.addStage('InnerLoop_Control_Ref_Model_Code_Inspection')()},
             // 'InnerLoop_Control' : { 
             //     activity.addStage('InnerLoop_Control')()
@@ -178,7 +178,7 @@ node{
             'OuterLoop_Control_Generate_SDD_Report' : { activity.addStage('OuterLoop_Control_Generate_SDD_Report')()},
 
             'OuterLoop_Control_Collect_Model_Testing_Metrics' : { activity.addStage('OuterLoop_Control_Collect_Model_Testing_Metrics')()},
-            'OuterLoop_Control_Ref_Model_Code_Proving' : { activity.addStage('OuterLoop_Control_Ref_Model_Code_Proving')()},
+            // 'OuterLoop_Control_Ref_Model_Code_Proving' : { activity.addStage('OuterLoop_Control_Ref_Model_Code_Proving')()},
             // 'OuterLoop_Control_Ref_Model_Code_Inspection' : { activity.addStage('OuterLoop_Control_Ref_Model_Code_Inspection')()},
         ]
     )()

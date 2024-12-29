@@ -106,12 +106,6 @@
           "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
           "Outputs": [ "PA_Results/AHRS_Voter/external_code_cache" ]
       },
-      "AHRS_Voter_Ref_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "AHRS_Voter_Reference_Model_Code_Generation" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-          "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-          "Outputs": [ "PA_Results/AHRS_Voter/code_prover" ]
-      },
       
       "__comment__21": "====================================================================================",
       "__comment__22": "=                                    Actuator_Control                              =",
@@ -175,12 +169,6 @@
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
           "Outputs": [ "PA_Results/Actuator_Control/external_code_cache" ]
-      },
-      "Actuator_Control_Ref_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "Actuator_Control_Reference_Model_Code_Generation" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-          "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-          "Outputs": [ "PA_Results/Actuator_Control/code_prover" ]
       },
       
 
@@ -300,12 +288,6 @@
           "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
           "Outputs": [ "PA_Results/InnerLoop_Control/external_code_cache" ]
       },
-      "InnerLoop_Control_Ref_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "InnerLoop_Control_Reference_Model_Code_Generation" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-          "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-          "Outputs": [ "PA_Results/InnerLoop_Control/code_prover" ]
-      },
       
 
       "__comment__51": "====================================================================================",
@@ -403,13 +385,6 @@
           "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
           "Outputs": [ "PA_Results/OuterLoop_Control/external_code_cache" ]
       },
-      "OuterLoop_Control_Ref_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Reference_Model_Code_Generation" ],
-          "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-          "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-          "Outputs": [ "PA_Results/OuterLoop_Control/code_prover" ]
-      },
-      
 
       "__comment__61": "====================================================================================",
       "__comment__62": "=                                    Merging Code Generation                        =",
@@ -492,7 +467,6 @@
               "AHRS_Voter_Generate_SDD_Report",
               "AHRS_Voter_Merge_Test_Results",
               "AHRS_Voter_Collect_Model_Testing_Metrics",
-              "AHRS_Voter_Ref_Model_Code_Proving",
 
               "Actuator_Control_Collect_Model_Maintainability_Metrics",
               "Actuator_Control_Generate_Simulink_Web_View",
@@ -503,7 +477,6 @@
               "Actuator_Control_Generate_Model_Comparison",
               "Actuator_Control_Generate_SDD_Report",
               "Actuator_Control_Collect_Model_Testing_Metrics",
-              "Actuator_Control_Ref_Model_Code_Proving",
 
               "Flight_Control_Collect_Model_Maintainability_Metrics",
               "Flight_Control_Generate_Simulink_Web_View",
@@ -523,7 +496,6 @@
               "InnerLoop_Control_Generate_Model_Comparison",
               "InnerLoop_Control_Generate_SDD_Report",
               "InnerLoop_Control_Collect_Model_Testing_Metrics",
-              "InnerLoop_Control_Ref_Model_Code_Proving",
 
               "OuterLoop_Control_Collect_Model_Maintainability_Metrics",
               "OuterLoop_Control_Generate_Simulink_Web_View",
@@ -535,7 +507,6 @@
               "OuterLoop_Control_Generate_SDD_Report",
               "OuterLoop_Control_Merge_Test_Results",
               "OuterLoop_Control_Collect_Model_Testing_Metrics",
-              "OuterLoop_Control_Ref_Model_Code_Proving",
               
               "Top_Model_Code_Generation",
               "Top_Model_Code_Analysis",
