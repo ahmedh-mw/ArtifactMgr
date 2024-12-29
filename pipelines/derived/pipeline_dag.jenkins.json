@@ -417,19 +417,19 @@
           "Outputs": [ "03_Code" ]
       },
       "Top_Model_Code_Analysis": {
-          "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
           "Outputs": [ "PA_Results/bug_finder" ]
       },
       "Top_Model_Code_Proving": {
-          "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
           "Outputs": [ "PA_Results/code_prover" ]
       },
       "Top_Model_Code_Inspection": {
-          "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+          "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
           "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
           "Tasks": [ "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
           "Outputs": [ "PA_Results/code_inspection" ]
