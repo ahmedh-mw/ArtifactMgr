@@ -86,7 +86,6 @@
               "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "[~,exitCode]={{runprocess}};",
-              "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
               "cp.close();",
               "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
               "exit(exitCode);"
@@ -365,7 +364,6 @@
               "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "[~,exitCode]={{runprocess}};",
-              "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
               "cp.close();",
               "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
               "exit(exitCode);"
@@ -400,7 +398,6 @@
               "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
               "cp=openProject(pwd);",
               "padv.internal.updateProjectArtifacts(currentProject=cp);",
-              "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
               "cp.close();",
               "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
               "exit(exitCode);"
