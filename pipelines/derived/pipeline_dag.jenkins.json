@@ -36,13 +36,13 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-      "Outputs": [ "PA_Results/AHRS_Voter" ]
+      "Outputs": [ "PA_Results/AHRS_Voter/findAcrossModelClones" ]
     },
     "AHRS_Voter_Find_Library_Clones": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-      "Outputs": [ "PA_Results/AHRS_Voter" ]
+      "Outputs": [ "PA_Results/AHRS_Voter/findLibraryClones" ]
     },
     "AHRS_Voter_Detect_Design_Errors": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -131,13 +131,13 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-      "Outputs": [ "PA_Results/Actuator_Control" ]
+      "Outputs": [ "PA_Results/Actuator_Control/findAcrossModelClones" ]
     },
     "Actuator_Control_Find_Library_Clones": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-      "Outputs": [ "PA_Results/Actuator_Control" ]
+      "Outputs": [ "PA_Results/Actuator_Control/findLibraryClones" ]
     },
     "Actuator_Control_Detect_Design_Errors": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -195,13 +195,13 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx" ],
-      "Outputs": [ "PA_Results/Flight_Control" ]
+      "Outputs": [ "PA_Results/Flight_Control/findAcrossModelClones" ]
     },
     "Flight_Control_Find_Library_Clones": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx" ],
-      "Outputs": [ "PA_Results/Flight_Control" ]
+      "Outputs": [ "PA_Results/Flight_Control/findLibraryClones" ]
     },
     "Flight_Control_Detect_Design_Errors": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -247,13 +247,13 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/InnerLoop_Control" ]
+      "Outputs": [ "PA_Results/InnerLoop_Control/findAcrossModelClones" ]
     },
     "InnerLoop_Control_Find_Library_Clones": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/InnerLoop_Control" ]
+      "Outputs": [ "PA_Results/InnerLoop_Control/findLibraryClones" ]
     },
     "InnerLoop_Control_Detect_Design_Errors": {
       "Flow_Predecessor_Jobs": [ "start" ],
@@ -311,13 +311,13 @@
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/OuterLoop_Control" ]
+      "Outputs": [ "PA_Results/OuterLoop_Control/findAcrossModelClones" ]
     },
     "OuterLoop_Control_Find_Library_Clones": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-      "Outputs": [ "PA_Results/OuterLoop_Control" ]
+      "Outputs": [ "PA_Results/OuterLoop_Control/findLibraryClones" ]
     },
     "OuterLoop_Control_Detect_Design_Errors": {
       "Flow_Predecessor_Jobs": [ "start" ],
