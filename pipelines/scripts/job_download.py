@@ -13,6 +13,7 @@ _DERIVED_FOLDER = 'derived'
 _DMR_FILE_NAME = 'artifacts.dmr'
 _DMR_EXTENSION = 'dmr'
 _DMR_MERGE_SEQ_FILE_NAME = 'dmrsMergeSequence.json'
+_DEBUGGING_DAG_FILE_NAME = 'debug.dag.json'
 
 def parseArguments():
     parser = argparse.ArgumentParser(description='Download job artifacts.', prog='job_download.py')
@@ -28,6 +29,10 @@ if __name__ == "__main__":
     logger.info(args)
 
     dag = DAG(getDagPath())
+    debuggingDagFilePath = os.path.join(WORKSPACE_PATH, _DEBUGGING_DAG_FILE_NAME)
+    with open(debuggingDagFilePath, "w") as outfile:
+        json.dump(dag.dictEncode(), outfile, indent=4)
+        
     # Download => Merge => Move to project
     ####### Download:
     # 'Start' job:  - download only the 'End' job branch folder from the last succssful run
@@ -131,7 +136,7 @@ if __name__ == "__main__":
                 branchFilesList = files.list_folder_files(branchPath)
                 for file in branchFilesList:
                     relativeFilePath = os.path.relpath(file, branchPath)
-                    if relativeFilePath in conflictFiles:
+                    if relativeFilePath in uniqueFiles:
                         continue
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName}]

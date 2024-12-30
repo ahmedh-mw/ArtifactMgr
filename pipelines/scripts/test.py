@@ -79,12 +79,12 @@ if __name__ == "__main__":
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
-    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.1task.json")
     
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
 
-    drawDAG(dag)
+    # drawDAG(dag)
 
     # dagMerger = DAGMerger(dag.Branches)
     # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(["br_AHRS_Voter_CollectMetrics", "br_Actuator_Control_CollectMetrics"])
