@@ -95,32 +95,33 @@ if __name__ == "__main__":
             files.move_file(srcBranchDmrFilePath, destBranchDmrFilePath)
             ###############################################################3
             branchOutputsPaths = dag.Branches[branchName].OutputsPaths
-            for outputPath in branchOutputsPaths:
-                branchPath = os.path.join(downloadsPath, branchName)
-                fullOutputPath = os.path.join(branchPath, outputPath)
-                filesList = files.list_folder_files(fullOutputPath)
-                filesChecksums = files.get_checksum_list(filesList)
-                for file in filesList:
-                    relativeFilePath = os.path.relpath(file, branchPath)
-                    if relativeFilePath == "derived/artifacts.dmr" or relativeFilePath == "derived\\artifacts.dmr" \
-                        or relativeFilePath == "derived/resultservice.dmr" or relativeFilePath == "derived\\resultservice.dmr":
-                        continue
-                    currentFileCheckSum = filesChecksums[file]
-                    currentFileEntry = {"branch": branchName, "checksum":currentFileCheckSum}
-                    if relativeFilePath in conflictFiles:
-                        conflictFiles[relativeFilePath].append(currentFileEntry)
-                        logger.debug(f"conflictFiles == append ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
-                    elif relativeFilePath in uniqueFiles:
-                        uniqueFile = uniqueFiles[relativeFilePath][0]
-                        uniqueFiles[relativeFilePath].append(currentFileEntry)
-                        if uniqueFile["checksum"] != currentFileCheckSum:
-                            conflictFiles[relativeFilePath] = uniqueFiles[relativeFilePath]
-                            del uniqueFiles[relativeFilePath]
-                            logger.debug(f"conflictFiles == create ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
-                    else:
-                        uniqueFiles[relativeFilePath] = [{"branch": branchName, "checksum":currentFileCheckSum}]
-                        logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
-                        files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
+            ############ for outputPath in branchOutputsPaths: >>>
+            branchPath = os.path.join(downloadsPath, branchName)
+            ############### fullOutputPath = os.path.join(branchPath, outputPath)
+            ############### filesList = files.list_folder_files(fullOutputPath)
+            filesList = files.list_folder_files(branchPath)
+            filesChecksums = files.get_checksum_list(filesList)
+            for file in filesList:
+                relativeFilePath = os.path.relpath(file, branchPath)
+                if relativeFilePath == "derived/artifacts.dmr" or relativeFilePath == "derived\\artifacts.dmr" \
+                    or relativeFilePath == "derived/resultservice.dmr" or relativeFilePath == "derived\\resultservice.dmr":
+                    continue
+                currentFileCheckSum = filesChecksums[file]
+                currentFileEntry = {"branch": branchName, "checksum":currentFileCheckSum}
+                if relativeFilePath in conflictFiles:
+                    conflictFiles[relativeFilePath].append(currentFileEntry)
+                    logger.debug(f"conflictFiles == append ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
+                elif relativeFilePath in uniqueFiles:
+                    uniqueFile = uniqueFiles[relativeFilePath][0]
+                    uniqueFiles[relativeFilePath].append(currentFileEntry)
+                    if uniqueFile["checksum"] != currentFileCheckSum:
+                        conflictFiles[relativeFilePath] = uniqueFiles[relativeFilePath]
+                        del uniqueFiles[relativeFilePath]
+                        logger.debug(f"conflictFiles == create ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
+                else:
+                    uniqueFiles[relativeFilePath] = [{"branch": branchName, "checksum":currentFileCheckSum}]
+                    logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
+                    files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
     
         logger.info(f"uniqueFiles: {uniqueFiles}")
         logger.info(f"conflictFiles: {conflictFiles}")
