@@ -8,5 +8,5 @@
     "DONWLOADS_FOLDER" : "_downloads_",
     "DMR_MERGING_FOLDER" : "_dmr_merging_",
     "UPLOADS_FOLDER" : "_uploads_",
-    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.json"
+    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.1task.json"
 }
