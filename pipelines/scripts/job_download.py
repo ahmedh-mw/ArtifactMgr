@@ -5,6 +5,7 @@ import os
 import argparse
 import logging
 import json
+from pathlib import Path
 from config import *
 
 logger = logging.getLogger()
@@ -108,8 +109,8 @@ if __name__ == "__main__":
                 filesChecksums = files.get_checksum_list(filesList)
                 for file in filesList:
                     relativeFilePath = os.path.relpath(file, branchPath)
-                    if relativeFilePath == "derived/artifacts.dmr" or relativeFilePath == "derived\\artifacts.dmr" \
-                        or relativeFilePath == "derived/resultservice.dmr" or relativeFilePath == "derived\\resultservice.dmr":
+                    pathSections = Path(relativeFilePath)
+                    if pathSections.parts[0] == _DERIVED_FOLDER:
                         continue
                     currentFileCheckSum = filesChecksums[file]
                     currentFileEntry = {"branch": branchName, "checksum":currentFileCheckSum}
@@ -136,7 +137,10 @@ if __name__ == "__main__":
                 branchFilesList = files.list_folder_files(branchPath)
                 for file in branchFilesList:
                     relativeFilePath = os.path.relpath(file, branchPath)
-                    if relativeFilePath in uniqueFiles:
+                    pathSections = Path(relativeFilePath)
+                    if pathSections.parts[0] == _DERIVED_FOLDER:
+                        continue
+                    elif relativeFilePath in uniqueFiles:
                         continue
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName}]
