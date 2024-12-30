@@ -1,0 +1,22 @@
+node{
+    checkout scm
+    env.PYTHON_ALIAS = 'python3'
+    env.SOURCECODE_FOLDER = 'scm'
+    activity = load "$SOURCECODE_FOLDER/pipelines/templates/jenkins/activity.groovy"
+    activity.loadEnvVariables()
+
+    activity.addStage('start')()
+    activity.addParallelStages('Iterations',
+        [
+            'AHRS_Voter_Generate_Simulink_Web_View' : { activity.addStage('AHRS_Voter_Generate_Simulink_Web_View')()},
+            'Actuator_Control_Generate_Simulink_Web_View' : { activity.addStage('Actuator_Control_Generate_Simulink_Web_View')()},
+            'Flight_Control_Generate_Simulink_Web_View' : { activity.addStage('Flight_Control_Generate_Simulink_Web_View')()},
+            'InnerLoop_Control_Generate_Simulink_Web_View' : { activity.addStage('InnerLoop_Control_Generate_Simulink_Web_View')()},
+            'OuterLoop_Control_Generate_Simulink_Web_View' : { activity.addStage('OuterLoop_Control_Generate_Simulink_Web_View')()}
+        ]
+    )()
+    activity.addStage('end')()
+}
+
+
+    
