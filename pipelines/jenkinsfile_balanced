@@ -10,13 +10,13 @@ node{
 
     activity.addParallelStages('GroupA',
         [
-            'AHRS_Voter1A' : {activity.addStage('AHRS_Voter1A')()},
-            'AHRS_Voter2A' : {activity.addStage('AHRS_Voter2A')()},
-            'Actuator_Control1A' : {activity.addStage('Actuator_Control1A')()},
-            'Actuator_Control2A' : {activity.addStage('Actuator_Control2A')()},
-            'InnerLoop_Control1A' : {activity.addStage('InnerLoop_Control1A')()},
-            'InnerLoop_Control2A' : {activity.addStage('InnerLoop_Control2A')()},
-            'OuterLoop_Control1A' : {activity.addStage('OuterLoop_Control1A')()},
+            'AHRS_Voter_1A' : {activity.addStage('AHRS_Voter_1A')()},
+            'AHRS_Voter_2A' : {activity.addStage('AHRS_Voter_2A')()},
+            'Actuator_Control_1A' : {activity.addStage('Actuator_Control_1A')()},
+            'Actuator_Control_2A' : {activity.addStage('Actuator_Control_2A')()},
+            'InnerLoop_Control_1A' : {activity.addStage('InnerLoop_Control_1A')()},
+            'InnerLoop_Control_2A' : {activity.addStage('InnerLoop_Control_2A')()},
+            'OuterLoop_Control_1A' : {activity.addStage('OuterLoop_Control_1A')()},
             'Flight_Control_1A' : {activity.addStage('Flight_Control_1A')()},
             'Flight_Control_2A' : {activity.addStage('Flight_Control_2A')()},
         ]
@@ -24,13 +24,13 @@ node{
     
     activity.addParallelStages('GroupB',
         [
-            'AHRS_Voter1B' : {activity.addStage('AHRS_Voter1B')()},
-            'AHRS_Voter2B' : {activity.addStage('AHRS_Voter2B')()},
-            'Actuator_Control1B' : {activity.addStage('Actuator_Control1B')()},
-            'Actuator_Control2B' : {activity.addStage('Actuator_Control2B')()},
-            'InnerLoop_Control1B' : {activity.addStage('InnerLoop_Control1B')()},
-            'InnerLoop_Control2B' : {activity.addStage('InnerLoop_Control2B')()},
-            'OuterLoop_Control1B' : {activity.addStage('OuterLoop_Control1B')()},
+            'AHRS_Voter_1B' : {activity.addStage('AHRS_Voter_1B')()},
+            'AHRS_Voter_2B' : {activity.addStage('AHRS_Voter_2B')()},
+            'Actuator_Control_1B' : {activity.addStage('Actuator_Control_1B')()},
+            'Actuator_Control_2B' : {activity.addStage('Actuator_Control_2B')()},
+            'InnerLoop_Control_1B' : {activity.addStage('InnerLoop_Control_1B')()},
+            'InnerLoop_Control_2B' : {activity.addStage('InnerLoop_Control_2B')()},
+            'OuterLoop_Control_1B' : {activity.addStage('OuterLoop_Control_1B')()},
             'Flight_Control_1B' : {activity.addStage('Flight_Control_1B')()},
             'Top_Model_Tasks' : {activity.addStage('Top_Model_Tasks')()},
         ]
