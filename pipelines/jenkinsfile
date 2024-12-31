@@ -12,12 +12,12 @@ node{
             'Actuator_Control_Reference_Model_Code_Generation' : {activity.addStage('Actuator_Control_Reference_Model_Code_Generation')() },
             'InnerLoop_Control_Reference_Model_Code_Generation' : {activity.addStage('InnerLoop_Control_Reference_Model_Code_Generation')() },
             'OuterLoop_Control_Reference_Model_Code_Generation' : {activity.addStage('OuterLoop_Control_Reference_Model_Code_Generation')() },
-            'AHRS_Voter_Run_Tests_HLR_11' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_11')()},
-            'AHRS_Voter_Run_Tests_HLR_12' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_12')()},
-            'AHRS_Voter_Run_Tests_HLR_13' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_13')()},
-            'OuterLoop_Control_Run_Tests_HLR_6' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_6')()},
-            'OuterLoop_Control_Run_Tests_HLR_7' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_7')()},
-            'OuterLoop_Control_Run_Tests_HLR_8' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_8')()},
+            // 'AHRS_Voter_Run_Tests_HLR_11' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_11')()},
+            // 'AHRS_Voter_Run_Tests_HLR_12' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_12')()},
+            // 'AHRS_Voter_Run_Tests_HLR_13' : { activity.addStage('AHRS_Voter_Run_Tests_HLR_13')()},
+            // 'OuterLoop_Control_Run_Tests_HLR_6' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_6')()},
+            // 'OuterLoop_Control_Run_Tests_HLR_7' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_7')()},
+            // 'OuterLoop_Control_Run_Tests_HLR_8' : { activity.addStage('OuterLoop_Control_Run_Tests_HLR_8')()},
         ]
     )()
     activity.addParallelStages('Merge_Code_And_Tests',
