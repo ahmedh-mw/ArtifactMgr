@@ -34,7 +34,7 @@ node{
             'Flight_Control_1B' : {activity.addStage('Flight_Control_1B')()},
             'Top_Model_Tasks' : {activity.addStage('Top_Model_Tasks')()},
         ]
-    }
+    )()
 
     activity.addStage('end')()
 }
