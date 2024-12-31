@@ -61,7 +61,10 @@ if __name__ == "__main__":
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
 
-    os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
+    # Use dag relative path from env variables if exists otherwuse use it from variables
+    if os.environ.get(_DAG_RELATIVE_PATH_FIELD) is None:
+        os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
+    
     dag = DAG(getDagPath())
     loadPipelineVariables(variables, dag)
 
