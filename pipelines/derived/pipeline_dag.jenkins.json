@@ -62,6 +62,37 @@
       "Tasks": [ "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
       "Outputs": [ "PA_Results/AHRS_Voter/system_design_description" ]
     },
+    "AHRS_Voter_Run_Tests_HLR_11": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|ced877ff-cfb8-4fa8-9bbf-aaa29b1d926b" ],
+      "Outputs": [ "PA_Results/HLR_11/test_results" ]
+    },
+    "AHRS_Voter_Run_Tests_HLR_12": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|d3a72cc8-687b-44ae-a909-7eff803b455b" ],
+      "Outputs": [ "PA_Results/HLR_12/test_results" ]
+    },
+    "AHRS_Voter_Run_Tests_HLR_13": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|74194125-b632-41a1-b96d-b3364441277f" ],
+      "Outputs": [ "PA_Results/HLR_13/test_results" ]
+    },
+    "AHRS_Voter_Merge_Test_Results": {
+      "Flow_Predecessor_Jobs": [ "AHRS_Voter_Run_Tests_HLR_11", "AHRS_Voter_Run_Tests_HLR_12", "AHRS_Voter_Run_Tests_HLR_13" ],
+      "Commands": [
+        "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
+      "Outputs": [ "PA_Results/AHRS_Voter/test_results" ]
+    },
     "AHRS_Voter_Collect_Model_Testing_Metrics": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
@@ -306,6 +337,37 @@
       "Tasks": [ "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
       "Outputs": [ "PA_Results/OuterLoop_Control/system_design_description" ]
     },
+    "OuterLoop_Control_Run_Tests_HLR_6": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|862932e4-be44-4f66-9abe-fb313da73c0d" ],
+      "Outputs": [ "PA_Results/HLR_6/test_results" ]
+    },
+    "OuterLoop_Control_Run_Tests_HLR_7": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|70d344b2-d65f-4872-9e4b-cef338e618a5" ],
+      "Outputs": [ "PA_Results/HLR_7/test_results" ]
+    },
+    "OuterLoop_Control_Run_Tests_HLR_8": {
+      "Flow_Predecessor_Jobs": [ "start" ],
+      "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+      "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|51b0cb29-34f5-4c04-9104-4f3b0b48dda9" ],
+      "Outputs": [ "PA_Results/HLR_8/test_results" ]
+    },
+    "OuterLoop_Control_Merge_Test_Results": {
+      "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Run_Tests_HLR_6", "OuterLoop_Control_Run_Tests_HLR_7", "OuterLoop_Control_Run_Tests_HLR_8" ],
+      "Commands": [
+        "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
+        "cp=openProject(pwd);",
+        "[~,exitCode]={{runprocess}};",
+        "cp.close();",
+        "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+        "exit(exitCode);"
+      ],
+      "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
+      "Outputs": [ "PA_Results/OuterLoop_Control/test_results" ]
+    },
     "OuterLoop_Control_Collect_Model_Testing_Metrics": {
       "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
@@ -392,6 +454,7 @@
         "AHRS_Voter_Detect_Design_Errors",
         "AHRS_Voter_Generate_Model_Comparison",
         "AHRS_Voter_Generate_SDD_Report",
+        "AHRS_Voter_Merge_Test_Results",
         "AHRS_Voter_Collect_Model_Testing_Metrics",
 
         "Actuator_Control_Collect_Model_Maintainability_Metrics",
@@ -431,6 +494,7 @@
         "OuterLoop_Control_Detect_Design_Errors",
         "OuterLoop_Control_Generate_Model_Comparison",
         "OuterLoop_Control_Generate_SDD_Report",
+        "OuterLoop_Control_Merge_Test_Results",
         "OuterLoop_Control_Collect_Model_Testing_Metrics",
 
         "Top_Model_Code_Inspection",
