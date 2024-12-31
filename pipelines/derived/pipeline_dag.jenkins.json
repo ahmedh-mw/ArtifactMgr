@@ -454,7 +454,6 @@
         "AHRS_Voter_Detect_Design_Errors",
         "AHRS_Voter_Generate_Model_Comparison",
         "AHRS_Voter_Generate_SDD_Report",
-        "AHRS_Voter_Merge_Test_Results",
         "AHRS_Voter_Collect_Model_Testing_Metrics",
 
         "Actuator_Control_Collect_Model_Maintainability_Metrics",
@@ -494,7 +493,6 @@
         "OuterLoop_Control_Detect_Design_Errors",
         "OuterLoop_Control_Generate_Model_Comparison",
         "OuterLoop_Control_Generate_SDD_Report",
-        "OuterLoop_Control_Merge_Test_Results",
         "OuterLoop_Control_Collect_Model_Testing_Metrics",
 
         "Top_Model_Code_Inspection",
