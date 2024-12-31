@@ -36,13 +36,13 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter" ]
+            "Outputs": [ "PA_Results/AHRS_Voter/findAcrossModelClones" ]
         },
         "AHRS_Voter_Find_Library_Clones": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter" ]
+            "Outputs": [ "PA_Results/AHRS_Voter/findLibraryClones" ]
         },
         "AHRS_Voter_Detect_Design_Errors": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -80,35 +80,17 @@
             "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/AHRS_Voter/test_cases/AHRS_Voter_REQ_Based_Test.mldatx|74194125-b632-41a1-b96d-b3364441277f" ],
             "Outputs": [ "PA_Results/HLR_13/test_results" ]
         },
-        "AHRS_Voter_Merge_Test_Results": {
-            "Flow_Predecessor_Jobs": [ "AHRS_Voter_Run_Tests_HLR_11", "AHRS_Voter_Run_Tests_HLR_12", "AHRS_Voter_Run_Tests_HLR_13" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter/test_results" ]
-        },
         "AHRS_Voter_Collect_Model_Testing_Metrics": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter/metrics" ]
+            "Outputs": [ "PA_Results/AHRS_Voter/testing_metrics" ]
         },
         "AHRS_Voter_Reference_Model_Code_Generation": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
             "Outputs": [ "PA_Results/AHRS_Voter/external_code_cache" ]
-        },
-        "AHRS_Voter_Ref_Model_Code_Proving": {
-            "Flow_Predecessor_Jobs": [ "AHRS_Voter_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter/code_prover" ]
-        },
-        "AHRS_Voter_Ref_Model_Code_Inspection": {
-            "Flow_Predecessor_Jobs": [ "AHRS_Voter_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx" ],
-            "Outputs": [ "PA_Results/AHRS_Voter/code_inspection" ]
         },
 
         "__comment__21": "====================================================================================",
@@ -136,13 +118,13 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-            "Outputs": [ "PA_Results/Actuator_Control" ]
+            "Outputs": [ "PA_Results/Actuator_Control/findAcrossModelClones" ]
         },
         "Actuator_Control_Find_Library_Clones": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-            "Outputs": [ "PA_Results/Actuator_Control" ]
+            "Outputs": [ "PA_Results/Actuator_Control/findLibraryClones" ]
         },
         "Actuator_Control_Detect_Design_Errors": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -166,7 +148,7 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-            "Outputs": [ "PA_Results/Actuator_Control/metrics" ]
+            "Outputs": [ "PA_Results/Actuator_Control/testing_metrics" ]
         },
         "Actuator_Control_Reference_Model_Code_Generation": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -174,19 +156,6 @@
             "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
             "Outputs": [ "PA_Results/Actuator_Control/external_code_cache" ]
         },
-        "Actuator_Control_Ref_Model_Code_Proving": {
-            "Flow_Predecessor_Jobs": [ "Actuator_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-            "Outputs": [ "PA_Results/Actuator_Control/code_prover" ]
-        },
-        "Actuator_Control_Ref_Model_Code_Inspection": {
-            "Flow_Predecessor_Jobs": [ "Actuator_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx" ],
-            "Outputs": [ "PA_Results/Actuator_Control/code_inspection" ]
-        },
-
 
         "__comment__31": "====================================================================================",
         "__comment__32": "=                                    Flight_Control                                =",
@@ -213,13 +182,13 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx" ],
-            "Outputs": [ "PA_Results/Flight_Control" ]
+            "Outputs": [ "PA_Results/Flight_Control/findAcrossModelClones" ]
         },
         "Flight_Control_Find_Library_Clones": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx" ],
-            "Outputs": [ "PA_Results/Flight_Control" ]
+            "Outputs": [ "PA_Results/Flight_Control/findLibraryClones" ]
         },
         "Flight_Control_Detect_Design_Errors": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -239,7 +208,6 @@
             "Tasks": [ "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx" ],
             "Outputs": [ "PA_Results/Flight_Control/system_design_description" ]
         },
-
 
         "__comment__41": "====================================================================================",
         "__comment__42": "=                                    InnerLoop_Control                             =",
@@ -266,13 +234,13 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/InnerLoop_Control" ]
+            "Outputs": [ "PA_Results/InnerLoop_Control/findAcrossModelClones" ]
         },
         "InnerLoop_Control_Find_Library_Clones": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/InnerLoop_Control" ]
+            "Outputs": [ "PA_Results/InnerLoop_Control/findLibraryClones" ]
         },
         "InnerLoop_Control_Detect_Design_Errors": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -296,7 +264,7 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/InnerLoop_Control/metrics" ]
+            "Outputs": [ "PA_Results/InnerLoop_Control/testing_metrics" ]
         },
         "InnerLoop_Control_Reference_Model_Code_Generation": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -304,20 +272,6 @@
             "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
             "Outputs": [ "PA_Results/InnerLoop_Control/external_code_cache" ]
         },
-        "InnerLoop_Control_Ref_Model_Code_Proving": {
-            "Flow_Predecessor_Jobs": [ "InnerLoop_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/InnerLoop_Control/code_prover" ]
-        },
-        "InnerLoop_Control_Ref_Model_Code_Inspection": {
-            "Flow_Predecessor_Jobs": [ "InnerLoop_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/InnerLoop_Control/code_inspection" ]
-        },
-
-
 
         "__comment__51": "====================================================================================",
         "__comment__52": "=                                    OuterLoop_Control                             =",
@@ -344,13 +298,13 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control" ]
+            "Outputs": [ "PA_Results/OuterLoop_Control/findAcrossModelClones" ]
         },
         "OuterLoop_Control_Find_Library_Clones": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control" ]
+            "Outputs": [ "PA_Results/OuterLoop_Control/findLibraryClones" ]
         },
         "OuterLoop_Control_Detect_Design_Errors": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -388,17 +342,11 @@
             "Tasks": [ "padv.builtin.task.RunTestsPerTestCase|sl_test_case|ProcessAdvisorExample|02_Models/OuterLoop_Control/test_cases/OuterLoop_Control_REQ_Based_Test.mldatx|51b0cb29-34f5-4c04-9104-4f3b0b48dda9" ],
             "Outputs": [ "PA_Results/HLR_8/test_results" ]
         },
-        "OuterLoop_Control_Merge_Test_Results": {
-            "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Run_Tests_HLR_6", "OuterLoop_Control_Run_Tests_HLR_7", "OuterLoop_Control_Run_Tests_HLR_8" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control/test_results" ]
-        },
         "OuterLoop_Control_Collect_Model_Testing_Metrics": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control/metrics" ]
+            "Outputs": [ "PA_Results/OuterLoop_Control/testing_metrics" ]
         },
         "OuterLoop_Control_Reference_Model_Code_Generation": {
             "Flow_Predecessor_Jobs": [ "start" ],
@@ -406,23 +354,11 @@
             "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
             "Outputs": [ "PA_Results/OuterLoop_Control/external_code_cache" ]
         },
-        "OuterLoop_Control_Ref_Model_Code_Proving": {
-            "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control/code_prover" ]
-        },
-        "OuterLoop_Control_Ref_Model_Code_Inspection": {
-            "Flow_Predecessor_Jobs": [ "OuterLoop_Control_Reference_Model_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control/code_inspection" ]
-        },
 
         "__comment__61": "====================================================================================",
         "__comment__62": "=                                    Merging Code Generation                        =",
         "__comment__63": "====================================================================================",
-        "Merging_Code_Generation": {
+        "Top_Model_Code_Generation": {
             "Flow_Predecessor_Jobs": [
                 "AHRS_Voter_Reference_Model_Code_Generation",
                 "Actuator_Control_Reference_Model_Code_Generation",
@@ -430,39 +366,34 @@
                 "OuterLoop_Control_Reference_Model_Code_Generation"
             ],
             "Commands": [
-                "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+                "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
                 "cp=openProject(pwd);",
-                "padv.internal.updateProjectArtifacts(currentProject=cp);",
-                "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
+                "[~,exitCode]={{runprocess}};",
                 "cp.close();",
                 "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
                 "exit(exitCode);"
-            ]
+            ],
+            "Tasks": [ "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
+            "Outputs": [ "03_Code" ]
         },
 
         "__comment__71": "====================================================================================",
         "__comment__72": "=                                    Top Model tasks                               =",
         "__comment__73": "====================================================================================",
-        "Top_Model_Code_Generation": {
-            "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
-            "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
-            "Outputs": [ "03_Code" ]
-        },
         "Top_Model_Code_Analysis": {
-            "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+            "Flow_Predecessor_Jobs": [ "Top_Model_Code_Generation" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
             "Outputs": [ "PA_Results/bug_finder" ]
         },
         "Top_Model_Code_Proving": {
-            "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+            "Flow_Predecessor_Jobs": [ "Top_Model_Code_Analysis" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
             "Outputs": [ "PA_Results/code_prover" ]
         },
         "Top_Model_Code_Inspection": {
-            "Flow_Predecessor_Jobs": [ "Merging_Code_Generation" ],
+            "Flow_Predecessor_Jobs": [ "Top_Model_Code_Proving" ],
             "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [ "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj" ],
             "Outputs": [ "PA_Results/code_inspection" ]
@@ -489,7 +420,6 @@
         "__comment__93": "====================================================================================",
         "end": {
             "Flow_Predecessor_Jobs": [
-
                 "AHRS_Voter_Collect_Model_Maintainability_Metrics",
                 "AHRS_Voter_Generate_Simulink_Web_View",
                 "AHRS_Voter_Check_Modeling_Standards",
@@ -498,10 +428,10 @@
                 "AHRS_Voter_Detect_Design_Errors",
                 "AHRS_Voter_Generate_Model_Comparison",
                 "AHRS_Voter_Generate_SDD_Report",
-                "AHRS_Voter_Merge_Test_Results",
+                "AHRS_Voter_Run_Tests_HLR_11",
+                "AHRS_Voter_Run_Tests_HLR_12",
+                "AHRS_Voter_Run_Tests_HLR_13",
                 "AHRS_Voter_Collect_Model_Testing_Metrics",
-                "AHRS_Voter_Ref_Model_Code_Proving",
-                "AHRS_Voter_Ref_Model_Code_Inspection",
 
                 "Actuator_Control_Collect_Model_Maintainability_Metrics",
                 "Actuator_Control_Generate_Simulink_Web_View",
@@ -509,11 +439,10 @@
                 "Actuator_Control_Find_Clones_Across_Model",
                 "Actuator_Control_Find_Library_Clones",
                 "Actuator_Control_Detect_Design_Errors",
+
                 "Actuator_Control_Generate_Model_Comparison",
                 "Actuator_Control_Generate_SDD_Report",
                 "Actuator_Control_Collect_Model_Testing_Metrics",
-                "Actuator_Control_Ref_Model_Code_Proving",
-                "Actuator_Control_Ref_Model_Code_Inspection",
 
                 "Flight_Control_Collect_Model_Maintainability_Metrics",
                 "Flight_Control_Generate_Simulink_Web_View",
@@ -533,8 +462,6 @@
                 "InnerLoop_Control_Generate_Model_Comparison",
                 "InnerLoop_Control_Generate_SDD_Report",
                 "InnerLoop_Control_Collect_Model_Testing_Metrics",
-                "InnerLoop_Control_Ref_Model_Code_Proving",
-                "InnerLoop_Control_Ref_Model_Code_Inspection",
 
                 "OuterLoop_Control_Collect_Model_Maintainability_Metrics",
                 "OuterLoop_Control_Generate_Simulink_Web_View",
@@ -544,21 +471,18 @@
                 "OuterLoop_Control_Detect_Design_Errors",
                 "OuterLoop_Control_Generate_Model_Comparison",
                 "OuterLoop_Control_Generate_SDD_Report",
-                "OuterLoop_Control_Merge_Test_Results",
                 "OuterLoop_Control_Collect_Model_Testing_Metrics",
-                "OuterLoop_Control_Ref_Model_Code_Proving",
-                "OuterLoop_Control_Ref_Model_Code_Inspection",
+                "OuterLoop_Control_Run_Tests_HLR_6",
+                "OuterLoop_Control_Run_Tests_HLR_7",
+                "OuterLoop_Control_Run_Tests_HLR_8",
 
-                "Top_Model_Code_Generation",
-                "Top_Model_Code_Analysis",
-                "Top_Model_Code_Proving",
                 "Top_Model_Code_Inspection",
 
                 "Generate_requirements_report_HighLevelReqs",
                 "Generate_requirements_report_SystemReqs"
             ],
             "Commands": [
-                "padv.internal.mergeDmrFiles(sequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json');",
+                "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
                 "cp=openProject(pwd);",
                 "padv.internal.updateProjectArtifacts(currentProject=cp);",
                 "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
@@ -570,9 +494,7 @@
         }
     },
     "Pipeline": {
-        "RepoFallbackBranches": [
-            "main"
-        ],
+        "RepoFallbackBranches": [ "main" ],
         "__comment____RUNNER_TYPE_____": "default/container",
         "RUNNER_TYPE": "default",
         "_RUNNER_LABEL": "ex:padv_win_agents - Update this value at Repository variables",
@@ -585,7 +507,6 @@
         "USE_MATLAB_PLUGIN": false,
         "IncrementalPipelineEnabled": true,
         "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin",
-        "MatlabInstrallationPath____": "/home/ahmedh/gh/lingh1/_work/ArtifactMgr",
         "MatlabLaunchCmd": "matlab",
         "MatlabStartupOptions": "-nodesktop -logfile output.log",
         "AddBatchStartupOption": true,
