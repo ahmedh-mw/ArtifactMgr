@@ -170,6 +170,7 @@ class DAG:
         if startJobsCount == 0:
             raise Exception(f"Can not find Start job")
         elif startJobsCount > 1:
+            logger.info(f"Found Start Jobs: {startJobs}")
             raise Exception(f"DAG can not contain more than one Start job")
         startJob = startJobs[0]
         startJob.IsStartJob = True
