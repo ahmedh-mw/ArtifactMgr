@@ -9,111 +9,30 @@ node{
 
     activity.addParallelStages('GroupA',
         [
-            'AHRS_Voter1A' : {
-                activity.addStage('AHRS_Voter_Reference_Model_Code_Generation')(),
-                activity.addStage('AHRS_Voter_Collect_Model_Maintainability_Metrics')(),
-                activity.addStage('AHRS_Voter_Generate_Simulink_Web_View')(),
-            },
-            'AHRS_Voter2A' : {
-                activity.addStage('AHRS_Voter_Detect_Design_Errors')(),
-                activity.addStage('AHRS_Voter_Generate_Model_Comparison')(),
-                activity.addStage('AHRS_Voter_Generate_SDD_Report')(),
-            },
-            
-            'Actuator_Control1A' : {
-                activity.addStage('Actuator_Control_Reference_Model_Code_Generation')(),
-                activity.addStage('Actuator_Control_Collect_Model_Maintainability_Metrics')(),
-                activity.addStage('Actuator_Control_Generate_Simulink_Web_View')(),
-            },
-            'Actuator_Control2A' : {
-                activity.addStage('Actuator_Control_Detect_Design_Errors')(),
-                activity.addStage('Actuator_Control_Generate_Model_Comparison')(),
-                activity.addStage('Actuator_Control_Generate_SDD_Report')(),
-            },
-
-            'InnerLoop_Control1A' : {
-                activity.addStage('InnerLoop_Control_Reference_Model_Code_Generation')(),
-                activity.addStage('InnerLoop_Control_Collect_Model_Maintainability_Metrics')(),
-                activity.addStage('InnerLoop_Control_Generate_Simulink_Web_View')(),
-            },
-            'InnerLoop_Control2A' : {
-                activity.addStage('InnerLoop_Control_Detect_Design_Errors')(),
-                activity.addStage('InnerLoop_Control_Generate_Model_Comparison')(),
-                activity.addStage('InnerLoop_Control_Generate_SDD_Report')(),
-            },
-
-            'OuterLoop_Control1A' : {
-                activity.addStage('OuterLoop_Control_Reference_Model_Code_Generation')(),
-                activity.addStage('OuterLoop_Control_Collect_Model_Maintainability_Metrics')(),
-                activity.addStage('OuterLoop_Control_Generate_Simulink_Web_View')(),
-            },
-            'OuterLoop_Control2A' : {
-                activity.addStage('OuterLoop_Control_Detect_Design_Errors')(),
-                activity.addStage('OuterLoop_Control_Generate_Model_Comparison')(),
-                activity.addStage('OuterLoop_Control_Generate_SDD_Report')(),
-            }
-
-            'Flight_Control_Control1A' : {
-                activity.addStage('Flight_Control_Collect_Model_Maintainability_Metrics')(),
-                activity.addStage('Flight_Control_Generate_Simulink_Web_View')(),
-            },
-            'Flight_Control_Control2A' : {
-                activity.addStage('Flight_Control_Detect_Design_Errors')(),
-                activity.addStage('Flight_Control_Generate_Model_Comparison')(),
-                activity.addStage('Flight_Control_Generate_SDD_Report')(),
-            }
+            'AHRS_Voter1A' : {activity.addStage('AHRS_Voter1A')()},
+            'AHRS_Voter2A' : {activity.addStage('AHRS_Voter2A')()},
+            'Actuator_Control1A' : {activity.addStage('Actuator_Control1A')()},
+            'Actuator_Control2A' : {activity.addStage('Actuator_Control2A')()},
+            'InnerLoop_Control1A' : {activity.addStage('InnerLoop_Control1A')()},
+            'InnerLoop_Control2A' : {activity.addStage('InnerLoop_Control2A')()},
+            'OuterLoop_Control1A' : {activity.addStage('OuterLoop_Control1A')()},
+            'Flight_Control_1A' : {activity.addStage('Flight_Control_1A')()},
+            'Flight_Control_2A' : {activity.addStage('Flight_Control_2A')()},
         ]
     )()
     
     activity.addParallelStages('GroupB',
-        'AHRS_Voter1B' : {
-            activity.addStage('AHRS_Voter_Check_Modeling_Standards')(),
-            activity.addStage('AHRS_Voter_Find_Clones_Across_Model')(),
-            activity.addStage('AHRS_Voter_Find_Library_Clones')(),
-        },
-
-        'AHRS_Voter2B' : {
-            activity.addStage('AHRS_Voter_Collect_Model_Testing_Metrics')(),
-            activity.addStage('Generate_requirements_report_HighLevelReqs')(),
-            activity.addStage('Generate_requirements_report_SystemReqs')(),
-        },
-
-        'Actuator_Control1B' : {
-            activity.addStage('Actuator_Control_Check_Modeling_Standards')(),
-            activity.addStage('Actuator_Control_Find_Clones_Across_Model')(),
-            activity.addStage('Actuator_Control_Find_Library_Clones')(),
-        },
-
-        'InnerLoop_Control1B' : {
-            activity.addStage('InnerLoop_Control_Check_Modeling_Standards')(),
-            activity.addStage('InnerLoop_Control_Find_Clones_Across_Model')(),
-            activity.addStage('InnerLoop_Control_Find_Library_Clones')(),
-        },
-
-        'OuterLoop_Control1B' : {
-            activity.addStage('OuterLoop_Control_Check_Modeling_Standards')(),
-            activity.addStage('OuterLoop_Control_Find_Clones_Across_Model')(),
-            activity.addStage('OuterLoop_Control_Find_Library_Clones')(),
-        },
-
-        'Actuator_Control2B' : {
-            activity.addStage('Actuator_Control_Collect_Model_Testing_Metrics')(),
-            activity.addStage('InnerLoop_Control_Collect_Model_Testing_Metrics')(),
-            activity.addStage('OuterLoop_Control_Collect_Model_Testing_Metrics')(),
-        },
-
-        'Flight_Control_Control1B' : {
-            activity.addStage('Flight_Control_Check_Modeling_Standards')(),
-            activity.addStage('Flight_Control_Find_Clones_Across_Model')(),
-            activity.addStage('Flight_Control_Find_Library_Clones')(),
-        },
-
-        'Flight_Control_Control2B' : {
-            activity.addStage('Top_Model_Code_Generation')(),
-            activity.addStage('Top_Model_Code_Analysis')(),
-            activity.addStage('Top_Model_Code_Proving')(),
-            activity.addStage('Top_Model_Code_Inspection')(),
-        },
+        [
+            'AHRS_Voter1B' : {activity.addStage('AHRS_Voter1A')()},
+            'AHRS_Voter2B' : {activity.addStage('AHRS_Voter2A')()},
+            'Actuator_Control1B' : {activity.addStage('Actuator_Control1A')()},
+            'Actuator_Control2B' : {activity.addStage('Actuator_Control2A')()},
+            'InnerLoop_Control1B' : {activity.addStage('InnerLoop_Control1A')()},
+            'InnerLoop_Control2B' : {activity.addStage('InnerLoop_Control2A')()},
+            'OuterLoop_Control1B' : {activity.addStage('OuterLoop_Control1B')()},
+            'Flight_Control_1B' : {activity.addStage('Flight_Control_1B')()},
+            'Top_Model_Tasks' : {activity.addStage('Top_Model_Tasks')()},
+        ]
     }
 
     activity.addStage('end')()
