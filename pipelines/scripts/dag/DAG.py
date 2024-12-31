@@ -182,6 +182,7 @@ class DAG:
         if endJobsCount == 0:
             raise Exception(f"Can not find End job")
         elif endJobsCount > 1:
+            logger.info(f"Found End Jobs: {endJobs}")
             raise Exception(f"DAG can not contain more than one End job")
         endJob = endJobs[0]
         endJob.IsEndJob = True
