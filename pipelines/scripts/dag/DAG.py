@@ -170,7 +170,7 @@ class DAG:
         if startJobsCount == 0:
             raise Exception(f"Can not find Start job")
         elif startJobsCount > 1:
-            logger.info(f"Found Start Jobs: {startJobs}")
+            logger.info(f"Found Start Jobs: {Utils.dictEncode(startJobs)}")
             raise Exception(f"DAG can not contain more than one Start job")
         startJob = startJobs[0]
         startJob.IsStartJob = True
@@ -183,7 +183,7 @@ class DAG:
         if endJobsCount == 0:
             raise Exception(f"Can not find End job")
         elif endJobsCount > 1:
-            logger.info(f"Found End Jobs: {endJobs}")
+            logger.info(f"Found End Jobs: {Utils.dictEncode(endJobs)}")
             raise Exception(f"DAG can not contain more than one End job")
         endJob = endJobs[0]
         endJob.IsEndJob = True
