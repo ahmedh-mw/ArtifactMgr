@@ -26,7 +26,7 @@
     },
 
     "AHRS_Voter_1B": {
-      "Flow_Predecessor_Jobs": [ "AHRS_Voter_1A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
@@ -55,7 +55,7 @@
       ]
     },
     "AHRS_Voter_2B": {
-      "Flow_Predecessor_Jobs": [ "AHRS_Voter_2A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
@@ -89,7 +89,7 @@
     },
     
     "Actuator_Control_1B": {
-      "Flow_Predecessor_Jobs": [ "Actuator_Control_1A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
@@ -119,7 +119,7 @@
     },
 
     "Actuator_Control_2B": {
-      "Flow_Predecessor_Jobs": [ "Actuator_Control_2A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
@@ -153,7 +153,7 @@
     },
 
     "InnerLoop_Control_1B": {
-      "Flow_Predecessor_Jobs": [ "InnerLoop_Control_1A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
@@ -183,7 +183,7 @@
     },
 
     "InnerLoop_Control_2B": {
-      "Flow_Predecessor_Jobs": [ "InnerLoop_Control_2A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
@@ -212,7 +212,7 @@
     },
 
     "OuterLoop_Control_1B": {
-      "Flow_Predecessor_Jobs": [ "OuterLoop_Control_1A" ],
+      "Flow_Predecessor_Jobs": [ "start" ],
       "Commands": [ "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
       "Tasks": [ 
         "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
