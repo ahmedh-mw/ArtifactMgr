@@ -1,4 +1,4 @@
-name: Full DAG Workflow
+name: Balanced DAG Workflow
 on: # You must define at least one trigger for each workflow.
   workflow_dispatch: # Set manual triggers as the default trigger, while it is not intended to be activated manually.
 
