@@ -1,0 +1,181 @@
+name: Full DAG Workflow
+on: # You must define at least one trigger for each workflow.
+  workflow_dispatch: # Set manual triggers as the default trigger, while it is not intended to be activated manually.
+
+jobs:
+  start:
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "start"
+
+  #######################################################################
+  #                 AHRS_Voter
+  #######################################################################
+  AHRS_Voter_1A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_1A"
+
+  AHRS_Voter_1B:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_1B"
+
+  AHRS_Voter_2A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_2A"
+
+  AHRS_Voter_2B:
+    needs: AHRS_Voter_2A
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "AHRS_Voter_2B"
+
+  #######################################################################
+  #                 Actuator_Control
+  #######################################################################
+  Actuator_Control_1A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Actuator_Control_1A"
+
+  Actuator_Control_1B:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Actuator_Control_1B"
+
+  Actuator_Control_2A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Actuator_Control_2A"
+
+  Actuator_Control_2B:
+    needs: Actuator_Control_2A
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Actuator_Control_2B"
+
+  #######################################################################
+  #                 InnerLoop_Control
+  #######################################################################
+  InnerLoop_Control_1A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "InnerLoop_Control_1A"
+
+  InnerLoop_Control_1B:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "InnerLoop_Control_1B"
+
+  InnerLoop_Control_2A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "InnerLoop_Control_2A"
+
+  InnerLoop_Control_2B:
+    needs: InnerLoop_Control_2A
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "InnerLoop_Control_2B"
+
+
+  #######################################################################
+  #                 OuterLoop_Control
+  #######################################################################
+  OuterLoop_Control_1A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "OuterLoop_Control_1A"
+
+  OuterLoop_Control_1B:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "OuterLoop_Control_1B"
+
+  #######################################################################
+  #                 Flight_Control
+  #######################################################################
+  Flight_Control_1A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Flight_Control_1A"
+
+  Flight_Control_1B:
+    needs: Flight_Control_1A
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Flight_Control_1B"
+
+  Flight_Control_2A:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Flight_Control_2A"
+
+  Top_Model_Tasks:
+    needs: start
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "Top_Model_Tasks"
+
+  OuterLoop_Control_Find_Library_Clones:
+    needs: [AHRS_Voter_1A, Actuator_Control_1A, InnerLoop_Control_1A, OuterLoop_Control_1A]
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "OuterLoop_Control_Find_Library_Clones"
+
+  #######################################################################
+  #                 end
+  #######################################################################
+  end:
+    needs:
+      [
+        AHRS_Voter_1B,
+        AHRS_Voter_2B,
+        Actuator_Control_1B,
+        Actuator_Control_2B,
+        InnerLoop_Control_1B,
+        InnerLoop_Control_2B,
+        OuterLoop_Control_1B,
+        Flight_Control_1B,
+        Flight_Control_2A,
+        Top_Model_Tasks
+      ]
+    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
+    uses: ./.github/workflows/generic-job.yml
+    with:
+      job-name: "end"
