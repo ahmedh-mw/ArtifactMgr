@@ -335,7 +335,7 @@
     "RepoFallbackBranches": [ "main" ],
     "comment__RUNNER_TYPE_____": "default/container",
     "RUNNER_TYPE": "default",
-    "RUNNER_LABEL": "padv_win_agents",
+    "RUNNER_LABEL": "debian11",
     "IMAGE_TAG": "matlab_padv:R2024b",
     "IMAGE_ARGS": "-v /home/ahmedh/project/derived/licenses:/opt/matlab/R2024b/licenses -v /home/ahmedh/artifactory:/home/ahmedh/artifactory",
     "CONTINUE_ON_ERROR": false,
