@@ -145,18 +145,11 @@ jobs:
       job-name: "Flight_Control_2A"
 
   Top_Model_Tasks:
-    needs: start
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "Top_Model_Tasks"
-
-  OuterLoop_Control_Find_Library_Clones:
     needs: [AHRS_Voter_1A, Actuator_Control_1A, InnerLoop_Control_1A, OuterLoop_Control_1A]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "OuterLoop_Control_Find_Library_Clones"
+      job-name: "Top_Model_Tasks"
 
   #######################################################################
   #                 end
