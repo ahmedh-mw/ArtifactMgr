@@ -1,4 +1,4 @@
-name: Generic Job
+name: Reusable Workflow - Generic Job
 on:
   workflow_dispatch:
   workflow_call:
