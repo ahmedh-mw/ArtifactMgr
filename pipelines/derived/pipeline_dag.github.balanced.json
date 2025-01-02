@@ -52,7 +52,7 @@
             ]
         },
         "AHRS_Voter_L2B": {
-            "Flow_Predecessor_Jobs": [ "AHRS_Voter_2A" ],
+            "Flow_Predecessor_Jobs": [ "AHRS_Voter_L1B" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
                 "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
@@ -110,7 +110,7 @@
             ]
         },
         "Actuator_Control_L2B": {
-            "Flow_Predecessor_Jobs": [ "Actuator_Control_2A" ],
+            "Flow_Predecessor_Jobs": [ "Actuator_Control_L1B" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
                 "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
@@ -168,7 +168,7 @@
             ]
         },
         "InnerLoop_Control_L2B": {
-            "Flow_Predecessor_Jobs": [ "InnerLoop_Control_2A" ],
+            "Flow_Predecessor_Jobs": [ "InnerLoop_Control_L1B" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
                 "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
@@ -289,11 +289,11 @@
         "__comment__93": "====================================================================================",
         "end": {
             "Flow_Predecessor_Jobs": [
+                "Top_Model_Tasks",
                 "AHRS_Voter_L2B",
                 "Actuator_Control_L2B",
                 "InnerLoop_Control_L2B",
-                "Flight_Control_L2A",
-                "Top_Model_Tasks"
+                "Flight_Control_L2A"
 
             ],
             "Commands": [
