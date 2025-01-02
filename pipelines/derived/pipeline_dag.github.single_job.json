@@ -1,0 +1,46 @@
+{
+    "Jobs": {
+        "start": {
+            "Flow_Predecessor_Jobs": [ ],
+            "Commands": [
+                "padv.util.initSessionDataDictionaryCache();", 
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "cp.close();",
+                "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+                "exit(exitCode);"
+            ]
+        }
+    },
+    "Pipeline": {
+        "RepoFallbackBranches": [ "main" ],
+        "__comment____RUNNER_TYPE_____": "default/container",
+        "RUNNER_TYPE": "default",
+        "_RUNNER_LABEL": "ex:padv_win_agents - Update this value at Repository variables",
+        "_IMAGE_TAG": "ex:localhost:5000/matlab_padv:R2024b - Update this value at Repository variables",
+        "_IMAGE_ARGS": "Add directly to container-job.yml",
+        "_PYTHON_ALIAS": "ex:python3 - Update this value at Repository variables",
+        "_SOURCECODE_FOLDER": "ex:scm - Update this value at Repository variables",
+        "_CONTINUE_ON_ERROR": "ex:false - Update this value at Repository variables",
+        "_SUBMODULES_MODE": "ex:false - Update this value at Repository variables",
+        "USE_MATLAB_PLUGIN": false,
+        "IncrementalPipelineEnabled": true,
+        "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin",
+        "MatlabLaunchCmd": "matlab",
+        "MatlabStartupOptions": "-nodesktop -logfile output.log",
+        "AddBatchStartupOption": true,
+        "ProcessName": "CIPipeline",
+        "GenerateReport": true,
+        "ReportPath": "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport",
+        "ReportFormat": "pdf",
+        "EnableArtifactCollection": true,
+        "RunprocessOptions": {
+            "Force": false,
+            "RerunFailedTasks": false,
+            "RerunErroredTasks": false,
+            "GenerateJUnitForProcess": true,
+            "MakeSureOutputArtifactsWriteable": true,
+            "ExitInBatchMode": false
+        }
+    }
+}
