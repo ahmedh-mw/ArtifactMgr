@@ -1,8 +1,11 @@
 name: Balanced DAG Workflow
 on: # You must define at least one trigger for each workflow.
-  workflow_dispatch: # Set manual triggers as the default trigger, while it is not intended to be activated manually.
-  pull_request:
-    types: [opened, reopened, synchronize]
+  workflow_dispatch:  # Set manual triggers as an optional trigger.
+  pull_request:       # Set pull_request as an automatic trigger. By default, a pull_request runs when a pull_request event's activity type is opened, synchronize, or reopened
+    # opened: This triggers the workflow when a pull request is initially opened.
+    # synchronize: This triggers the workflow when new commits are pushed to a pull request branch. This includes any time the pull request's head branch is updated with new commits.
+    # reopened: This triggers the workflow when a previously closed pull request is reopened
+    types: [opened, synchronize, reopened]
 
 jobs:
   start:
