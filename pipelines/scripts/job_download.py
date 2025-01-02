@@ -126,8 +126,8 @@ if __name__ == "__main__":
                             logger.debug(f"conflictFiles == create ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName, "checksum":currentFileCheckSum}]
-                        # logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
-                        files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
+                        # logger.info(f"Moving: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
+                        files.move_file(file, os.path.join(mergingFolder, relativeFilePath))
 
         if len(conflictFiles) == 0:
             logger.info(f"========= Move branch other files")
@@ -144,8 +144,8 @@ if __name__ == "__main__":
                         continue
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName}]
-                        # logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
-                        files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
+                        # logger.info(f"Moving: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
+                        files.move_file(file, os.path.join(mergingFolder, relativeFilePath))
         else:
             # logger.info(f"uniqueFiles: {uniqueFiles}")
             logger.info(f"conflictFiles: {conflictFiles}")
