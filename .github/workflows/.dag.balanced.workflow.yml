@@ -17,140 +17,105 @@ jobs:
   #######################################################################
   #                 AHRS_Voter
   #######################################################################
-  AHRS_Voter_1A:
+  AHRS_Voter_L1A:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "AHRS_Voter_1A"
+      job-name: "AHRS_Voter_L1A"
 
-  AHRS_Voter_1B:
+  AHRS_Voter_L1B:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "AHRS_Voter_1B"
+      job-name: "AHRS_Voter_L1B"
 
-  AHRS_Voter_2A:
-    needs: start
+  AHRS_Voter_L2B:
+    needs: AHRS_Voter_L1B
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "AHRS_Voter_2A"
-
-  AHRS_Voter_2B:
-    needs: AHRS_Voter_2A
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "AHRS_Voter_2B"
+      job-name: "AHRS_Voter_L2B"
 
   #######################################################################
   #                 Actuator_Control
   #######################################################################
-  Actuator_Control_1A:
+  Actuator_Control_L1A:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "Actuator_Control_1A"
+      job-name: "Actuator_Control_L1A"
 
-  Actuator_Control_1B:
+  Actuator_Control_L1B:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "Actuator_Control_1B"
+      job-name: "Actuator_Control_L1B"
 
-  Actuator_Control_2A:
-    needs: start
+  Actuator_Control_L2B:
+    needs: Actuator_Control_L1B
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "Actuator_Control_2A"
-
-  Actuator_Control_2B:
-    needs: Actuator_Control_2A
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "Actuator_Control_2B"
+      job-name: "Actuator_Control_L2B"
 
   #######################################################################
   #                 InnerLoop_Control
   #######################################################################
-  InnerLoop_Control_1A:
+  InnerLoop_Control_L1A:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "InnerLoop_Control_1A"
+      job-name: "InnerLoop_Control_L1A"
 
-  InnerLoop_Control_1B:
+  InnerLoop_Control_L1B:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "InnerLoop_Control_1B"
+      job-name: "InnerLoop_Control_L1B"
 
-  InnerLoop_Control_2A:
-    needs: start
+  InnerLoop_Control_L2B:
+    needs: InnerLoop_Control_L1B
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "InnerLoop_Control_2A"
-
-  InnerLoop_Control_2B:
-    needs: InnerLoop_Control_2A
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "InnerLoop_Control_2B"
+      job-name: "InnerLoop_Control_L2B"
 
 
   #######################################################################
   #                 OuterLoop_Control
   #######################################################################
-  OuterLoop_Control_1A:
+  OuterLoop_Control_L1A:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "OuterLoop_Control_1A"
-
-  OuterLoop_Control_1B:
-    needs: start
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "OuterLoop_Control_1B"
+      job-name: "OuterLoop_Control_L1A"
 
   #######################################################################
-  #                 Flight_Control
+  #                 Flight_Control & OuterLoop_Control
   #######################################################################
-  Flight_Control_1A:
+  Flight_Control_L1A:
     needs: start
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "Flight_Control_1A"
+      job-name: "Flight_Control_L1A"
 
-  Flight_Control_1B:
-    needs: Flight_Control_1A
+  Flight_Control_L2A:
+    needs: Flight_Control_L1A
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
-      job-name: "Flight_Control_1B"
-
-  Flight_Control_2A:
-    needs: start
-    if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
-    uses: ./.github/workflows/generic-job.yml
-    with:
-      job-name: "Flight_Control_2A"
+      job-name: "Flight_Control_L2A"
 
   Top_Model_Tasks:
-    needs: [AHRS_Voter_1A, Actuator_Control_1A, InnerLoop_Control_1A, OuterLoop_Control_1A]
+    needs: [AHRS_Voter_L1A, Actuator_Control_L1A, InnerLoop_Control_L1A, OuterLoop_Control_L1A]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
@@ -162,16 +127,11 @@ jobs:
   end:
     needs:
       [
-        AHRS_Voter_1B,
-        AHRS_Voter_2B,
-        Actuator_Control_1B,
-        Actuator_Control_2B,
-        InnerLoop_Control_1B,
-        InnerLoop_Control_2B,
-        OuterLoop_Control_1B,
-        Flight_Control_1B,
-        Flight_Control_2A,
-        Top_Model_Tasks
+        Top_Model_Tasks,
+        AHRS_Voter_L2B,
+        Actuator_Control_L2B,
+        InnerLoop_Control_L2B,
+        Flight_Control_L2A
       ]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
