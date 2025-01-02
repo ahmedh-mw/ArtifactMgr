@@ -9,6 +9,10 @@
                 "cp.close();",
                 "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
                 "exit(exitCode);"
+            ],
+            "Outputs": [
+                "PA_Results",
+                "03_Code"
             ]
         }
     },
