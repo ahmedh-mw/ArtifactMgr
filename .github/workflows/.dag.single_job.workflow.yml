@@ -1,4 +1,4 @@
-name: Balanced DAG Workflow
+name: Single Job DAG Workflow
 on: # You must define at least one trigger for each workflow.
   workflow_dispatch:  # Set manual triggers as an optional trigger.
   pull_request:       # Set pull_request as an automatic trigger. By default, a pull_request runs when a pull_request event's activity type is opened, synchronize, or reopened
