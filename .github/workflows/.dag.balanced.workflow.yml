@@ -32,7 +32,7 @@ jobs:
       job-name: "AHRS_Voter_L1B"
 
   AHRS_Voter_L2B:
-    needs: AHRS_Voter_L1B
+    needs: ["AHRS_Voter_L1B", "Actuator_Control_L1B", "InnerLoop_Control_L1B"]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
@@ -80,7 +80,7 @@ jobs:
       job-name: "InnerLoop_Control_L1B"
 
   InnerLoop_Control_L2B:
-    needs: InnerLoop_Control_L1B
+    needs: ["AHRS_Voter_L1B", "Actuator_Control_L1B", "InnerLoop_Control_L1B"]
     if: (vars.CONTINUE_ON_ERROR == 'true' || !failure()) && !cancelled()
     uses: ./.github/workflows/generic-job.yml
     with:
