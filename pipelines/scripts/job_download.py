@@ -93,7 +93,7 @@ if __name__ == "__main__":
         uniqueFiles = dict()
         conflictFiles = dict()
         for branchName in predecessorJobsBranchesNames:
-            logger.debug(f"== Branch Name: {branchName}")
+            logger.info(f"========= Branch Name: {branchName}")
             ###############################################################
             logger.info(f">>> Move branch dmr file")
             srcBranchDmrFilePath = os.path.join(downloadsPath, branchName, _DERIVED_FOLDER, _DMR_FILE_NAME)
@@ -126,13 +126,13 @@ if __name__ == "__main__":
                             logger.debug(f"conflictFiles == create ==> {branchName} - {relativeFilePath} - {currentFileCheckSum}")
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName, "checksum":currentFileCheckSum}]
-                        logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
-                        files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
+                        # logger.info(f"Moving: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
+                        files.move_file(file, os.path.join(mergingFolder, relativeFilePath))
 
         if len(conflictFiles) == 0:
-            logger.info(f">>> Move branch other files")
+            logger.info(f"========= Move branch other files")
             for branchName in predecessorJobsBranchesNames:
-                logger.debug(f"== Branch Name: {branchName}")
+                logger.info(f"== Branch Name: {branchName}")
                 branchPath = os.path.join(downloadsPath, branchName)
                 branchFilesList = files.list_folder_files(branchPath)
                 for file in branchFilesList:
@@ -144,8 +144,8 @@ if __name__ == "__main__":
                         continue
                     else:
                         uniqueFiles[relativeFilePath] = [{"branch": branchName}]
-                        logger.info(f"Copying: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
-                        files.copy_file(file, os.path.join(mergingFolder, relativeFilePath))
+                        # logger.info(f"Moving: {branchName}:{relativeFilePath} =====> {currentJob.BranchName}")
+                        files.move_file(file, os.path.join(mergingFolder, relativeFilePath))
         else:
             # logger.info(f"uniqueFiles: {uniqueFiles}")
             logger.info(f"conflictFiles: {conflictFiles}")
