@@ -19,10 +19,16 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
-                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
+                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+                "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+                "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
+                "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx"
             ],
             "Outputs": [
-                "PA_Results/AHRS_Voter/external_code_cache"
+                "PA_Results/AHRS_Voter/external_code_cache",
+                "PA_Results/AHRS_Voter/bug_finder",
+                "PA_Results/AHRS_Voter/code_prover",
+                "PA_Results/AHRS_Voter/code_inspection"
             ]
         },
 
@@ -82,10 +88,16 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
-                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
+                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+                "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+                "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
+                "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx"
             ],
             "Outputs": [
-                "PA_Results/Actuator_Control/external_code_cache"
+                "PA_Results/Actuator_Control/external_code_cache",
+                "PA_Results/Actuator_Control/bug_finder",
+                "PA_Results/Actuator_Control/code_prover",
+                "PA_Results/Actuator_Control/code_inspection"
             ]
         },
 
@@ -146,10 +158,16 @@
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
             "Tasks": [
-                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
+                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+                "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+                "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
+                "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx"
             ],
             "Outputs": [
-                "PA_Results/InnerLoop_Control/external_code_cache"
+                "PA_Results/InnerLoop_Control/external_code_cache",
+                "PA_Results/InnerLoop_Control/bug_finder",
+                "PA_Results/InnerLoop_Control/code_prover",
+                "PA_Results/InnerLoop_Control/code_inspection"
             ]
         },
 
@@ -208,8 +226,18 @@
         "OuterLoop_Control_1A": {
             "Flow_Predecessor_Jobs": [ "start" ],
             "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
-            "Tasks": [ "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx" ],
-            "Outputs": [ "PA_Results/OuterLoop_Control/external_code_cache" ]
+            "Tasks": [ 
+                "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+                "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+                "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
+                "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx"
+            ],
+            "Outputs": [ 
+                "PA_Results/OuterLoop_Control/external_code_cache",
+                "PA_Results/OuterLoop_Control/bug_finder",
+                "PA_Results/OuterLoop_Control/code_prover",
+                "PA_Results/OuterLoop_Control/code_inspection"
+            ]
         },
 
         "OuterLoop_Control_1B": {
