@@ -19,7 +19,7 @@ HEADER_LOG = 21 # after Info
 logging.addLevelName(HEADER_LOG, 'HEADER')
 # Create a logger
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 if importlib.util.find_spec('colorlog') is not None:
     import colorlog         # management for logging terminal color
