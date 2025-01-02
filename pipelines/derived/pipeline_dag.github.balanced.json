@@ -57,7 +57,15 @@
         },
         "AHRS_Voter_L2B": {
             "Flow_Predecessor_Jobs": [ "AHRS_Voter_L1B", "Actuator_Control_L1B", "InnerLoop_Control_L1B" ],
-            "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+            "Commands": [
+                "padv.util.initSessionDataDictionaryCache();",
+                "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "cp.close();",
+                "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+				"exit(exitCode);"
+            ],
             "Tasks": [
                 "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
                 "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
@@ -183,7 +191,15 @@
         },
         "InnerLoop_Control_L2B": {
             "Flow_Predecessor_Jobs": [ "AHRS_Voter_L1B", "Actuator_Control_L1B", "InnerLoop_Control_L1B" ],
-            "Commands": [ "padv.util.initSessionDataDictionaryCache();", "cp=openProject(pwd);", "[~,exitCode]={{runprocess}};", "cp.close();", "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);", "exit(exitCode);" ],
+            "Commands": [ 
+                "padv.util.initSessionDataDictionaryCache();",
+                "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
+                "cp=openProject(pwd);",
+                "[~,exitCode]={{runprocess}};",
+                "cp.close();",
+                "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
+				"exit(exitCode);"
+            ],
             "Tasks": [
                 "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
                 "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
@@ -278,13 +294,13 @@
                 "OuterLoop_Control_L1A"
             ],
             "Commands": [
-                "padv.util.initSessionDataDictionaryCache();", 
+                "padv.util.initSessionDataDictionaryCache();",
                 "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
                 "cp=openProject(pwd);",
                 "[~,exitCode]={{runprocess}};",
                 "cp.close();",
                 "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
-                "exit(exitCode);"
+				"exit(exitCode);"
             ],
             "Tasks": [
                 "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",

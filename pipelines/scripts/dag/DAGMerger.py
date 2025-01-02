@@ -75,20 +75,22 @@ class DAGMerger:
     def _getNextBranchesToMerge(self, mergingMap):
         mergingBranchInfo = None
         keysToRemove = []
-        for _, branchInfo in mergingMap.items():
-            branchesToMergeCounter = len(branchInfo[_BRANCHES_TO_MERGE_FIELD])
-            if branchesToMergeCounter == 1:
+        for branchName, branchInfo in mergingMap.items():
+            # logger.debug(f"branchInfo: {branchInfo}")
+            branchesToMergeCounter = len(branchInfo[_BRANCHES_TO_MERGE_FIELD])    
+            if branchesToMergeCounter <= 1:
                 keysToRemove.append( branchInfo[_BASE_BRANCH_FIELD] )
-            elif mergingBranchInfo is not None \
-                and branchInfo[_LEVEL_FIELD] == mergingBranchInfo[_LEVEL_FIELD] \
+            elif mergingBranchInfo is None:
+                mergingBranchInfo = branchInfo
+            elif branchInfo[_LEVEL_FIELD] > mergingBranchInfo[_LEVEL_FIELD]:
+                mergingBranchInfo = branchInfo
+            elif branchInfo[_LEVEL_FIELD] == mergingBranchInfo[_LEVEL_FIELD] \
                 and branchesToMergeCounter > len(mergingBranchInfo[_BRANCHES_TO_MERGE_FIELD]):
-                mergingBranchInfo = mergingBranchInfo
-            elif mergingBranchInfo is None \
-                or branchInfo[_LEVEL_FIELD] > mergingBranchInfo[_LEVEL_FIELD]:
                 mergingBranchInfo = branchInfo
                 
         for keyToRemove in keysToRemove:
             del mergingMap[keyToRemove]
+        # logger.debug(f"mergingBranchInfo: {mergingBranchInfo}")
         return mergingBranchInfo
 
     def _createVirtualBranch(self, baseBranchName, branchName):
