@@ -79,24 +79,23 @@ if __name__ == "__main__":
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
-    # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.1task.json")
-    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.github.balanced.json")
-    
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.1task.json")
+    # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.github.balanced.json")
     
     with open("data.json", "w") as outfile:
         json.dump(dag.dictEncode(), outfile, indent=4)
 
-    drawDAG(dag)
+    # drawDAG(dag)
 
     dagMerger = DAGMerger(dag.Branches)
-    dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence([
-                "br_Top_Model_Tasks",
-                "br_AHRS_Voter_L2B",
-                "br_Actuator_Control_L2B",
-                "br_InnerLoop_Control_L2B",
-                "br_Flight_Control_L1A"
+    # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence([
+    #             "br_Top_Model_Tasks",
+    #             "br_AHRS_Voter_L2B",
+    #             "br_Actuator_Control_L2B",
+    #             "br_InnerLoop_Control_L2B",
+    #             "br_Flight_Control_L1A"
 
-            ])
-    sequenceList = ut.dictEncode(dmrsMergeSequence)
-    files.add_file(f"{pathlib.Path().resolve()}/data.test.json", json.dumps(sequenceList, indent=4))
+    #         ])
+    # sequenceList = ut.dictEncode(dmrsMergeSequence)
+    #   files.add_file(f"{pathlib.Path().resolve()}/data.test.json", json.dumps(sequenceList, indent=4))
     logger.log(core.HEADER_LOG, core.SECTION_END)

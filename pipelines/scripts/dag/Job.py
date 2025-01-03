@@ -20,36 +20,12 @@ class Job:
         self.Commands = Utils.getList(jobObject, self._COMMANDS_LIST)
         self.Tasks = Utils.getList(jobObject, self._TASKS_LIST)
         self.RunprocessOptions = Utils.getDic(jobObject, self._RUN_PROCESS_OPTIONS_DIC, {})
-        self.PredecessorJobsNames = self._getPredecessorJobsNames()
+        self.PredecessorJobsNames = Utils.getList(jobObject, self._FLOW_PREDECESSOR_JOBS_LIST)
         self.IsStartJob = False
         self.IsEndJob = False
         self.IsMergingJob = False
         self.IsStartingNewBranch = False
         self.BranchName = str()
         self.DownloadBranchName = str()
-        # self.Outputs = self._getOutputs()
         self.Outputs = Utils.getList(jobObject, self._OUTPUTS_LIST)
         self.SuccessorJobsNames = []
-        
-    # def _getOutputs(self):
-    #     outputs = defaultdict(list)
-    #     jobOutputs = self._jobObject.get(self._OUTPUTS_LIST)
-    #     if jobOutputs is None:
-    #         return outputs
-    #     for directoryOutput in jobOutputs:
-    #         outputPath = directoryOutput[self._PATH_FIELD]
-    #         directoryFiles = directoryOutput.get(self._FILES_LIST)
-    #         if directoryFiles:
-    #             if directoryFiles and len(directoryFiles) > 0:
-    #                 for file in directoryFiles:
-    #                     outputs[outputPath].append(file)
-    #         else:
-    #             outputs[outputPath] = []
-
-    #     return outputs
-    
-    def _getPredecessorJobsNames(self):
-        predecessorJobsNames = self._jobObject.get(self._FLOW_PREDECESSOR_JOBS_LIST)
-        if not predecessorJobsNames:
-            predecessorJobsNames = []
-        return predecessorJobsNames

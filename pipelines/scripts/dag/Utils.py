@@ -4,6 +4,8 @@ class Utils:
         listObject  = jsonObject.get(listName)
         if listObject is None:
             listObject = []
+        elif isinstance(listObject, str):
+            listObject = [listObject]
         return listObject
     
     @staticmethod
@@ -11,6 +13,8 @@ class Utils:
         item = jsonObject.get(fieldName)
         if item is None:
             item = defaultValue
+        elif isinstance(item, str):
+            item = item in ['True', 'true', '1']
         return item
     
     @staticmethod
