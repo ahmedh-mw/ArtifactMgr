@@ -352,7 +352,7 @@
     "_SUBMODULES_MODE": "Configured from Jenkins pipeline scm settings",
     "USE_MATLAB_PLUGIN": false,
     "IncrementalPipelineEnabled": true,
-    "MatlabInstrallationPath": "/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2836274.2/matlab/bin",
+    "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin",
     "MatlabLaunchCmd": "matlab",
     "MatlabStartupOptions": "-nodesktop -logfile output.log",
     "AddBatchStartupOption": true,
