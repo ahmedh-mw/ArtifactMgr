@@ -52,12 +52,10 @@ def _getStageBody(jobName){
             if("$ENABLE_CI_DRYRUN" == "true"){
                 sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_dryrun.py --jobname \"$jobName\""
             } else {
-                dir("$SOURCECODE_FOLDER"){
-                    if ("$USE_MATLAB_PLUGIN" == "true" ) {
-                        runMATLABCommand "addpath(fileparts(pwd));matlab_job_commands"
-                    } else {
-                        sh "../shell_commands.sh"
-                    }
+                if ("$USE_MATLAB_PLUGIN" == "true" ) {
+                    runMATLABCommand "matlab_job_commands"
+                } else {
+                    sh "./shell_commands.sh"
                 }
             }
         } else {            
@@ -66,12 +64,10 @@ def _getStageBody(jobName){
             if("$ENABLE_CI_DRYRUN" == "true"){
                 bat "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_dryrun.py --jobname \"$jobName\""
             } else {
-                dir("$SOURCECODE_FOLDER"){
-                    if ("$USE_MATLAB_PLUGIN" == "true" ) {
-                        runMATLABCommand "addpath(fileparts(pwd));matlab_job_commands"
-                    } else {
-                        bat "..\\shell_commands.bat"
-                    }
+                if ("$USE_MATLAB_PLUGIN" == "true" ) {
+                    runMATLABCommand "addpath(fileparts(pwd));matlab_job_commands"
+                } else {
+                    bat ".\\shell_commands.bat"
                 }
             }
         }
