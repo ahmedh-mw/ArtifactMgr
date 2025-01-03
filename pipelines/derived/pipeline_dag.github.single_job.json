@@ -30,7 +30,7 @@
         "USE_MATLAB_PLUGIN": false,
         "IncrementalPipelineEnabled": true,
         "MatlabInstrallationPath": "D:/repos/bslcicd/matlab/toolbox/padv/session_manager;D:/sb/Bslcicd_1217/matlab/bin",
-        "MatlabLaunchCmd": "matlab-sessions.cmd run",
+        "MatlabLaunchCmd": "matlab-sessions.cmd run cd '$GITHUB_WORKSPACE' && matlab-sessions.cmd run",
         "MatlabStartupOptions__": "-nodesktop -logfile output.log",
         "MatlabStartupOptions": "",
         "AddBatchStartupOption": false,
