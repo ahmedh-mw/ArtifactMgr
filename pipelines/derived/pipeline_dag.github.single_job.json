@@ -32,7 +32,7 @@
         "MatlabInstrallationPath": "D:/repos/bslcicd/matlab/toolbox/padv/session_manager;D:/sb/Bslcicd_1217/matlab/bin",
         "MatlabLaunchCmd": "matlab-sessions.cmd run",
         "MatlabStartupOptions__": "-nodesktop -logfile output.log",
-        "AddBatchStartupOption": true,
+        "AddBatchStartupOption": false,
         "ProcessName": "CIPipeline",
         "GenerateReport": true,
         "ReportPath": "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport",
