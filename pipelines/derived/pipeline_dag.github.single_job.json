@@ -31,7 +31,7 @@
         "IncrementalPipelineEnabled": true,
         "MatlabInstrallationPath": "D:/repos/bslcicd/matlab/toolbox/padv/session_manager;D:/sb/Bslcicd_1217/matlab/bin",
         "MatlabLaunchCmd": "matlab-sessions.cmd run",
-        "MatlabStartupOptions": "-nodesktop -logfile output.log",
+        "MatlabStartupOptions__": "-nodesktop -logfile output.log",
         "AddBatchStartupOption": true,
         "ProcessName": "CIPipeline",
         "GenerateReport": true,
