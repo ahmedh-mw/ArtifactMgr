@@ -28,12 +28,12 @@ runs:
     - name: Job Execute for Windows
       if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin != 'true') }}
       shell: pwsh
-      run: shell_commands.bat
+      run: ./shell_commands.bat
 
     - name: Job Execute for Linux/MacOS
       if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin != 'true') }}
       shell: bash
-      run: shell_commands.sh
+      run: ./shell_commands.sh
 
     - name: Job Execute using MATLAB plugin
       if: ${{ (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin == 'true') }}
