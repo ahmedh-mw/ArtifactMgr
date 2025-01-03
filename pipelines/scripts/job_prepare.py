@@ -19,6 +19,8 @@ def parseArguments():
 
 def build_shell_commands(dag, currentJob):
     commands = "function varargout = matlab_job_commands()\n"
+    projectPath = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
+    commands += f"\tcd('{projectPath}');\n"
     commands += "\texitCode=0;\n"
     for command in currentJob.Commands:
         if "{{runprocess}}" in command:
