@@ -40,7 +40,11 @@ def build_shell_commands(dag, currentJob):
     else:
         shellCommandsFilePath += ".sh"
     
-    shellCommand = f"{dag.Pipeline.MatlabLaunchCmd} {dag.Pipeline.MatlabStartupOptions}"
+    if dag.Pipeline.MatlabStartupOptions is None:
+        shellCommand = f"{dag.Pipeline.MatlabLaunchCmd}"
+    else:
+        shellCommand = f"{dag.Pipeline.MatlabLaunchCmd} {dag.Pipeline.MatlabStartupOptions}"
+    
     if dag.Pipeline.AddBatchStartupOption:
         shellCommand += " -batch"
     shellCommand += f" \"{_MATLAB_JOB_COMMANDS_FILE_NAME}\""
