@@ -332,7 +332,7 @@
                 "padv.util.initSessionDataDictionaryCache();", 
                 "padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true);",
                 "cp=openProject(pwd);",
-                "padv.internal.updateProjectArtifacts(currentProject=cp);",
+                "padv.internal.AlmArtifactHelper.conditionalUpdateArtifacts();",
                 "padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');",
                 "{{generate-report}};",
                 "cp.close();",
