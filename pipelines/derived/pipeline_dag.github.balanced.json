@@ -3,9 +3,9 @@
         "start": {
             "Flow_Predecessor_Jobs": [ ],
             "Commands": [
-                "padv.util.initSessionDataDictionaryCache();", 
+                "padv.util.initSessionDataDictionaryCache();",
                 "cp=openProject(pwd);",
-                "padv.internal.updateProjectArtifacts(currentProject=cp);",
+                "padv.internal.AlmArtifactHelper.conditionalUpdateArtifacts();",
                 "cp.close();",
                 "padv.internal.poll(@()~cp.isLoaded, 'timeout', inf);",
                 "exit(exitCode);"

@@ -369,8 +369,4 @@ function processmodel(pm)
             includeRefCodeInspection && includeTopProveCodeQuality
         slciTopTask.runsAfter(pscpTopTask);
     end
-
-    % !PROCESSMODEL_EDITOR_MARKER! %
-    % Do not remove. Process Advisor uses the comment above to automatically add tasks. %
-
 end
