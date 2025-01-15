@@ -61,7 +61,7 @@ if __name__ == "__main__":
     if currentJob['IsStartJob']:
         if pipeline['IncrementalPipelineEnabled'] == True:
             predecessorJobsBranchesNames = [currentJob['DownloadBranchName']]
-            lookupBranches = [REPO_BRANCH_NAME] + Utils.getList(Pipeline, 'RepoFallbackBranches')
+            lookupBranches = [REPO_BRANCH_NAME] + Utils.getList(pipeline, 'RepoFallbackBranches')
             artifactsService.downloadFromLastSuccessfulRun(PROJECT_NAME, lookupBranches, predecessorJobsBranchesNames, downloadsPath)
     else:
         predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
