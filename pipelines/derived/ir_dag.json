@@ -1598,7 +1598,7 @@
     "PA_Results/code_prover"
   ],
   "Options": {
-    "AgentLabel": "any",
+    "AgentLabel": "padv_win_agents",
     "EnableArtifactCollection": "always",
     "ArtifactZipFileName": "padv_artifacts.zip",
     "GeneratedJenkinsFileName": "simulink_pipeline",
