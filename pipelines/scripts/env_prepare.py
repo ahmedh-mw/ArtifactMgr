@@ -36,14 +36,22 @@ def loadVariableKey(variables, key, value):
         elif isinstance(value, str):
             variables[key] = value
 
-def loadPipelineVariables(variables, dag):
-    loadVariableKey(variables, dag.Pipeline._RUNNER_TYPE_FIELD, dag.Pipeline.RUNNER_TYPE)
-    loadVariableKey(variables, dag.Pipeline._RUNNER_LABEL_FIELD, dag.Pipeline.RUNNER_LABEL)
-    loadVariableKey(variables, dag.Pipeline._IMAGE_TAG_FIELD, dag.Pipeline.IMAGE_TAG)
-    loadVariableKey(variables, dag.Pipeline._IMAGE_ARGS_FIELD, dag.Pipeline.IMAGE_ARGS)
-    loadVariableKey(variables, dag.Pipeline._CONTINUE_ON_ERROR_FIELD, dag.Pipeline.CONTINUE_ON_ERROR)
-    loadVariableKey(variables, dag.Pipeline._SUBMODULES_MODE_FIELD, dag.Pipeline.SUBMODULES_MODE)
-    loadVariableKey(variables, dag.Pipeline._USE_MATLAB_PLUGIN_FIELD, dag.Pipeline.USE_MATLAB_PLUGIN)
+def loadPipelineVariables(variables, dag, platform):
+    pipelineOptions = dag.getPipeline()['Options']
+    if platform == "jenkins":
+        loadVariableKey(variables, 'RUNNER_TYPE', 'default')
+        loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
+        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions['IMAGE_TAG'])
+        loadVariableKey(variables, 'CONTINUE_ON_ERROR', not pipelineOptions.get('StopOnStageFailure'))
+        loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
+        loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
+    elif platform == "github":
+        loadVariableKey(variables, 'RUNNER_TYPE', pipelineOptions['RUNNER_TYPE'])
+        loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions['RUNNER_LABEL'])
+        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions['IMAGE_TAG'])
+        loadVariableKey(variables, 'CONTINUE_ON_ERROR', pipelineOptions['CONTINUE_ON_ERROR'])
+        loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions['SUBMODULES_MODE'])
+        loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['USE_MATLAB_PLUGIN'])
     
 if __name__ == "__main__":
     args = parseArguments()
@@ -66,15 +74,16 @@ if __name__ == "__main__":
         os.environ[_DAG_RELATIVE_PATH_FIELD] = variables[_DAG_RELATIVE_PATH_FIELD]
     
     dag = DAG(getDagPath())
-    loadPipelineVariables(variables, dag)
+    loadPipelineVariables(variables, dag, args.platform)
 
+    matlabInstrallationPath = dag.getPipeline()['Options']['MatlabInstrallationPath']
     if args.platform == "jenkins":
         content = str()
-        if dag.Pipeline.MatlabInstrallationPath:
+        if matlabInstrallationPath:
             if os.name == 'nt':           # isWindows
-                content += f"env.PATH = \"{dag.Pipeline.MatlabInstrallationPath};$PATH\"\n"
+                content += f"env.PATH = \"{matlabInstrallationPath};$PATH\"\n"
             else:
-                content += f"env.PATH = \"{dag.Pipeline.MatlabInstrallationPath}:$PATH\"\n"
+                content += f"env.PATH = \"{matlabInstrallationPath}:$PATH\"\n"
                     
         for key, value in variables.items():
             content += f"env.{key} = \"{value}\"\n"
@@ -84,12 +93,12 @@ if __name__ == "__main__":
         files.add_file(jenkinsFilePath, content)
     elif args.platform == "github":
         with open(os.environ['GITHUB_ENV'], 'a') as github_env:
-            if dag.Pipeline.MatlabInstrallationPath:
+            if matlabInstrallationPath:
                 envPATH = os.environ.get('PATH')
                 if os.name == 'nt':           # isWindows
-                    github_env.write(f"PATH={dag.Pipeline.MatlabInstrallationPath};{envPATH}\n")
+                    github_env.write(f"PATH={matlabInstrallationPath};{envPATH}\n")
                 else:
-                    github_env.write(f"PATH={dag.Pipeline.MatlabInstrallationPath}:{envPATH}\n")
+                    github_env.write(f"PATH={matlabInstrallationPath}:{envPATH}\n")
                 
             for key, value in variables.items():
                 value = replace_env_variables(value)

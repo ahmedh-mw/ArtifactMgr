@@ -30,9 +30,9 @@ if __name__ == "__main__":
     logger.info(args)
 
     dag = DAG(getDagPath())
-    debuggingDagFilePath = os.path.join(WORKSPACE_PATH, _DEBUGGING_DAG_FILE_NAME)
-    with open(debuggingDagFilePath, "w") as outfile:
-        json.dump(dag.dictEncode(), outfile, indent=4)
+    # debuggingDagFilePath = os.path.join(WORKSPACE_PATH, _DEBUGGING_DAG_FILE_NAME)
+    # with open(debuggingDagFilePath, "w") as outfile:
+    #     json.dump(dag.dictEncode(), outfile, indent=4)
         
     # Download => Merge => Move to project
     ####### Download:
@@ -57,10 +57,13 @@ if __name__ == "__main__":
     downloadsPath = os.path.join(WORKSPACE_PATH, DONWLOADS_FOLDER)
 
     predecessorJobsBranchesNames = None
-    if currentJob.IsStartJob:
-        if dag.Pipeline.IncrementalPipelineEnabled:
-            predecessorJobsBranchesNames = [currentJob.DownloadBranchName]
-            lookupBranches = [REPO_BRANCH_NAME] + dag.Pipeline.RepoFallbackBranches
+    RepoFallbackBranches = ['main']
+    if currentJob['IsStartJob']:
+        # if dag.getPipeline().IncrementalPipelineEnabled:
+        if True:
+            predecessorJobsBranchesNames = [currentJob['DownloadBranchName']]
+            # lookupBranches = [REPO_BRANCH_NAME] + dag.Pipeline.RepoFallbackBranches
+            lookupBranches = [REPO_BRANCH_NAME] + RepoFallbackBranches
             artifactsService.downloadFromLastSuccessfulRun(PROJECT_NAME, lookupBranches, predecessorJobsBranchesNames, downloadsPath)
     else:
         predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
@@ -70,10 +73,10 @@ if __name__ == "__main__":
     # Download required base DMR files
     if len(predecessorJobsBranchesNames) > 1: # Merging is required
         logger.info(f">>> Download required base branch dmr files")
-        dagMerger = DAGMerger(dag.Branches)
-        dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
+        # dagMerger = DAGMerger(dag.Branches)
+        # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
         dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
-        dmrsMergeSequenceList = Utils.dictEncode(dmrsMergeSequence)
+        # dmrsMergeSequenceList = Utils.dictEncode(dmrsMergeSequence)
         files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequenceList, indent=4))
         baseDMRsToDownload = set()
         for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
@@ -85,7 +88,7 @@ if __name__ == "__main__":
     #           Merging
     ############################################################
     logger.log(core.HEADER_LOG, f"{core.GROUP_START} Merging artifacts")
-    mergingFolder = os.path.join(downloadsPath, currentJob.BranchName)
+    mergingFolder = os.path.join(downloadsPath, currentJob['BranchName'])
     if len(predecessorJobsBranchesNames) > 1: # Merging is required
         ###################################
         #           Merging Artifacts

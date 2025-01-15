@@ -7,7 +7,7 @@
 
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
-    "DAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.json",
+    "DAG_RELATIVE_PATH" : "pipelines/derived/ir_dag.json",
     "SOURCECODE_FOLDER" : "",
     "SCRIPTS_LOCATION" : "pipelines/scripts"
 }

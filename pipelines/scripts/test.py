@@ -2,7 +2,7 @@ import sys
 sys.path.insert(0, '..')
 sys.path.insert(0, '.')
 from utils import core
-from dag import DAG, DAGMerger
+from dag import DAG
 from dag import Utils as ut
 from utils import files
 import os
@@ -79,15 +79,15 @@ if __name__ == "__main__":
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.complex.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.parallel.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.json")
-    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.jenkins.1task.json")
+    dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/ir_dag.json")
     # dag = DAG("D:/repos/gh/ArtifactMgr/pipelines/derived/pipeline_dag.github.balanced.json")
     
-    with open("data.json", "w") as outfile:
-        json.dump(dag.dictEncode(), outfile, indent=4)
+    # with open("data.json", "w") as outfile:
+    #     json.dump(dag.dictEncode(), outfile, indent=4)
 
     # drawDAG(dag)
 
-    dagMerger = DAGMerger(dag.Branches)
+    # dagMerger = DAGMerger(dag.Branches)
     # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence([
     #             "br_Top_Model_Tasks",
     #             "br_AHRS_Voter_L2B",
