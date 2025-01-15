@@ -1,5 +1,5 @@
 from utils import core
-from dag import DAG, DAGMerger, Utils
+from dag import DAG, Utils
 from utils import files
 import os
 import argparse
@@ -30,6 +30,8 @@ if __name__ == "__main__":
     logger.info(args)
 
     dag = DAG(getDagPath())
+    pipeline = dag.getPipeline()
+    currentJob = dag.getJob(args.jobname)
     # debuggingDagFilePath = os.path.join(WORKSPACE_PATH, _DEBUGGING_DAG_FILE_NAME)
     # with open(debuggingDagFilePath, "w") as outfile:
     #     json.dump(dag.dictEncode(), outfile, indent=4)
@@ -51,7 +53,6 @@ if __name__ == "__main__":
     #           Download to _downlaods_ folder
     ############################################################
     logger.log(core.HEADER_LOG, f"{core.GROUP_START} Downloading artifacts to _downlaods_ folder")
-    currentJob = dag.getJob(args.jobname)
     
     relativeRepoBranchPath = os.path.join(PROJECT_NAME, REPO_BRANCH_NAME)
     downloadsPath = os.path.join(WORKSPACE_PATH, DONWLOADS_FOLDER)
@@ -105,7 +106,7 @@ if __name__ == "__main__":
             ###############################################################
             logger.info(f">>> Move branch OutputsPaths")
             branchPath = os.path.join(downloadsPath, branchName)
-            branchOutputsPaths = dag.Branches[branchName].OutputsPaths
+            branchOutputsPaths = dag['Branches'][branchName]['OutputsPaths']
             for outputPath in branchOutputsPaths:
                 fullOutputPath = os.path.join(branchPath, outputPath)
                 filesList = files.list_folder_files(fullOutputPath)
