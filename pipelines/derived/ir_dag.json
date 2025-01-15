@@ -1,6 +1,8 @@
 {
   "Name": "",
   "ProcessName": "CIPipeline",
+  "RepoFallbackBranches": "main",
+  "IncrementalPipelineEnabled": true,
   "Jobs": {
     "start": {
       "Name": "start",

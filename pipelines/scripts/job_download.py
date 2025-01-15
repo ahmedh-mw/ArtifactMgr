@@ -58,13 +58,10 @@ if __name__ == "__main__":
     downloadsPath = os.path.join(WORKSPACE_PATH, DONWLOADS_FOLDER)
 
     predecessorJobsBranchesNames = None
-    RepoFallbackBranches = ['main']
     if currentJob['IsStartJob']:
-        # if dag.getPipeline().IncrementalPipelineEnabled:
-        if True:
+        if pipeline['IncrementalPipelineEnabled'] == True:
             predecessorJobsBranchesNames = [currentJob['DownloadBranchName']]
-            # lookupBranches = [REPO_BRANCH_NAME] + dag.Pipeline.RepoFallbackBranches
-            lookupBranches = [REPO_BRANCH_NAME] + RepoFallbackBranches
+            lookupBranches = [REPO_BRANCH_NAME] + Utils.getList(Pipeline, 'RepoFallbackBranches')
             artifactsService.downloadFromLastSuccessfulRun(PROJECT_NAME, lookupBranches, predecessorJobsBranchesNames, downloadsPath)
     else:
         predecessorJobsBranchesNames = list(dag.getPredecessorJobsBranchesNames(currentJob))
@@ -74,16 +71,17 @@ if __name__ == "__main__":
     # Download required base DMR files
     if len(predecessorJobsBranchesNames) > 1: # Merging is required
         logger.info(f">>> Download required base branch dmr files")
-        # dagMerger = DAGMerger(dag.Branches)
-        # dmrsMergeSequence, requiredBaseDMRsBranchesNames = dagMerger.getMergingSequence(predecessorJobsBranchesNames)
-        dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
-        # dmrsMergeSequenceList = Utils.dictEncode(dmrsMergeSequence)
-        files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequenceList, indent=4))
-        baseDMRsToDownload = set()
-        for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
-            baseBranchDerivedFolder = os.path.join(requiredBaseDMRBranchName, _DERIVED_FOLDER)
-            baseDMRsToDownload.add(baseBranchDerivedFolder)
-        artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, baseDMRsToDownload, downloadsPath)
+        mergingSettings = currentJob.get('MergingSettings')
+        if mergingSettings is not None:
+            requiredBaseDMRsBranchesNames = Utils.getList(mergingSettings, 'RequiredBaseDMRsBranchesNames')
+            dmrsMergeSequence = Utils.getList(mergingSettings, 'MergingSequence')
+            dmrsMergeSequenceFilePath = os.path.join(dmrMergingPath, _DMR_MERGE_SEQ_FILE_NAME)
+            files.add_file(dmrsMergeSequenceFilePath, json.dumps(dmrsMergeSequence, indent=4))
+            baseDMRsToDownload = set()
+            for requiredBaseDMRBranchName in requiredBaseDMRsBranchesNames:
+                baseBranchDerivedFolder = os.path.join(requiredBaseDMRBranchName, _DERIVED_FOLDER)
+                baseDMRsToDownload.add(baseBranchDerivedFolder)
+            artifactsService.download(relativeRepoBranchPath, CURRENT_RUN_ID, baseDMRsToDownload, downloadsPath)
 
     ############################################################
     #           Merging
@@ -106,7 +104,8 @@ if __name__ == "__main__":
             ###############################################################
             logger.info(f">>> Move branch OutputsPaths")
             branchPath = os.path.join(downloadsPath, branchName)
-            branchOutputsPaths = dag['Branches'][branchName]['OutputsPaths']
+            currentBranch = dag['Branches'][branchName]
+            branchOutputsPaths = Utils.getList(currentBranch, 'OutputsPaths')
             for outputPath in branchOutputsPaths:
                 fullOutputPath = os.path.join(branchPath, outputPath)
                 filesList = files.list_folder_files(fullOutputPath)
