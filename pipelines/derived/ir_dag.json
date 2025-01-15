@@ -1639,6 +1639,6 @@
     "StopOnStageFailure": false,
     "CheckOutdatedResultsAfterMerge": true,
     "EnablePipelineCaching": true,
-    "MatlabInstrallationPath": []
+    "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin"
   }
 }
