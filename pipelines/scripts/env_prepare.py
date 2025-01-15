@@ -42,7 +42,7 @@ def loadPipelineVariables(variables, dag, platform):
     if platform == "jenkins":
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
-        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions['IMAGE_TAG'])
+        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
         loadVariableKey(variables, 'CONTINUE_ON_ERROR', not pipelineOptions.get('StopOnStageFailure'))
         loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
