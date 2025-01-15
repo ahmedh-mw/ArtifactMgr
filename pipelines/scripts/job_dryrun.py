@@ -30,9 +30,9 @@ def parseArguments():
 
 def dryrun(jobName):
     dag = DAG(getDagPath())
-    job = dag.getJob(jobName)
+    currentJob = dag.getJob(jobName)
     
-    for outputPath in job.Outputs:
+    for outputPath in job['OutputsPaths']:
         dir_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, outputPath)
         logger.info(f"{core.GROUP_START} Building directory: {dir_path}")
         files.create_folder(dir_path)

@@ -18,7 +18,7 @@ class DAG:
         # If the job is initiating a new branch, it will upload all pipeline output folders. This case includes 'Start' job.
         # If the job is on the same branch as the previous job, it will upload the job output folders only
         if job["IsStartingNewBranch"]: # New branch will be created, so upload all artifacts
-            return self._pipeline["OutputsPaths"]
+            return set(self._pipeline["OutputsPaths"])
         else:
             return set(job.Outputs)
 
