@@ -20,7 +20,7 @@ class DAG:
         if job["IsStartingNewBranch"]: # New branch will be created, so upload all artifacts
             return set( Utils.getList(self._pipeline, "OutputsPaths") )
         else:
-            return set(job.Outputs)
+            return set( Utils.getList(job, "OutputsPaths") )
 
     def getPredecessorJobsBranchesNames(self, job):
         brancheshNames = set()
