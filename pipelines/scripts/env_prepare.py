@@ -9,8 +9,9 @@ from config import *
 
 logger = logging.getLogger()
 _ENVIRONMENT_JENKINS_VARIABLES_PATH = 'pipelines/templates/vars.jenkins.json'
-_GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
 _ENVIRONMENT_GUTHUB_VARIABLES_PATH = 'pipelines/templates/vars.github.json'
+_ENVIRONMENT_LOCAL_VARIABLES_PATH = 'pipelines/templates/vars.local.json'
+_GROOVY_ENVIRONMENT_VARIABLES_PATH = 'vars.groovy'
 _DAG_RELATIVE_PATH_FIELD = 'DAG_RELATIVE_PATH'
 
 def parseArguments():
@@ -52,6 +53,13 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'CONTINUE_ON_ERROR', pipelineOptions['CONTINUE_ON_ERROR'])
         loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions['SUBMODULES_MODE'])
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['USE_MATLAB_PLUGIN'])
+    else:
+        loadVariableKey(variables, 'RUNNER_TYPE', 'default')
+        loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
+        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
+        loadVariableKey(variables, 'CONTINUE_ON_ERROR', not pipelineOptions.get('StopOnStageFailure'))
+        loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
+        loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
     
 if __name__ == "__main__":
     args = parseArguments()
@@ -65,6 +73,8 @@ if __name__ == "__main__":
         variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_JENKINS_VARIABLES_PATH)
     elif args.platform == "github":
         variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_GUTHUB_VARIABLES_PATH)
+    else:
+        variables_file_path = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER, _ENVIRONMENT_LOCAL_VARIABLES_PATH)
     
     with open(variables_file_path, 'r') as variables_file:
         variables = json.load(variables_file)
@@ -103,5 +113,8 @@ if __name__ == "__main__":
             for key, value in variables.items():
                 value = replace_env_variables(value)
                 github_env.write(f"{key}={value}\n")
+    else:
+        for key, value in variables.items():
+            print(f"$env:{key}='{value}'")
         
     logger.log(core.HEADER_LOG, core.SECTION_END)

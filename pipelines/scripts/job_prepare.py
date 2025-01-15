@@ -17,16 +17,16 @@ def parseArguments():
     args = parser.parse_args()
     return args
 
-def build_shell_commands(dag, currentJob):
+def build_shell_commands(pipeline, currentJob):
     commands = "function varargout = matlab_job_commands()\n"
     projectPath = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
     commands += f"\tcd('{projectPath}');\n"
     commands += "\texitCode=0;\n"
-    for command in currentJob.Commands:
+    for command in currentJob['Commands']:
         if "{{runprocess}}" in command:
-            command = command.replace("{{runprocess}}", build_runprocess_command(dag, currentJob))
+            command = command.replace("{{runprocess}}", build_runprocess_command(pipeline, currentJob))
         elif "{{generate-report}}" in command:
-            command = command.replace("{{generate-report}}", build_generate_report_command(dag))
+            command = command.replace("{{generate-report}}", build_generate_report_command(pipeline))
             
         commands += f"\t{command}\n"
     commands += "end"
@@ -40,36 +40,37 @@ def build_shell_commands(dag, currentJob):
     else:
         shellCommandsFilePath += ".sh"
     
-    if dag.Pipeline.MatlabStartupOptions is None:
-        shellCommand = f"{dag.Pipeline.MatlabLaunchCmd}"
+    pipelineOptions = pipeline['Options']
+    if pipelineOptions['MatlabStartupOptions'] is None:
+        shellCommand = f"{pipelineOptions['MatlabLaunchCmd']}"
     else:
-        shellCommand = f"{dag.Pipeline.MatlabLaunchCmd} {dag.Pipeline.MatlabStartupOptions}"
+        shellCommand = f"{pipelineOptions['MatlabLaunchCmd']} {pipelineOptions['MatlabStartupOptions']}"
     
-    if dag.Pipeline.AddBatchStartupOption:
+    if pipelineOptions['AddBatchStartupOption']:
         shellCommand += " -batch"
     shellCommand += f" \"{_MATLAB_JOB_COMMANDS_FILE_NAME}\""
     files.add_file(shellCommandsFilePath, shellCommand)
     
     files.set_execute_flag(shellCommandsFilePath)
 
-def build_runprocess_command(dag, currentJob):
+def build_runprocess_command(pipeline, currentJob):
     arguments = []
-    if len(currentJob.Tasks) > 0:
-        arguments.append("Tasks = {'" + "','".join(currentJob.Tasks) + "'}")
+    if len(currentJob['Tasks']) > 0:
+        arguments.append("Tasks = {'" + "','".join(currentJob['Tasks']) + "'}")
 
-    arguments.append(f"Process = '{dag.Pipeline.ProcessName}'")
-    runrocessOptions = dag.Pipeline.RunprocessOptions or currentJob.RunrocessOptions
+    arguments.append(f"Process = '{pipeline['ProcessName']}'")
+    runrocessOptions = pipeline['RunprocessOptions']
     if runrocessOptions:
         for arg, argValue in runrocessOptions.items():
             arguments.append(f"{arg}={str(argValue).lower()}")
     
     return f"runprocess( {','.join(arguments)})"
 
-def build_generate_report_command(dag):
+def build_generate_report_command(pipeline):
     arguments = []
-    arguments.append(f"Process = '{dag.Pipeline.ProcessName}'")
-    arguments.append(f"Format = '{dag.Pipeline.ReportFormat}'")
-    arguments.append(f"OutputPath = '{dag.Pipeline.ReportPath}'")
+    arguments.append(f"Process = '{pipeline['ProcessName']}'")
+    arguments.append(f"Format = '{pipeline['ReportFormat']}'")
+    arguments.append(f"OutputPath = '{pipeline['ReportPath']}'")
     command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
     command += f"\trptObj.generateReport()"
     return command
@@ -81,8 +82,10 @@ if __name__ == "__main__":
     logger.log(core.HEADER_LOG, core.SECTION_END)
     
     logger.info(f"Prepare job data and check job status")
+    print(getDagPath())
     dag = DAG(getDagPath())
+    pipeline = dag.getPipeline()
     currentJob = dag.getJob(args.jobname)
-    build_shell_commands(dag, currentJob)
+    build_shell_commands(pipeline, currentJob)
         
     logger.log(core.HEADER_LOG, core.SECTION_END)

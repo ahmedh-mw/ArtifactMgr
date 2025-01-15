@@ -1,5 +1,6 @@
 {
   "Name": "",
+  "ProcessName": "CIPipeline",
   "Jobs": {
     "start": {
       "Name": "start",
