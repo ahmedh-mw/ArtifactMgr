@@ -104,7 +104,7 @@ if __name__ == "__main__":
             ###############################################################
             logger.info(f">>> Move branch OutputsPaths")
             branchPath = os.path.join(downloadsPath, branchName)
-            currentBranch = dag['Branches'][branchName]
+            currentBranch = pipeline['Branches'][branchName]
             branchOutputsPaths = Utils.getList(currentBranch, 'OutputsPaths')
             for outputPath in branchOutputsPaths:
                 fullOutputPath = os.path.join(branchPath, outputPath)

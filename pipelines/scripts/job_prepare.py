@@ -27,6 +27,10 @@ def build_shell_commands(pipeline, currentJob):
             command = command.replace("{{runprocess}}", build_runprocess_command(pipeline, currentJob))
         elif "{{generate-report}}" in command:
             command = command.replace("{{generate-report}}", build_generate_report_command(pipeline))
+        elif "{{mergeDmrFiles}}" in command:
+            command = command.replace("{{mergeDmrFiles}}", build_mergeDmrFiles_command(pipeline, currentJob))
+        elif "{{conditionalUpdateArtifacts}}" in command:
+            command = command.replace("{{conditionalUpdateArtifacts}}", build_conditionalUpdateArtifacts_command(pipeline, currentJob))
             
         commands += f"\t{command}\n"
     commands += "end"
@@ -54,25 +58,47 @@ def build_shell_commands(pipeline, currentJob):
     files.set_execute_flag(shellCommandsFilePath)
 
 def build_runprocess_command(pipeline, currentJob):
-    arguments = []
-    if len(currentJob['Tasks']) > 0:
-        arguments.append("Tasks = {'" + "','".join(currentJob['Tasks']) + "'}")
+    result = ""
+    if len(currentJob['Tasks']) > 0 or len(pipeline['Jobs'].keys()) == 1:
+        arguments = []
+        if len(currentJob['Tasks']) > 0:
+            arguments.append("Tasks = {'" + "','".join(currentJob['Tasks']) + "'}")
 
-    arguments.append(f"Process = '{pipeline['ProcessName']}'")
-    runrocessOptions = pipeline['RunprocessOptions']
-    if runrocessOptions:
-        for arg, argValue in runrocessOptions.items():
-            arguments.append(f"{arg}={str(argValue).lower()}")
-    
-    return f"runprocess( {','.join(arguments)})"
+        arguments.append(f"Process = '{pipeline['ProcessName']}'")
+        runrocessOptions = pipeline['RunprocessOptions']
+        if runrocessOptions:
+            for arg, argValue in runrocessOptions.items():
+                arguments.append(f"{arg}={str(argValue).lower()}")
+        result = f"runprocess( {','.join(arguments)})"
+    return result
 
-def build_generate_report_command(pipeline):
-    arguments = []
-    arguments.append(f"Process = '{pipeline['ProcessName']}'")
-    arguments.append(f"Format = '{pipeline['ReportFormat']}'")
-    arguments.append(f"OutputPath = '{pipeline['ReportPath']}'")
-    command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
-    command += f"\trptObj.generateReport()"
+def build_generate_report_command(pipeline, currentJob):
+    command = ""
+    if pipeline['Options']['GenerateReport'] == True and currentJob['IsEndJob'] == True:
+        arguments = []
+        arguments.append(f"Process = '{pipeline['ProcessName']}'")
+        arguments.append(f"Format = '{pipeline['ReportFormat']}'")
+        arguments.append(f"OutputPath = '{pipeline['ReportPath']}'")
+        command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
+        command += f"\trptObj.generateReport()"
+    return command
+
+def build_mergeDmrFiles_command(pipeline, currentJob):
+    command = ""
+    if currentJob['IsMergingJob'] == True:
+        command = f"padv.internal.mergeDmrFiles(SequenceFilePath = '../_dmr_merging_/dmrsMergeSequence.json', EnableDiagnostics=true)"
+    return command
+
+def build_conditionalUpdateArtifacts_command(pipeline, currentJob):
+    command = ""
+    if len(pipeline['Jobs'].keys()) > 1 and len(currentJob['Tasks'].keys()) == 0:
+        command = f"padv.internal.AlmArtifactHelper.conditionalUpdateArtifacts()"
+    return command
+
+def build_checkOutdatedResults_command(pipeline, currentJob):
+    command = ""
+    if currentJob['IsEndJob'] == True and currentJob['IsMergingJob'] == True:
+        command = f"padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline')"
     return command
 
 if __name__ == "__main__":
