@@ -82,12 +82,11 @@ def build_runprocess_command(pipeline, currentJob):
 def build_generate_report_command(pipeline, currentJob):
     command = ""
     options = pipeline['Options']
-    runrocessOptions = options["RunprocessCommandOptions"]
     if options['GenerateReport'] == True and currentJob['IsEndJob'] == True:
         arguments = []
         arguments.append(f"Process = '{pipeline['ProcessName']}'")
-        arguments.append(f"Format = '{runrocessOptions['ReportFormat']}'")
-        arguments.append(f"OutputPath = '{runrocessOptions['ReportPath']}'")
+        arguments.append(f"Format = '{options['ReportFormat']}'")
+        arguments.append(f"OutputPath = '{options['ReportPath']}'")
         command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
         command += f"\trptObj.generateReport();"
     return command
