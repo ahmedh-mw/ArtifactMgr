@@ -1,5 +1,5 @@
 from utils import core
-from dag import DAG
+from dag import DAG, Utils
 from utils import files
 import os
 import argparse
@@ -63,8 +63,9 @@ def build_runprocess_command(pipeline, currentJob):
     result = ""
     if len(currentJob['Tasks']) > 0 or len(pipeline['Jobs'].keys()) == 1:
         arguments = []
-        if len(currentJob['Tasks']) > 0:
-            arguments.append("Tasks = {'" + "','".join(currentJob['Tasks']) + "'}")
+        tasks = Utils.getList(currentJob, 'Tasks')
+        if len(tasks) > 0:
+            arguments.append("Tasks = {'" + "','".join(tasks) + "'}")
 
         arguments.append(f"Process = '{pipeline['ProcessName']}'")
         runrocessOptions = pipeline['Options']['RunprocessCommandOptions']
@@ -93,7 +94,8 @@ def build_mergeDmrFiles_command(pipeline, currentJob):
 
 def build_conditionalUpdateArtifacts_command(pipeline, currentJob):
     command = ""
-    if len(pipeline['Jobs'].keys()) > 1 and len(currentJob['Tasks']) == 0:
+    tasks = Utils.getList(currentJob, 'Tasks')
+    if len(pipeline['Jobs'].keys()) > 1 and len(tasks) == 0:
         command = f"padv.internal.AlmArtifactHelper.conditionalUpdateArtifacts()"
     return command
 
