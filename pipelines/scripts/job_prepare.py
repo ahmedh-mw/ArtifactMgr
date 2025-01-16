@@ -81,8 +81,9 @@ def build_runprocess_command(pipeline, currentJob):
 
 def build_generate_report_command(pipeline, currentJob):
     command = ""
-    runrocessOptions = pipeline['Options']["RunprocessCommandOptions"]
-    if runrocessOptions['GenerateReport'] == True and currentJob['IsEndJob'] == True:
+    options = pipeline['Options']
+    runrocessOptions = options["RunprocessCommandOptions"]
+    if options['GenerateReport'] == True and currentJob['IsEndJob'] == True:
         arguments = []
         arguments.append(f"Process = '{pipeline['ProcessName']}'")
         arguments.append(f"Format = '{runrocessOptions['ReportFormat']}'")
