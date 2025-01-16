@@ -31,8 +31,10 @@ def build_shell_commands(pipeline, currentJob):
             command = command.replace("{{mergeDmrFiles}}", build_mergeDmrFiles_command(pipeline, currentJob))
         elif "{{conditionalUpdateArtifacts}}" in command:
             command = command.replace("{{conditionalUpdateArtifacts}}", build_conditionalUpdateArtifacts_command(pipeline, currentJob))
-            
-        commands += f"\t{command}\n"
+        elif "{{checkOutdatedResults}}" in command:
+            command = command.replace("{{checkOutdatedResults}}", build_checkOutdatedResults_command        (pipeline, currentJob))
+        if command:
+            commands += f"\t{command}\n"
     commands += "end"
 
     jobCommandsFilePath = os.path.join(WORKSPACE_PATH, _MATLAB_JOB_COMMANDS_FILE_PATH)
@@ -69,7 +71,7 @@ def build_runprocess_command(pipeline, currentJob):
         if runrocessOptions:
             for arg, argValue in runrocessOptions.items():
                 arguments.append(f"{arg}={str(argValue).lower()}")
-        result = f"runprocess( {','.join(arguments)})"
+        result = f"[~,exitCode]=runprocess( {','.join(arguments)});"
     return result
 
 def build_generate_report_command(pipeline, currentJob):
@@ -80,7 +82,7 @@ def build_generate_report_command(pipeline, currentJob):
         arguments.append(f"Format = '{pipeline['ReportFormat']}'")
         arguments.append(f"OutputPath = '{pipeline['ReportPath']}'")
         command = f"rptObj=padv.ProcessAdvisorReportGenerator({','.join(arguments)});\n"
-        command += f"\trptObj.generateReport()"
+        command += f"\trptObj.generateReport();"
     return command
 
 def build_mergeDmrFiles_command(pipeline, currentJob):
@@ -98,7 +100,7 @@ def build_conditionalUpdateArtifacts_command(pipeline, currentJob):
 def build_checkOutdatedResults_command(pipeline, currentJob):
     command = ""
     if currentJob['IsEndJob'] == True and currentJob['IsMergingJob'] == True:
-        command = f"padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline')"
+        command = f"padv.internal.checkOutdatedResults(CurrentProject=cp, ProcessName='CIPipeline');"
     return command
 
 if __name__ == "__main__":
