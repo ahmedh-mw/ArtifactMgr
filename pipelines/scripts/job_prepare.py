@@ -67,7 +67,7 @@ def build_runprocess_command(pipeline, currentJob):
             arguments.append("Tasks = {'" + "','".join(currentJob['Tasks']) + "'}")
 
         arguments.append(f"Process = '{pipeline['ProcessName']}'")
-        runrocessOptions = pipeline['RunprocessOptions']
+        runrocessOptions = pipeline['Options']['RunprocessCommandOptions']
         if runrocessOptions:
             for arg, argValue in runrocessOptions.items():
                 arguments.append(f"{arg}={str(argValue).lower()}")
