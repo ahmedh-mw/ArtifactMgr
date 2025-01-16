@@ -91,7 +91,7 @@ def build_mergeDmrFiles_command(pipeline, currentJob):
 
 def build_conditionalUpdateArtifacts_command(pipeline, currentJob):
     command = ""
-    if len(pipeline['Jobs'].keys()) > 1 and len(currentJob['Tasks'].keys()) == 0:
+    if len(pipeline['Jobs'].keys()) > 1 and len(currentJob['Tasks']) == 0:
         command = f"padv.internal.AlmArtifactHelper.conditionalUpdateArtifacts()"
     return command
 
