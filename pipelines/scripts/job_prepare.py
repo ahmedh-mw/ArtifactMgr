@@ -71,7 +71,11 @@ def build_runprocess_command(pipeline, currentJob):
         runrocessOptions = pipeline['Options']['RunprocessCommandOptions']
         if runrocessOptions:
             for arg, argValue in runrocessOptions.items():
-                arguments.append(f"{arg}={str(argValue).lower()}")
+                if isinstance(argValue, bool):
+                    argValue = str(argValue).lower()
+                elif isinstance(value, str):
+                    argValue = f"'{argValue}'"
+                arguments.append(f"{arg}={argValue}")
         result = f"[~,exitCode]=runprocess( {','.join(arguments)});"
     return result
 
