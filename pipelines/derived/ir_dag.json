@@ -1931,7 +1931,8 @@
       ],
       "OutputsPaths": [
         "PA_Results/HighLevelReqs/report",
-        "PA_Results/SystemReqs/report"
+        "PA_Results/SystemReqs/report",
+        "PA_Results/Report/ProcessAdvisorReport"
       ],
       "PredecessorJobsNames": "Top_Model_Code_Inspection",
       "SuccessorJobsNames": [],
@@ -2407,7 +2408,7 @@
     "GeneratedPipelineDirectory": "D:\\repos\\gh\\ArtifactMgr\\pipelines\\derived",
     "GenerateReport": true,
     "ReportFormat": "pdf",
-    "ReportPath": "$PROJECTROOT$/ProcessAdvisorReport",
+    "ReportPath": "PA_Results/Report/ProcessAdvisorReport",
     "StopOnStageFailure": true,
     "CheckOutdatedResultsAfterMerge": true,
     "EnablePipelineCaching": true,
