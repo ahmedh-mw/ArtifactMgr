@@ -82,7 +82,8 @@ node{
             activity.addStage('RefProveCodeQuality_OuterLoop_Control')()
             activity.addStage('padv_builtin_task_RunCodeInspection_OuterLoop_Control')()
         },
-    ])()activity.addStage('Top_Model_Code_Generation')()
+    ])()
+    activity.addStage('Top_Model_Code_Generation')()
     activity.addStage('Top_Model_Code_Analysis')()
     activity.addStage('TopProveCodeQuality')()
     activity.addStage('Top_Model_Code_Inspection')()
