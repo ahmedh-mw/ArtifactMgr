@@ -73,7 +73,7 @@ def build_runprocess_command(pipeline, currentJob):
             for arg, argValue in runrocessOptions.items():
                 if isinstance(argValue, bool):
                     argValue = str(argValue).lower()
-                elif isinstance(value, str):
+                elif isinstance(argValue, str):
                     argValue = f"'{argValue}'"
                 arguments.append(f"{arg}={argValue}")
         result = f"[~,exitCode]=runprocess( {','.join(arguments)});"
