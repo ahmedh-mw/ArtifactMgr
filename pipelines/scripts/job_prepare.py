@@ -26,7 +26,7 @@ def build_shell_commands(pipeline, currentJob):
         if "{{runprocess}}" in command:
             command = command.replace("{{runprocess}}", build_runprocess_command(pipeline, currentJob))
         elif "{{generate-report}}" in command:
-            command = command.replace("{{generate-report}}", build_generate_report_command(pipeline))
+            command = command.replace("{{generate-report}}", build_generate_report_command(pipeline, currentJob))
         elif "{{mergeDmrFiles}}" in command:
             command = command.replace("{{mergeDmrFiles}}", build_mergeDmrFiles_command(pipeline, currentJob))
         elif "{{conditionalUpdateArtifacts}}" in command:
