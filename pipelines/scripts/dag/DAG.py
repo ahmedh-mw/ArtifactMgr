@@ -22,6 +22,9 @@ class DAG:
         else:
             return set( Utils.getList(job, "OutputsPaths") )
 
+    def getJunitFiles(self, job):
+        return set( Utils.getList(job, "JunitFiles") )
+        
     def getPredecessorJobsBranchesNames(self, job):
         brancheshNames = set()
         for predecessorJobName in Utils.getList(job, "PredecessorJobsNames"):

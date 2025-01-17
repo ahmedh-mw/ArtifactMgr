@@ -39,6 +39,7 @@ def loadVariableKey(variables, key, value):
 
 def loadPipelineVariables(variables, dag, platform):
     pipelineOptions = dag.getPipeline()['Options']
+    runrocessOptions = pipelineOptions['RunprocessCommandOptions']
     if platform == "jenkins":
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
@@ -46,6 +47,7 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'CONTINUE_ON_ERROR', not pipelineOptions.get('StopOnStageFailure'))
         loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
+        loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     elif platform == "github":
         loadVariableKey(variables, 'RUNNER_TYPE', pipelineOptions['RUNNER_TYPE'])
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions['RUNNER_LABEL'])
@@ -53,6 +55,7 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'CONTINUE_ON_ERROR', pipelineOptions['CONTINUE_ON_ERROR'])
         loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions['SUBMODULES_MODE'])
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['USE_MATLAB_PLUGIN'])
+        loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     else:
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
@@ -60,6 +63,7 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'CONTINUE_ON_ERROR', not pipelineOptions.get('StopOnStageFailure'))
         loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
+        loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     
 if __name__ == "__main__":
     args = parseArguments()

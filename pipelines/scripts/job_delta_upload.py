@@ -26,6 +26,7 @@ if __name__ == "__main__":
     logger.info(args)
 
     dag = DAG(getDagPath())
+    pipeline = dag.getPipeline()
     currentJob = dag.getJob(args.jobname)
     # Move to _uploads_ => calculate delta => upload
     ############################################################
@@ -42,6 +43,17 @@ if __name__ == "__main__":
     uploadsFolder = os.path.join(WORKSPACE_PATH, UPLOADS_FOLDER)
     files.move_paths(srcFolder, uploadsFolder, uploadPaths)
 
+    ############################################################
+    #           Move junit files to to _junit_ folder
+    ############################################################
+    runrocessOptions = pipeline['Options']['RunprocessCommandOptions']
+    if runrocessOptions["GenerateJUnitForProcess"]:
+        logger.log(core.HEADER_LOG, f"{core.GROUP_START} Moving artjunit files to _junit_ folder")
+        junitFiles = dag.getJunitFiles(currentJob)
+        srcFolder = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
+        uploadsFolder = os.path.join(WORKSPACE_PATH, JUNIT_FOLDER)
+        files.move_paths(srcFolder, uploadsFolder, junitFiles)
+    
     ############################################################
     #           Calculate delta
     ############################################################

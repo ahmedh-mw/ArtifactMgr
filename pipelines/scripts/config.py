@@ -25,6 +25,10 @@ if DMR_MERGING_FOLDER is None:
 UPLOADS_FOLDER = os.environ.get('UPLOADS_FOLDER')
 if UPLOADS_FOLDER is None:
     UPLOADS_FOLDER = '_uploads_'
+    
+JUNIT_FOLDER = os.environ.get('JUNIT_FOLDER')
+if JUNIT_FOLDER is None:
+    JUNIT_FOLDER = '_junit_'
 
 SOURCECODE_FOLDER = os.environ.get('SOURCECODE_FOLDER')
 if SOURCECODE_FOLDER is None:

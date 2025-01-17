@@ -7,6 +7,7 @@
 
     "DONWLOADS_FOLDER" : "_downloads_",
     "UPLOADS_FOLDER" : "_uploads_",
+    "JUNIT_FOLDER" : "_junit_",
     "DAG_RELATIVE_PATH" : "pipelines/derived/ir_dag.json",
     "SOURCECODE_FOLDER" : "",
     "SCRIPTS_LOCATION" : "pipelines/scripts"

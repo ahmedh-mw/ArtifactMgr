@@ -18,6 +18,9 @@ def parseArguments():
     return args
 
 def build_shell_commands(pipeline, currentJob):
+    ######################################################
+    #                   Build MATLAB file
+    ######################################################
     commands = "function varargout = matlab_job_commands()\n"
     projectPath = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
     commands += f"\tcd('{projectPath}');\n"
@@ -40,6 +43,9 @@ def build_shell_commands(pipeline, currentJob):
     jobCommandsFilePath = os.path.join(WORKSPACE_PATH, _MATLAB_JOB_COMMANDS_FILE_PATH)
     files.add_file(jobCommandsFilePath, commands)
 
+    ######################################################
+    #                   Build Shell file
+    ######################################################
     shellCommandsFilePath = os.path.join(WORKSPACE_PATH, _SHELL_COMMANDS_FILE_PATH)
     if os.name == 'nt':           # isWindows
         shellCommandsFilePath += ".bat"

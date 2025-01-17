@@ -8,6 +8,7 @@
       "Name": "start",
       "Tasks": [],
       "OutputsPaths": [],
+      "JunitFiles": [],
       "PredecessorJobsNames": [],
       "SuccessorJobsNames": [
         "padv_builtin_task_CollectMetrics_AHRS_Voter",
@@ -41,6 +42,7 @@
       "Name": "padv_builtin_task_CollectMetrics_AHRS_Voter",
       "Tasks": "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/metrics",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_CollectMetrics_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "start",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter",
       "Commands": [
@@ -68,6 +70,7 @@
       "Name": "padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter",
       "Tasks": "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/webview",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_CollectMetrics_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_RunModelStandards_AHRS_Voter",
       "Commands": [
@@ -95,6 +98,7 @@
       "Name": "padv_builtin_task_RunModelStandards_AHRS_Voter",
       "Tasks": "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/model_standards_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunModelStandards_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter",
       "SuccessorJobsNames": "FindAcrossModelClones_AHRS_Voter",
       "Commands": [
@@ -122,6 +126,7 @@
       "Name": "FindAcrossModelClones_AHRS_Voter",
       "Tasks": "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/findAcrossModelClones",
+      "JunitFiles": "PA_Results/junit/FindAcrossModelClones_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunModelStandards_AHRS_Voter",
       "SuccessorJobsNames": "FindLibraryClones_AHRS_Voter",
       "Commands": [
@@ -149,6 +154,7 @@
       "Name": "FindLibraryClones_AHRS_Voter",
       "Tasks": "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/findLibraryClones",
+      "JunitFiles": "PA_Results/junit/FindLibraryClones_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "FindAcrossModelClones_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_DetectDesignErrors_AHRS_Voter",
       "Commands": [
@@ -176,6 +182,7 @@
       "Name": "padv_builtin_task_DetectDesignErrors_AHRS_Voter",
       "Tasks": "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/design_error_detections",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_DetectDesignErrors_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "FindLibraryClones_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_GenerateModelComparison_AHRS_Voter",
       "Commands": [
@@ -203,6 +210,7 @@
       "Name": "padv_builtin_task_GenerateModelComparison_AHRS_Voter",
       "Tasks": "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/model_comparison",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateModelComparison_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_DetectDesignErrors_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSDDReport_AHRS_Voter",
       "Commands": [
@@ -230,6 +238,7 @@
       "Name": "padv_builtin_task_GenerateSDDReport_AHRS_Voter",
       "Tasks": "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/system_design_description",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSDDReport_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateModelComparison_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_RunTestsPerTestCase_AHRS_Voter",
       "Commands": [
@@ -265,6 +274,7 @@
         "PA_Results/HLR_12/test_results",
         "PA_Results/HLR_13/test_results"
       ],
+      "JunitFiles": [],
       "PredecessorJobsNames": "padv_builtin_task_GenerateSDDReport_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_MergeTestResults_AHRS_Voter",
       "Commands": [
@@ -292,6 +302,7 @@
       "Name": "padv_builtin_task_MergeTestResults_AHRS_Voter",
       "Tasks": "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/test_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_MergeTestResults_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunTestsPerTestCase_AHRS_Voter",
       "SuccessorJobsNames": "ModelTestingMetrics_AHRS_Voter",
       "Commands": [
@@ -319,6 +330,7 @@
       "Name": "ModelTestingMetrics_AHRS_Voter",
       "Tasks": "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/testing_metrics",
+      "JunitFiles": "PA_Results/junit/ModelTestingMetrics_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_MergeTestResults_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_GenerateCode_AHRS_Voter",
       "Commands": [
@@ -346,6 +358,7 @@
       "Name": "padv_builtin_task_GenerateCode_AHRS_Voter",
       "Tasks": "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/external_code_cache",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateCode_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "ModelTestingMetrics_AHRS_Voter",
       "SuccessorJobsNames": "Reference_Model_Code_Analysis_AHRS_Voter",
       "Commands": [
@@ -373,6 +386,7 @@
       "Name": "Reference_Model_Code_Analysis_AHRS_Voter",
       "Tasks": "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/bug_finder",
+      "JunitFiles": "PA_Results/junit/Reference Model Code Analysis_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateCode_AHRS_Voter",
       "SuccessorJobsNames": "RefProveCodeQuality_AHRS_Voter",
       "Commands": [
@@ -400,6 +414,7 @@
       "Name": "RefProveCodeQuality_AHRS_Voter",
       "Tasks": "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/code_prover",
+      "JunitFiles": "PA_Results/junit/RefProveCodeQuality_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "Reference_Model_Code_Analysis_AHRS_Voter",
       "SuccessorJobsNames": "padv_builtin_task_RunCodeInspection_AHRS_Voter",
       "Commands": [
@@ -427,6 +442,7 @@
       "Name": "padv_builtin_task_RunCodeInspection_AHRS_Voter",
       "Tasks": "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/AHRS_Voter/specification/AHRS_Voter.slx",
       "OutputsPaths": "PA_Results/AHRS_Voter/code_inspection",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunCodeInspection_AHRS_Voter_JUnit.xml",
       "PredecessorJobsNames": "RefProveCodeQuality_AHRS_Voter",
       "SuccessorJobsNames": "Top_Model_Code_Generation",
       "Commands": [
@@ -454,6 +470,7 @@
       "Name": "padv_builtin_task_CollectMetrics_Actuator_Control",
       "Tasks": "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/metrics",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_CollectMetrics_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "start",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_Actuator_Control",
       "Commands": [
@@ -481,6 +498,7 @@
       "Name": "padv_builtin_task_GenerateSimulinkWebView_Actuator_Control",
       "Tasks": "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/webview",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSimulinkWebView_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_CollectMetrics_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunModelStandards_Actuator_Control",
       "Commands": [
@@ -508,6 +526,7 @@
       "Name": "padv_builtin_task_RunModelStandards_Actuator_Control",
       "Tasks": "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/model_standards_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunModelStandards_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_Actuator_Control",
       "SuccessorJobsNames": "FindAcrossModelClones_Actuator_Control",
       "Commands": [
@@ -535,6 +554,7 @@
       "Name": "FindAcrossModelClones_Actuator_Control",
       "Tasks": "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/findAcrossModelClones",
+      "JunitFiles": "PA_Results/junit/FindAcrossModelClones_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunModelStandards_Actuator_Control",
       "SuccessorJobsNames": "FindLibraryClones_Actuator_Control",
       "Commands": [
@@ -562,6 +582,7 @@
       "Name": "FindLibraryClones_Actuator_Control",
       "Tasks": "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/findLibraryClones",
+      "JunitFiles": "PA_Results/junit/FindLibraryClones_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "FindAcrossModelClones_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_DetectDesignErrors_Actuator_Control",
       "Commands": [
@@ -589,6 +610,7 @@
       "Name": "padv_builtin_task_DetectDesignErrors_Actuator_Control",
       "Tasks": "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/design_error_detections",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_DetectDesignErrors_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "FindLibraryClones_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateModelComparison_Actuator_Control",
       "Commands": [
@@ -616,6 +638,7 @@
       "Name": "padv_builtin_task_GenerateModelComparison_Actuator_Control",
       "Tasks": "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/model_comparison",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateModelComparison_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_DetectDesignErrors_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSDDReport_Actuator_Control",
       "Commands": [
@@ -643,6 +666,7 @@
       "Name": "padv_builtin_task_GenerateSDDReport_Actuator_Control",
       "Tasks": "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/system_design_description",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSDDReport_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateModelComparison_Actuator_Control",
       "SuccessorJobsNames": "ModelTestingMetrics_Actuator_Control",
       "Commands": [
@@ -670,6 +694,7 @@
       "Name": "ModelTestingMetrics_Actuator_Control",
       "Tasks": "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/testing_metrics",
+      "JunitFiles": "PA_Results/junit/ModelTestingMetrics_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSDDReport_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateCode_Actuator_Control",
       "Commands": [
@@ -697,6 +722,7 @@
       "Name": "padv_builtin_task_GenerateCode_Actuator_Control",
       "Tasks": "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/external_code_cache",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateCode_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "ModelTestingMetrics_Actuator_Control",
       "SuccessorJobsNames": "Reference_Model_Code_Analysis_Actuator_Control",
       "Commands": [
@@ -724,6 +750,7 @@
       "Name": "Reference_Model_Code_Analysis_Actuator_Control",
       "Tasks": "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/bug_finder",
+      "JunitFiles": "PA_Results/junit/Reference Model Code Analysis_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateCode_Actuator_Control",
       "SuccessorJobsNames": "RefProveCodeQuality_Actuator_Control",
       "Commands": [
@@ -751,6 +778,7 @@
       "Name": "RefProveCodeQuality_Actuator_Control",
       "Tasks": "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/code_prover",
+      "JunitFiles": "PA_Results/junit/RefProveCodeQuality_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "Reference_Model_Code_Analysis_Actuator_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunCodeInspection_Actuator_Control",
       "Commands": [
@@ -778,6 +806,7 @@
       "Name": "padv_builtin_task_RunCodeInspection_Actuator_Control",
       "Tasks": "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/Actuator_Control/specification/Actuator_Control.slx",
       "OutputsPaths": "PA_Results/Actuator_Control/code_inspection",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunCodeInspection_Actuator_Control_JUnit.xml",
       "PredecessorJobsNames": "RefProveCodeQuality_Actuator_Control",
       "SuccessorJobsNames": "Top_Model_Code_Generation",
       "Commands": [
@@ -805,6 +834,7 @@
       "Name": "padv_builtin_task_CollectMetrics_Flight_Control",
       "Tasks": "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/metrics",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_CollectMetrics_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "start",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_Flight_Control",
       "Commands": [
@@ -832,6 +862,7 @@
       "Name": "padv_builtin_task_GenerateSimulinkWebView_Flight_Control",
       "Tasks": "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/webview",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSimulinkWebView_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_CollectMetrics_Flight_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunModelStandards_Flight_Control",
       "Commands": [
@@ -859,6 +890,7 @@
       "Name": "padv_builtin_task_RunModelStandards_Flight_Control",
       "Tasks": "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/model_standards_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunModelStandards_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_Flight_Control",
       "SuccessorJobsNames": "FindAcrossModelClones_Flight_Control",
       "Commands": [
@@ -886,6 +918,7 @@
       "Name": "FindAcrossModelClones_Flight_Control",
       "Tasks": "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/findAcrossModelClones",
+      "JunitFiles": "PA_Results/junit/FindAcrossModelClones_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunModelStandards_Flight_Control",
       "SuccessorJobsNames": "FindLibraryClones_Flight_Control",
       "Commands": [
@@ -913,6 +946,7 @@
       "Name": "FindLibraryClones_Flight_Control",
       "Tasks": "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/findLibraryClones",
+      "JunitFiles": "PA_Results/junit/FindLibraryClones_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "FindAcrossModelClones_Flight_Control",
       "SuccessorJobsNames": "padv_builtin_task_DetectDesignErrors_Flight_Control",
       "Commands": [
@@ -940,6 +974,7 @@
       "Name": "padv_builtin_task_DetectDesignErrors_Flight_Control",
       "Tasks": "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/design_error_detections",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_DetectDesignErrors_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "FindLibraryClones_Flight_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateModelComparison_Flight_Control",
       "Commands": [
@@ -967,6 +1002,7 @@
       "Name": "padv_builtin_task_GenerateModelComparison_Flight_Control",
       "Tasks": "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/model_comparison",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateModelComparison_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_DetectDesignErrors_Flight_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSDDReport_Flight_Control",
       "Commands": [
@@ -994,6 +1030,7 @@
       "Name": "padv_builtin_task_GenerateSDDReport_Flight_Control",
       "Tasks": "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/Flight_Control/specification/Flight_Control.slx",
       "OutputsPaths": "PA_Results/Flight_Control/system_design_description",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSDDReport_Flight_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateModelComparison_Flight_Control",
       "SuccessorJobsNames": "Top_Model_Code_Generation",
       "Commands": [
@@ -1021,6 +1058,7 @@
       "Name": "padv_builtin_task_CollectMetrics_InnerLoop_Control",
       "Tasks": "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/metrics",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_CollectMetrics_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "start",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control",
       "Commands": [
@@ -1048,6 +1086,7 @@
       "Name": "padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control",
       "Tasks": "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/webview",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_CollectMetrics_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunModelStandards_InnerLoop_Control",
       "Commands": [
@@ -1075,6 +1114,7 @@
       "Name": "padv_builtin_task_RunModelStandards_InnerLoop_Control",
       "Tasks": "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/model_standards_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunModelStandards_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control",
       "SuccessorJobsNames": "FindAcrossModelClones_InnerLoop_Control",
       "Commands": [
@@ -1102,6 +1142,7 @@
       "Name": "FindAcrossModelClones_InnerLoop_Control",
       "Tasks": "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/findAcrossModelClones",
+      "JunitFiles": "PA_Results/junit/FindAcrossModelClones_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunModelStandards_InnerLoop_Control",
       "SuccessorJobsNames": "FindLibraryClones_InnerLoop_Control",
       "Commands": [
@@ -1129,6 +1170,7 @@
       "Name": "FindLibraryClones_InnerLoop_Control",
       "Tasks": "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/findLibraryClones",
+      "JunitFiles": "PA_Results/junit/FindLibraryClones_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "FindAcrossModelClones_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_DetectDesignErrors_InnerLoop_Control",
       "Commands": [
@@ -1156,6 +1198,7 @@
       "Name": "padv_builtin_task_DetectDesignErrors_InnerLoop_Control",
       "Tasks": "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/design_error_detections",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_DetectDesignErrors_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "FindLibraryClones_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateModelComparison_InnerLoop_Control",
       "Commands": [
@@ -1183,6 +1226,7 @@
       "Name": "padv_builtin_task_GenerateModelComparison_InnerLoop_Control",
       "Tasks": "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/model_comparison",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateModelComparison_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_DetectDesignErrors_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSDDReport_InnerLoop_Control",
       "Commands": [
@@ -1210,6 +1254,7 @@
       "Name": "padv_builtin_task_GenerateSDDReport_InnerLoop_Control",
       "Tasks": "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/system_design_description",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSDDReport_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateModelComparison_InnerLoop_Control",
       "SuccessorJobsNames": "ModelTestingMetrics_InnerLoop_Control",
       "Commands": [
@@ -1237,6 +1282,7 @@
       "Name": "ModelTestingMetrics_InnerLoop_Control",
       "Tasks": "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/testing_metrics",
+      "JunitFiles": "PA_Results/junit/ModelTestingMetrics_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSDDReport_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateCode_InnerLoop_Control",
       "Commands": [
@@ -1264,6 +1310,7 @@
       "Name": "padv_builtin_task_GenerateCode_InnerLoop_Control",
       "Tasks": "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/external_code_cache",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateCode_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "ModelTestingMetrics_InnerLoop_Control",
       "SuccessorJobsNames": "Reference_Model_Code_Analysis_InnerLoop_Control",
       "Commands": [
@@ -1291,6 +1338,7 @@
       "Name": "Reference_Model_Code_Analysis_InnerLoop_Control",
       "Tasks": "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/bug_finder",
+      "JunitFiles": "PA_Results/junit/Reference Model Code Analysis_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateCode_InnerLoop_Control",
       "SuccessorJobsNames": "RefProveCodeQuality_InnerLoop_Control",
       "Commands": [
@@ -1318,6 +1366,7 @@
       "Name": "RefProveCodeQuality_InnerLoop_Control",
       "Tasks": "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/code_prover",
+      "JunitFiles": "PA_Results/junit/RefProveCodeQuality_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "Reference_Model_Code_Analysis_InnerLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunCodeInspection_InnerLoop_Control",
       "Commands": [
@@ -1345,6 +1394,7 @@
       "Name": "padv_builtin_task_RunCodeInspection_InnerLoop_Control",
       "Tasks": "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/InnerLoop_Control/specification/InnerLoop_Control.slx",
       "OutputsPaths": "PA_Results/InnerLoop_Control/code_inspection",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunCodeInspection_InnerLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "RefProveCodeQuality_InnerLoop_Control",
       "SuccessorJobsNames": "Top_Model_Code_Generation",
       "Commands": [
@@ -1372,6 +1422,7 @@
       "Name": "padv_builtin_task_CollectMetrics_OuterLoop_Control",
       "Tasks": "padv.builtin.task.CollectMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/metrics",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_CollectMetrics_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "start",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control",
       "Commands": [
@@ -1399,6 +1450,7 @@
       "Name": "padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control",
       "Tasks": "padv.builtin.task.GenerateSimulinkWebView|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/webview",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_CollectMetrics_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunModelStandards_OuterLoop_Control",
       "Commands": [
@@ -1426,6 +1478,7 @@
       "Name": "padv_builtin_task_RunModelStandards_OuterLoop_Control",
       "Tasks": "padv.builtin.task.RunModelStandards|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/model_standards_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunModelStandards_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control",
       "SuccessorJobsNames": "FindAcrossModelClones_OuterLoop_Control",
       "Commands": [
@@ -1453,6 +1506,7 @@
       "Name": "FindAcrossModelClones_OuterLoop_Control",
       "Tasks": "FindAcrossModelClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/findAcrossModelClones",
+      "JunitFiles": "PA_Results/junit/FindAcrossModelClones_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunModelStandards_OuterLoop_Control",
       "SuccessorJobsNames": "FindLibraryClones_OuterLoop_Control",
       "Commands": [
@@ -1480,6 +1534,7 @@
       "Name": "FindLibraryClones_OuterLoop_Control",
       "Tasks": "FindLibraryClones|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/findLibraryClones",
+      "JunitFiles": "PA_Results/junit/FindLibraryClones_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "FindAcrossModelClones_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_DetectDesignErrors_OuterLoop_Control",
       "Commands": [
@@ -1507,6 +1562,7 @@
       "Name": "padv_builtin_task_DetectDesignErrors_OuterLoop_Control",
       "Tasks": "padv.builtin.task.DetectDesignErrors|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/design_error_detections",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_DetectDesignErrors_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "FindLibraryClones_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateModelComparison_OuterLoop_Control",
       "Commands": [
@@ -1534,6 +1590,7 @@
       "Name": "padv_builtin_task_GenerateModelComparison_OuterLoop_Control",
       "Tasks": "padv.builtin.task.GenerateModelComparison|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/model_comparison",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateModelComparison_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_DetectDesignErrors_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateSDDReport_OuterLoop_Control",
       "Commands": [
@@ -1561,6 +1618,7 @@
       "Name": "padv_builtin_task_GenerateSDDReport_OuterLoop_Control",
       "Tasks": "padv.builtin.task.GenerateSDDReport|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/system_design_description",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateSDDReport_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateModelComparison_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunTestsPerTestCase_OuterLoop_Control",
       "Commands": [
@@ -1596,6 +1654,7 @@
         "PA_Results/HLR_7/test_results",
         "PA_Results/HLR_8/test_results"
       ],
+      "JunitFiles": [],
       "PredecessorJobsNames": "padv_builtin_task_GenerateSDDReport_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_MergeTestResults_OuterLoop_Control",
       "Commands": [
@@ -1623,6 +1682,7 @@
       "Name": "padv_builtin_task_MergeTestResults_OuterLoop_Control",
       "Tasks": "padv.builtin.task.MergeTestResults|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/test_results",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_MergeTestResults_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_RunTestsPerTestCase_OuterLoop_Control",
       "SuccessorJobsNames": "ModelTestingMetrics_OuterLoop_Control",
       "Commands": [
@@ -1650,6 +1710,7 @@
       "Name": "ModelTestingMetrics_OuterLoop_Control",
       "Tasks": "ModelTestingMetrics|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/testing_metrics",
+      "JunitFiles": "PA_Results/junit/ModelTestingMetrics_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_MergeTestResults_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_GenerateCode_OuterLoop_Control",
       "Commands": [
@@ -1677,6 +1738,7 @@
       "Name": "padv_builtin_task_GenerateCode_OuterLoop_Control",
       "Tasks": "padv.builtin.task.GenerateCode|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/external_code_cache",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_GenerateCode_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "ModelTestingMetrics_OuterLoop_Control",
       "SuccessorJobsNames": "Reference_Model_Code_Analysis_OuterLoop_Control",
       "Commands": [
@@ -1704,6 +1766,7 @@
       "Name": "Reference_Model_Code_Analysis_OuterLoop_Control",
       "Tasks": "Reference Model Code Analysis|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/bug_finder",
+      "JunitFiles": "PA_Results/junit/Reference Model Code Analysis_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "padv_builtin_task_GenerateCode_OuterLoop_Control",
       "SuccessorJobsNames": "RefProveCodeQuality_OuterLoop_Control",
       "Commands": [
@@ -1731,6 +1794,7 @@
       "Name": "RefProveCodeQuality_OuterLoop_Control",
       "Tasks": "RefProveCodeQuality|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/code_prover",
+      "JunitFiles": "PA_Results/junit/RefProveCodeQuality_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "Reference_Model_Code_Analysis_OuterLoop_Control",
       "SuccessorJobsNames": "padv_builtin_task_RunCodeInspection_OuterLoop_Control",
       "Commands": [
@@ -1758,6 +1822,7 @@
       "Name": "padv_builtin_task_RunCodeInspection_OuterLoop_Control",
       "Tasks": "padv.builtin.task.RunCodeInspection|sl_model_file|ProcessAdvisorExample|02_Models/OuterLoop_Control/specification/OuterLoop_Control.slx",
       "OutputsPaths": "PA_Results/OuterLoop_Control/code_inspection",
+      "JunitFiles": "PA_Results/junit/padv_builtin_task_RunCodeInspection_OuterLoop_Control_JUnit.xml",
       "PredecessorJobsNames": "RefProveCodeQuality_OuterLoop_Control",
       "SuccessorJobsNames": "Top_Model_Code_Generation",
       "Commands": [
@@ -1785,6 +1850,7 @@
       "Name": "Top_Model_Code_Generation",
       "Tasks": "Top Model Code Generation|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
       "OutputsPaths": "03_Code",
+      "JunitFiles": "PA_Results/junit/Top Model Code Generation_ProcessAdvisorExample_JUnit.xml",
       "PredecessorJobsNames": [
         "padv_builtin_task_RunCodeInspection_AHRS_Voter",
         "padv_builtin_task_RunCodeInspection_Actuator_Control",
@@ -1846,6 +1912,7 @@
       "Name": "Top_Model_Code_Analysis",
       "Tasks": "Top Model Code Analysis|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
       "OutputsPaths": "PA_Results/bug_finder",
+      "JunitFiles": "PA_Results/junit/Top Model Code Analysis_ProcessAdvisorExample_JUnit.xml",
       "PredecessorJobsNames": "Top_Model_Code_Generation",
       "SuccessorJobsNames": "TopProveCodeQuality",
       "Commands": [
@@ -1873,6 +1940,7 @@
       "Name": "TopProveCodeQuality",
       "Tasks": "TopProveCodeQuality|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
       "OutputsPaths": "PA_Results/code_prover",
+      "JunitFiles": "PA_Results/junit/TopProveCodeQuality_ProcessAdvisorExample_JUnit.xml",
       "PredecessorJobsNames": "Top_Model_Code_Analysis",
       "SuccessorJobsNames": "Top_Model_Code_Inspection",
       "Commands": [
@@ -1900,6 +1968,7 @@
       "Name": "Top_Model_Code_Inspection",
       "Tasks": "Top Model Code Inspection|project|ProcessAdvisorExample|ProcessAdvisorExample.prj",
       "OutputsPaths": "PA_Results/code_inspection",
+      "JunitFiles": "PA_Results/junit/Top Model Code Inspection_ProcessAdvisorExample_JUnit.xml",
       "PredecessorJobsNames": "TopProveCodeQuality",
       "SuccessorJobsNames": "padv_builtin_task_GenerateRequirementsReport",
       "Commands": [
@@ -1932,7 +2001,11 @@
       "OutputsPaths": [
         "PA_Results/HighLevelReqs/report",
         "PA_Results/SystemReqs/report",
-        "\\\\$PROJECTROOT\\\\$/PA_Results/Report"
+        "PA_Results/Report"
+      ],
+      "JunitFiles": [
+        "PA_Results/junit/padv_builtin_task_GenerateRequirementsReport_HighLevelReqs_JUnit.xml",
+        "PA_Results/junit/padv_builtin_task_GenerateRequirementsReport_SystemReqs_JUnit.xml"
       ],
       "PredecessorJobsNames": "Top_Model_Code_Inspection",
       "SuccessorJobsNames": [],
@@ -2379,27 +2452,27 @@
     "ShellEnvironment": "",
     "UseSameExecutorForSequentialStages": true,
     "RunprocessCommandOptions": {
-      "DryRun": false,
-      "GenerateJUnitForProcess": false,
-      "RefreshProcessModel": true,
-      "SuppressOutputWhenInteractive": [],
+      "ReportPath": "ProcessAdvisorReport",
+      "ReanalyzeProjectAnalysisIssues": true,
       "DryRunLicenseCheckout": false,
+      "MakeSureOutputArtifactsWriteable": false,
+      "Force": false,
       "DiscardDictionaryChanges": [],
       "RerunFailedTasks": false,
-      "ExitInBatchMode": false,
-      "ReanalyzeProjectAnalysisIssues": true,
-      "Clean": false,
-      "Force": false,
-      "MakeSureOutputArtifactsWriteable": false,
-      "MarkStale": false,
-      "RerunErroredTasks": false,
-      "EnableTaskLogging": true,
-      "Isolation": false,
-      "RunWithoutSaving": false,
       "ReportFormat": "pdf",
       "GenerateReport": false,
+      "Clean": false,
+      "MarkStale": false,
+      "Isolation": false,
+      "RerunErroredTasks": false,
+      "GenerateJUnitForProcess": true,
+      "DryRun": false,
+      "SuppressOutputWhenInteractive": [],
       "DeleteOutputs": false,
-      "ReportPath": "ProcessAdvisorReport"
+      "ExitInBatchMode": false,
+      "EnableTaskLogging": true,
+      "RunWithoutSaving": false,
+      "RefreshProcessModel": true
     },
     "PipelineArchitecture": "IndependentModelParallelJobs",
     "MatlabLaunchCmd": "matlab",

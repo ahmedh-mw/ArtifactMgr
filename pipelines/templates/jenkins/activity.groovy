@@ -71,6 +71,9 @@ def _getStageBody(jobName){
                 }
             }
         }
+        if("$GENERATE_JUNIT" == "true") {
+            junit allowEmptyResults: true, testResults: "$JUNIT_FOLDER/**/*.xml"
+        }
     } catch (InterruptedException e) {
         echo 'Task interrupted due to pipeline cancellation.'
         throw e
