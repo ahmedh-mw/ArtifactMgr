@@ -50,9 +50,8 @@ if __name__ == "__main__":
     if runrocessOptions["GenerateJUnitForProcess"]:
         logger.log(core.HEADER_LOG, f"{core.GROUP_START} Moving junit files to _junit_ folder")
         junitFiles = dag.getJunitFiles(currentJob)
-        srcFolder = os.path.join(WORKSPACE_PATH, SOURCECODE_FOLDER)
-        uploadsFolder = os.path.join(WORKSPACE_PATH, JUNIT_FOLDER)
-        files.move_paths(srcFolder, uploadsFolder, junitFiles)
+        junitUploadsFolder = os.path.join(WORKSPACE_PATH, JUNIT_FOLDER)
+        files.move_paths(srcFolder, junitUploadsFolder, junitFiles)
     
     ############################################################
     #           Calculate delta
