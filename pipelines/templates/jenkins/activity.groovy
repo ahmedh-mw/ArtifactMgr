@@ -71,9 +71,6 @@ def _getStageBody(jobName){
                 }
             }
         }
-        if("$GENERATE_JUNIT" == "true") {
-            junit allowEmptyResults: true, testResults: "$JUNIT_FOLDER/**/*.xml"
-        }
     } catch (InterruptedException e) {
         echo 'Task interrupted due to pipeline cancellation.'
         throw e
@@ -86,6 +83,9 @@ def _getStageBody(jobName){
         sh "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_delta_upload.py --jobname \"$jobName\" --errordetected \"$errorDetected\""
     } else {
         bat "$PYTHON_ALIAS $SCRIPTS_LOCATION/job_delta_upload.py --jobname \"$jobName\" --errordetected \"$errorDetected\""
+    }
+    if("$GENERATE_JUNIT" == "true") {
+        junit allowEmptyResults: true, testResults: "$JUNIT_FOLDER/**/*.xml"
     }
     if (errorDetected) {
         if("$CONTINUE_ON_ERROR" == "true"){
