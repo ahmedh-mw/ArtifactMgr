@@ -2,7 +2,6 @@ node{
     checkout scm
     env.PYTHON_ALIAS = 'python3'
     env.SOURCECODE_FOLDER = 'scm'
-    env.DAG_RELATIVE_PATH = "pipelines/derived/ir_dag.json" 
     activity = load "$SOURCECODE_FOLDER/pipelines/templates/jenkins/activity.groovy" 
     activity.loadEnvVariables()
     

@@ -2444,13 +2444,14 @@
     "PA_Results/code_prover"
   ],
   "Options": {
-    "AgentLabel": "padv_win_agents",
-    "EnableArtifactCollection": "always",
+    "RunnerLabels": "padv_win_agents",
     "ArtifactZipFileName": "padv_artifacts.zip",
-    "GeneratedJenkinsFileName": "simulink_pipeline",
-    "UseMatlabPlugin": true,
-    "ShellEnvironment": "",
-    "UseSameExecutorForSequentialStages": true,
+    "RetentionDays": "30",
+    "GeneratedYMLFileName": "simulink_pipeline",
+    "MatlabInstallationLocation": "D:/sb/Bslcicd_1217/matlab/bin",
+    "EnableArtifactCollection": "always",
+    "ShellEnvironment": "bash",
+    "CheckoutSubmodules": "false",
     "RunprocessCommandOptions": {
       "ReportPath": "ProcessAdvisorReport",
       "ReanalyzeProjectAnalysisIssues": true,

@@ -9,5 +9,5 @@
     "DMR_MERGING_FOLDER" : "_dmr_merging_",
     "UPLOADS_FOLDER" : "_uploads_",
     "JUNIT_FOLDER" : "_junit_",
-    "xxDAG_RELATIVE_PATH" : "pipelines/derived/pipeline_dag.jenkins.balanced.json"
+    "DAG_RELATIVE_PATH" : "pipelines/derived/ir_dag.json"
 }

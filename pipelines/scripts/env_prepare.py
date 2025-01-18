@@ -41,6 +41,7 @@ def loadPipelineVariables(variables, dag, platform):
     pipelineOptions = dag.getPipeline()['Options']
     runrocessOptions = pipelineOptions['RunprocessCommandOptions']
     if platform == "jenkins":
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstrallationPath'])
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
         loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
@@ -49,6 +50,7 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
         loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     elif platform == "github":
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstallationLocation'])
         loadVariableKey(variables, 'RUNNER_TYPE', pipelineOptions['RUNNER_TYPE'])
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions['RUNNER_LABEL'])
         loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions['IMAGE_TAG'])
@@ -57,6 +59,7 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['USE_MATLAB_PLUGIN'])
         loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     else:
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstrallationPath'])
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
         loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
@@ -90,7 +93,7 @@ if __name__ == "__main__":
     dag = DAG(getDagPath())
     loadPipelineVariables(variables, dag, args.platform)
 
-    matlabInstrallationPath = dag.getPipeline()['Options']['MatlabInstrallationPath']
+    matlabInstrallationPath = variables['MatlabInstrallationPath']
     if args.platform == "jenkins":
         content = str()
         if matlabInstrallationPath:
