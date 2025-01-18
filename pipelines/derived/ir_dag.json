@@ -2483,7 +2483,7 @@
     "GenerateReport": true,
     "ReportFormat": "pdf",
     "ReportPath": "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport",
-    "StopOnStageFailure": true,
+    "StopOnStageFailure": false,
     "CheckOutdatedResultsAfterMerge": true,
     "EnablePipelineCaching": true,
     "MatlabInstrallationPath": "D:/sb/Bslcicd_1217/matlab/bin"
