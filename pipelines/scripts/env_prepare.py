@@ -41,7 +41,7 @@ def loadPipelineVariables(variables, dag, platform):
     pipelineOptions = dag.getPipeline()['Options']
     runrocessOptions = pipelineOptions['RunprocessCommandOptions']
     if platform == "jenkins":
-        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstrallationPath'])
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions.gey('MatlabInstrallationPath'))
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
         loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
@@ -50,16 +50,16 @@ def loadPipelineVariables(variables, dag, platform):
         loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['UseMatlabPlugin'])
         loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
     elif platform == "github":
-        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstallationLocation'])
-        loadVariableKey(variables, 'RUNNER_TYPE', pipelineOptions['RUNNER_TYPE'])
-        loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions['RUNNER_LABEL'])
-        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions['IMAGE_TAG'])
-        loadVariableKey(variables, 'CONTINUE_ON_ERROR', pipelineOptions['CONTINUE_ON_ERROR'])
-        loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions['SUBMODULES_MODE'])
-        loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions['USE_MATLAB_PLUGIN'])
-        loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions['GenerateJUnitForProcess'])
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions.get('MatlabInstallationLocation'))
+        loadVariableKey(variables, 'RUNNER_TYPE', 'default')
+        loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('RunnerLabels'))
+        loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
+        loadVariableKey(variables, 'CONTINUE_ON_ERROR', pipelineOptions.get('StopOnStageFailure'))
+        loadVariableKey(variables, 'SUBMODULES_MODE', pipelineOptions.get('SUBMODULES_MODE'))
+        loadVariableKey(variables, 'USE_MATLAB_PLUGIN', pipelineOptions.get('USE_MATLAB_PLUGIN'))
+        loadVariableKey(variables, 'GENERATE_JUNIT', runrocessOptions.get('GenerateJUnitForProcess'))
     else:
-        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions['MatlabInstrallationPath'])
+        loadVariableKey(variables, 'MatlabInstrallationPath', pipelineOptions.get('MatlabInstrallationPath'))
         loadVariableKey(variables, 'RUNNER_TYPE', 'default')
         loadVariableKey(variables, 'RUNNER_LABEL', pipelineOptions.get('AgentLabel'))
         loadVariableKey(variables, 'IMAGE_TAG', pipelineOptions.get('IMAGE_TAG'))
