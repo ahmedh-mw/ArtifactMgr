@@ -2444,6 +2444,7 @@
     "PA_Results/code_prover"
   ],
   "Options": {
+    "UseMatlabPlugin": "false",
     "RunnerLabels": "padv_win_agents",
     "ArtifactZipFileName": "padv_artifacts.zip",
     "RetentionDays": "30",
