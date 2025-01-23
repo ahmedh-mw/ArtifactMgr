@@ -2446,6 +2446,7 @@
   "Options": {
     "UseMatlabPlugin": "false",
     "RunnerLabels": "padv_win_agents",
+    "AgentLabel": "padv_win_agents",
     "ArtifactZipFileName": "padv_artifacts.zip",
     "RetentionDays": "30",
     "GeneratedYMLFileName": "simulink_pipeline",
