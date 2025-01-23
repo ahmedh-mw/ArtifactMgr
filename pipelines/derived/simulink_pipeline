@@ -1,8 +1,10 @@
 node{
+    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory'
+    env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab'
     checkout scm
     env.PYTHON_ALIAS = 'python3'
     env.SOURCECODE_FOLDER = 'scm'
-    activity = load "$SOURCECODE_FOLDER/pipelines/templates/jenkins/activity.groovy" 
+    activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy"
     activity.loadEnvVariables()
     
     activity.addStage('start')()
