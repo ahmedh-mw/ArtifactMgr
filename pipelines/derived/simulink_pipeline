@@ -1,5 +1,5 @@
 node{
-    env.MATLAB_INSTATION_PATH = 'C:/Program Files/MATLAB/R2020b'
+    env.MATLAB_INSTATION_PATH = 'D:/sb/Bslcicd_1217/matlab'
     def matlabRelease = sh(returnStdout: true, script: 'grep -oPm1 "(?<=<release>)[^<]+" $MATLAB_INSTATION_PATH/VersionInfo.xml')
     env.SP_PATH = "C:/ProgramData/MATLAB/SupportPackages/$matlabRelease"
     echo env.SP_PATH
