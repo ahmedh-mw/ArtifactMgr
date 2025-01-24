@@ -1,6 +1,13 @@
 node{
-    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory'
+    env.MATLAB_INSTATION_PATH = 'C:/Program Files/MATLAB/R2020b'
+    def matlabRelease = sh(returnStdout: true, script: "grep -oPm1 "(?<=<release>)[^<]+" $MATLAB_INSTATION_PATH/VersionInfo.xml")
+    env.SP_PATH = "C:/ProgramData/MATLAB/SupportPackages/$matlabRelease"
+    echo env.SP_PATH
+    
+    
     env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab'
+    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory'
+    
     checkout scm
     env.PYTHON_ALIAS = 'python3'
     env.SOURCECODE_FOLDER = 'scm'
