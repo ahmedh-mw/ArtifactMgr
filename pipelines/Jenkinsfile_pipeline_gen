@@ -3,6 +3,7 @@ node{
     env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab'
     env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory'
     
+    env.PATH = "D:/sb/Bslcicd_1217/matlab/bin;$PATH"
     runMATLABCommand "addpath('pipelines');generate_jenkins_pipeline();"
     load "pipelines/derived/simulink_pipeline" 
 }
