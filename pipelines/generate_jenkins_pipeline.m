@@ -1,5 +1,5 @@
 function generate_jenkins_pipeline()
-    cp = openProject(pwd);
+    cp = openProject('scm');
 
     op = padv.pipeline.JenkinsOptions;
     op.PipelineArchitecture = "IndependentModelParallelJobs";
