@@ -5,7 +5,7 @@ node{
     
     stage('Pipeline Generation'){
         env.PATH = "D:/sb/Bslcicd_1217/matlab/bin;$PATH"
-        runMATLABCommand "addpath('scm/pipelines');generate_jenkins_pipeline();"
+        runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline();"
     }
-    load "pipelines/derived/simulink_pipeline" 
+    load "$WORKSPACE/scm/pipelines/derived/simulink_pipeline"
 }
