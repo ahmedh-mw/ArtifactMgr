@@ -7,7 +7,7 @@ node{
 
     stage('Pipeline Generation'){
         runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline();"
-        stash(includes:'ir_dag.json', name:'ir_dag')
+        stash(includes:'ir_dag.json, simulink_pipeline', name:'ir_dag')
     }
     load "$WORKSPACE/simulink_pipeline"
 }
