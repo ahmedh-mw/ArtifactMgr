@@ -2,7 +2,7 @@ node{
 	env.PYTHON_ALIAS = 'python3';
 	env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab';
 	env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
-	fileOperations([fileCopyOperation(includes: "$WORKSPACE/scm/pipelines/static/ir_dag.json", targetLocation: "$WORKSPACE")])
+	fileOperations([fileCopyOperation(includes: "scm/pipelines/static/ir_dag.json", targetLocation: "$WORKSPACE/")])
 	stash(includes:'ir_dag.json', name:'ir_dag')
 
 	cleanWs();checkout scm;
