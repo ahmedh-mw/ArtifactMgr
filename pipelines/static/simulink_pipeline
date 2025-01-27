@@ -27,5 +27,5 @@ node{
 	activity.addStage('Top_Model_Code_Analysis')()
 	activity.addStage('TopProveCodeQuality')()
 	activity.addStage('Top_Model_Code_Inspection')()
-	activity.addStage('padv_builtin_task_GenerateRequirementsReport')()
+	activity.addStage('padv_builtin_task_GenerateRequirementsReport', true)()
 }

@@ -47,6 +47,7 @@
       "IsSplittingJob": false,
       "IsStartJob": true,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "br_padv_builtin_task_CollectMetrics",
       "MergingSettings": []
@@ -93,6 +94,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -139,6 +141,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -185,6 +188,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -231,6 +235,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -277,6 +282,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -323,6 +329,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -369,6 +376,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -411,6 +419,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -448,6 +457,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -491,6 +501,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -534,6 +545,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -577,6 +589,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -620,6 +633,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -663,6 +677,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -691,6 +706,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -719,6 +735,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -747,6 +764,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -775,6 +793,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": false,
+      "IsCollectingArtifacts": false,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -813,6 +832,7 @@
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": true,
+      "IsCollectingArtifacts": true,
       "BranchName": "br_padv_builtin_task_CollectMetrics",
       "DownloadBranchName": "",
       "MergingSettings": []
@@ -1019,27 +1039,27 @@
     "ShellEnvironment": "",
     "UseSameExecutorForSequentialStages": true,
     "RunprocessCommandOptions": {
-      "ReanalyzeProjectAnalysisIssues": true,
-      "GenerateReport": false,
       "RefreshProcessModel": true,
-      "ExitInBatchMode": false,
-      "RunWithoutSaving": false,
-      "MakeSureOutputArtifactsWriteable": false,
-      "RerunErroredTasks": false,
       "DeleteOutputs": false,
-      "Clean": false,
-      "Force": false,
-      "ReportPath": "ProcessAdvisorReport",
-      "DryRun": false,
-      "DiscardDictionaryChanges": [],
-      "Isolation": false,
-      "EnableTaskLogging": true,
-      "MarkStale": false,
-      "RerunFailedTasks": false,
       "ReportFormat": "pdf",
+      "DryRun": false,
+      "RerunErroredTasks": false,
+      "Force": false,
+      "ExitInBatchMode": false,
+      "MarkStale": false,
+      "EnableTaskLogging": true,
       "GenerateJUnitForProcess": true,
+      "ReportPath": "ProcessAdvisorReport",
+      "GenerateReport": false,
+      "DryRunLicenseCheckout": false,
+      "Isolation": false,
+      "ReanalyzeProjectAnalysisIssues": true,
+      "RunWithoutSaving": false,
       "SuppressOutputWhenInteractive": [],
-      "DryRunLicenseCheckout": false
+      "Clean": false,
+      "MakeSureOutputArtifactsWriteable": false,
+      "DiscardDictionaryChanges": [],
+      "RerunFailedTasks": false
     },
     "PipelineArchitecture": "SerialJobsGroupPerTask",
     "MatlabLaunchCmd": "matlab",
