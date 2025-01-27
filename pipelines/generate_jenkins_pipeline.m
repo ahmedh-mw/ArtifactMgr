@@ -11,5 +11,5 @@ function generate_jenkins_pipeline()
     op.ReportPath = "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport";
     padv.pipeline.generatePipeline(op, "CIPipeline");
     % Copy the pipeline and dag files just outside the project folder
-    copyfile( fullfile(cp.RootFolder, 'derived', 'pipeline' , '*.json'), fileparts(cp.RootFolder));
+    copyfile( fullfile(cp.RootFolder, 'derived', 'pipeline' , '*'), fileparts(cp.RootFolder));
 end
