@@ -4,7 +4,7 @@ node{
 	env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
 	
 	cleanWs();checkout scm;
-	fileOperations([fileCopyOperation(includes: "$WORKSPACE/scm/pipelines/static/ir_dag.json", targetLocation: "$WORKSPACE/")])
+	fileOperations([fileCopyOperation(includes: "scm/pipelines/static/ir_dag.json", targetLocation: "/")])
 	stash(includes:'ir_dag.json', name:'ir_dag')
 	activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy" 
 	activity.loadEnvVariables()
