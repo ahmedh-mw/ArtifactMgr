@@ -1,0 +1,32 @@
+node{
+	env.PYTHON_ALIAS = 'python3';
+	env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab';
+	env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
+	fileOperations([fileCopyOperation(includes: "$WORKSPACE/scm/pipelines/static/ir_dag.json", targetLocation: "$WORKSPACE")])
+	stash(includes:'ir_dag.json', name:'ir_dag')
+
+	cleanWs();checkout scm;
+	activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy" 
+	activity.loadEnvVariables()
+
+	activity.addStage('padv_builtin_task_CollectMetrics')()
+	activity.addStage('padv_builtin_task_GenerateSimulinkWebView')()
+	activity.addStage('padv_builtin_task_RunModelStandards')()
+	activity.addStage('FindAcrossModelClones')()
+	activity.addStage('FindLibraryClones')()
+	activity.addStage('padv_builtin_task_DetectDesignErrors')()
+	activity.addStage('padv_builtin_task_GenerateModelComparison')()
+	activity.addStage('padv_builtin_task_GenerateSDDReport')()
+	activity.addStage('padv_builtin_task_RunTestsPerTestCase')()
+	activity.addStage('padv_builtin_task_MergeTestResults')()
+	activity.addStage('ModelTestingMetrics')()
+	activity.addStage('padv_builtin_task_GenerateCode')()
+	activity.addStage('Reference_Model_Code_Analysis')()
+	activity.addStage('RefProveCodeQuality')()
+	activity.addStage('padv_builtin_task_RunCodeInspection')()
+	activity.addStage('Top_Model_Code_Generation')()
+	activity.addStage('Top_Model_Code_Analysis')()
+	activity.addStage('TopProveCodeQuality')()
+	activity.addStage('Top_Model_Code_Inspection')()
+	activity.addStage('padv_builtin_task_GenerateRequirementsReport')()
+}
