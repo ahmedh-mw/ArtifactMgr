@@ -2,7 +2,8 @@ node{
 	env.PYTHON_ALIAS = 'python3';
 	env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab';
 	env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
-	
+	fileOperations([fileCopyOperation(includes: "scm/pipelines/static/*", flattenFiles: true, targetLocation: "$WORKSPACE/scm")])
+
 	cleanWs();checkout scm;
 	activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy" 
 	activity.loadEnvVariables()
