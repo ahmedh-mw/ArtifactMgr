@@ -3,7 +3,7 @@ function generate_jenkins_pipeline()
 
     op = padv.pipeline.JenkinsOptions;
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
-    op.PipelineArchitecture = "SingleJob";
+    op.PipelineArchitecture = "IndependentModelParallelJobs";
     op.MatlabInstallationLocation = "D:/sb/Bslcicd_1217/matlab/bin";
     op.AgentLabel = "padv_win_agents";
     op.StopOnStageFailure = true;
