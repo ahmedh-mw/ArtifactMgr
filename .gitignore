@@ -48,8 +48,8 @@ __pycache__/
 _downloads_/
 
 !pipelines
-!pipelines/derived
-!pipelines/derived/**
+pipelines/derived
+pipelines/derived/**
 
 data*.json
 test*.html

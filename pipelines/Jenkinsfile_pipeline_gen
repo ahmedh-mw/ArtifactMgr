@@ -1,12 +1,13 @@
 node{
-    env.PYTHON_ALIAS = 'python3'
-    env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab'
-    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory'
-    env.PATH = "D:/sb/Bslcicd_1217/matlab/bin;$PATH"
+    env.PYTHON_ALIAS = 'python3';
+    env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab';
+    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
+    env.PATH = "D:/sb/Bslcicd_1217/matlab/bin;$PATH";
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
         runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline();"
+        stash(includes:'ir_dag.json', name:'ir_dag', allowEmpty:'true')
     }
     load "$WORKSPACE/scm/pipelines/derived/simulink_pipeline"
 }
