@@ -5,6 +5,7 @@ node{
 
 	cleanWs();checkout scm;
 	fileOperations([fileCopyOperation(includes: "scm/pipelines/static/*", flattenFiles: true, targetLocation: "$WORKSPACE/scm")])
+	stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')
 	activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy" 
 	activity.loadEnvVariables()
 
