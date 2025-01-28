@@ -16,7 +16,8 @@ jobs:
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
-      PY_SCRIPTS_LOCATION: "${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}/toolbox/padv/pipeline_generator/ci/py"
+      SUPPORT_PACKAGE_ROOT: ${{ vars.SUPPORT_PACKAGE_ROOT || 'scm'}}
+      PY_SCRIPTS_LOCATION: "${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py"
       NETWORK_STORAGE_PATH: ${{ vars.NETWORK_STORAGE_PATH }}
 
     steps:
