@@ -25,6 +25,11 @@ jobs:
           path: ${{ env.SOURCECODE_FOLDER }}
           submodules: ${{ env.SUBMODULES_MODE }}
 
+      - name: Download ir_dag
+        uses: actions/download-artifact@v4
+        with:
+            name: ir_dag
+
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/env_prepare.py --platform github"
 
