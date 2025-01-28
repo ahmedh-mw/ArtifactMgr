@@ -16,8 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: ${{ env.SOURCECODE_FOLDER }}
-          submodules: ${{ env.SUBMODULES_MODE }}
+          path: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
+          submodules: ${{ vars.SUBMODULES_MODE || 'false' }}
   
       - name: Copy ir_dag and pipeline
         run: |
