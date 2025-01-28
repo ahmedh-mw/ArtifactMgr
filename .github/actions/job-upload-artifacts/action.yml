@@ -23,7 +23,7 @@ runs:
       if: ${{ (runner.os == 'Windows') && (env.IS_COLLECTING_ARTIFACTS == 'true') }}
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACTS_FILE_NAME }}
+        name: ${{ env.ARTIFACTS_FILE_NAME_STEM }}
         path: ${{ env.DONWLOADS_FOLDER }}
 
 
@@ -41,5 +41,5 @@ runs:
       if: ${{ (runner.os != 'Windows') && (env.IS_COLLECTING_ARTIFACTS == 'true') }}
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACTS_FILE_NAME }}
+        name: ${{ env.ARTIFACTS_FILE_NAME_STEM }}
         path: ${{ env.DONWLOADS_FOLDER }}
