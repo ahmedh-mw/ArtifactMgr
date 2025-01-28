@@ -40,7 +40,7 @@ jobs:
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_clean.py"
 
       - name: Job Preparation
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\" --platform github"
 
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
@@ -54,3 +54,14 @@ jobs:
 
       - name: Upload Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
+
+      - name: Collect Artifacts
+        if: env.IS_COLLECTING_ARTIFACTS == 'true'
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\""
+
+      - name: Upload Artifacts
+        if: env.IS_COLLECTING_ARTIFACTS == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACTS_FILE_NAME }}
+          path: ${{ env.ARTIFACTS_FILE_NAME }}
