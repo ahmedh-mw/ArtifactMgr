@@ -20,15 +20,15 @@ jobs:
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
-      SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
-      SCRIPTS_LOCATION: "${{ vars.SOURCECODE_FOLDER || 'scm' }}/pipelines/scripts"
+      SCM_FOLDER: ${{ vars.SCM_FOLDER || 'scm' }}
+      SCRIPTS_LOCATION: "${{ vars.SCM_FOLDER || 'scm' }}/pipelines/scripts"
       HOME: /home/matlab
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: ${{ env.SOURCECODE_FOLDER }}
+          path: ${{ env.SCM_FOLDER }}
           submodules: ${{ env.SUBMODULES_MODE }}
 
       - name: Load environment variables

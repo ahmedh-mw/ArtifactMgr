@@ -15,7 +15,7 @@ jobs:
       PYTHON_ALIAS: ${{ vars.PYTHON_ALIAS || 'python' }}
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
-      SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
+      SCM_FOLDER: ${{ vars.SCM_FOLDER || 'scm' }}
       SUPPORT_PACKAGE_ROOT: ${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}
       PY_SCRIPTS_LOCATION: "${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}/toolbox/padv/pipeline_generator/ci/py"
       NETWORK_STORAGE_PATH: ${{ vars.NETWORK_STORAGE_PATH }}
@@ -24,14 +24,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: ${{ env.SOURCECODE_FOLDER }}
+          path: ${{ env.SCM_FOLDER }}
           submodules: ${{ env.SUBMODULES_MODE }}
 
       - name: Download ir_dag
         uses: actions/download-artifact@v4
         with:
             name: ir_dag
-            path: ${{ env.SOURCECODE_FOLDER }}
+            path: ${{ env.SCM_FOLDER }}
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
