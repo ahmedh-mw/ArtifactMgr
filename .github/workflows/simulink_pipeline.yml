@@ -13,6 +13,12 @@ jobs:
   ir_dag:
     runs-on: ${{ vars.RUNNER_LABEL }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ${{ env.SOURCECODE_FOLDER }}
+          submodules: ${{ env.SUBMODULES_MODE }}
+  
       - name: Copy ir_dag and pipeline
         run: |
           cp scm/pipelines/static/ir_dag.json scm/ir_dag.json
