@@ -16,7 +16,8 @@ jobs:
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SOURCECODE_FOLDER: ${{ vars.SOURCECODE_FOLDER || 'scm' }}
-      SCRIPTS_LOCATION: "${{ vars.SOURCECODE_FOLDER || 'scm' }}/pipelines/scripts"
+      PY_SCRIPTS_LOCATION: "${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}/toolbox/padv/pipeline_generator/ci/py"
+      NETWORK_STORAGE_PATH: ${{ vars.NETWORK_STORAGE_PATH }}
 
     steps:
       - name: Checkout code
@@ -31,16 +32,16 @@ jobs:
             name: ir_dag
 
       - name: Load environment variables
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/env_prepare.py --platform github"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
 
       - name: Clean Workspace
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_clean.py"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_clean.py"
 
       - name: Job Preparation
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Download Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Execute Job tasks
         uses: ./scm/.github/actions/job-execute
@@ -50,4 +51,4 @@ jobs:
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
 
       - name: Upload Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
