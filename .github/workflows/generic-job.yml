@@ -52,16 +52,16 @@ jobs:
           use-matlab-plugin: ${{ env.USE_MATLAB_PLUGIN }}
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
 
-      - name: Upload Artifacts
+      - name: Upload Job Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
 
-      - name: Collect Artifacts
+      - name: Collect Pipeline Artifacts
         if: env.IS_COLLECTING_ARTIFACTS == 'true'
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\" --skip-compression"
 
-      - name: Upload Artifacts
+      - name: Upload Pipeline Artifacts
         if: env.IS_COLLECTING_ARTIFACTS == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACTS_FILE_NAME }}
-          path: ${{ env.ARTIFACTS_FILE_NAME }}
+          path: ${{ env.DONWLOADS_FOLDER }}
