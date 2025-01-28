@@ -10,24 +10,24 @@ function processmodel(pm)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     includeModelMaintainabilityMetricTask = true;
-    includeModelTestingMetricTask = true;
-    includeModelStandardsTask = true;
-    includeDesignErrorDetectionTask = true;
-    includeFindClones = true;
-    includeModelComparisonTask = true;
-    includeSDDTask = true;
-    includeSimulinkWebViewTask = true;
-    includeTestsPerTestCaseTask = true;
-    includeMergeTestResultsTask = true;
-    includeRefGenerateCodeTask = true;
-    includeTopGenerateCodeTask = true; % Project Level Top-Model code generation
-    includeRefAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
-    includeTopAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
-    includeRefProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
-    includeTopProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
-    includeRefCodeInspection = true;
-    includeTopCodeInspection = true;
-    includeGenerateRequirementsReport = true;
+    includeModelTestingMetricTask = false;
+    includeModelStandardsTask = false;
+    includeDesignErrorDetectionTask = false;
+    includeFindClones = false;
+    includeModelComparisonTask = false;
+    includeSDDTask = false;
+    includeSimulinkWebViewTask = false;
+    includeTestsPerTestCaseTask = false;
+    includeMergeTestResultsTask = false;
+    includeRefGenerateCodeTask = false;
+    includeTopGenerateCodeTask = false; % Project Level Top-Model code generation
+    includeRefAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
+    includeTopAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
+    includeRefProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
+    includeTopProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
+    includeRefCodeInspection = false;
+    includeTopCodeInspection = false;
+    includeGenerateRequirementsReport = false;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Define Shared Path Variables
