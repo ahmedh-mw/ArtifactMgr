@@ -45,7 +45,7 @@ jobs:
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
-      - name: Execute Job tasks
+      - name: Execute Job Artifacts
         uses: ./scm/.github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
@@ -53,15 +53,6 @@ jobs:
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
 
       - name: Upload Job Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
-
-      - name: Collect Pipeline Artifacts
-        if: env.IS_COLLECTING_ARTIFACTS == 'true'
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\" --skip-compression"
-
-      - name: Upload Pipeline Artifacts
-        if: env.IS_COLLECTING_ARTIFACTS == 'true'
-        uses: actions/upload-artifact@v4
+        uses: ./scm/.github/actions/job-upload-artifacts
         with:
-          name: ${{ env.ARTIFACTS_FILE_NAME }}
-          path: ${{ env.DONWLOADS_FOLDER }}
+          job-name: ${{ inputs.job-name }}
