@@ -31,6 +31,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
             name: ir_dag
+            path: ${{ env.SOURCECODE_FOLDER }}
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
