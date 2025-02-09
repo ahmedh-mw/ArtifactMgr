@@ -2556,7 +2556,7 @@
     "StopOnStageFailure": false,
     "CheckOutdatedResultsAfterMerge": true,
     "EnablePipelineCaching": true,
-    "MatlabInstallationLocation": "PATH_TO_MATLAB",
+    "MatlabInstallationLocation": "D:/sb/Bslcicd_1217/matlab/bin",
     "ArtifactZipFileName": "padv_artifacts.zip"
   }
 }
