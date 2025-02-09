@@ -2516,7 +2516,7 @@
     ""
   ],
   "Options": {
-    "AgentLabel": "any",
+    "AgentLabel": "padv_win_agents",
     "EnableArtifactCollection": "always",
     "GeneratedJenkinsFileName": "simulink_pipeline",
     "UseMatlabPlugin": true,
