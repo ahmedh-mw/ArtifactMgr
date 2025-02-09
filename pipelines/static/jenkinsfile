@@ -1,0 +1,18 @@
+// Copyright 2025 The MathWorks, Inc.
+// To manually execute this pipeline, uncomment the 'node' block below 
+// and update the specified global environment variables accordingly.
+node{
+//    // Make sure to check out source code to a sub-directory 'scm'
+//    env.PYTHON_ALIAS = 'python3'
+//    env.SUPPORT_PACKAGE_ROOT = '<SUPPORT PACKAGE ROOT PATH>'
+//    env.NETWORK_STORAGE_PATH = '<NETWORK STORAGE PATH>'
+//    // Moving the ir_dag.json file to the project root directory
+    fileOperations([fileCopyOperation(includes: "scm/pipelines/static/ir_dag.json>", flattenFiles: true, targetLocation: "$WORKSPACE/scm")])
+    stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')
+// 
+    activity = load "$SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/activity.groovy" 
+    activity.loadEnvVariables()
+    
+    activity.addStage('Runprocess')()
+    
+// }
