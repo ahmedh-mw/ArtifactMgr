@@ -1,6 +1,6 @@
 // Copyright 2025 The MathWorks, Inc.
 // To manually execute this pipeline, uncomment the 'node' block below 
-// and update the specified global environment variables accordingly.
+// and update the specified global environment variables and tokens accordingly.
 // Make sure to check out source code to a sub-directory 'scm'
 node{
 //    env.PYTHON_ALIAS = 'python3'
