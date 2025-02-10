@@ -12,7 +12,7 @@ function processmodel(pm)
     includeModelMaintainabilityMetricTask = true;
     includeModelTestingMetricTask = true;
     includeModelStandardsTask = true;
-    includeDesignErrorDetectionTask = true;
+    includeDesignErrorDetectionTask = false;
     includeFindClones = true;
     includeModelComparisonTask = true;
     includeSDDTask = true;
@@ -75,7 +75,6 @@ function processmodel(pm)
     % Tools required: Simulink Design Verifier
     if includeDesignErrorDetectionTask
         dedTask = pm.addTask(padv.builtin.task.DetectDesignErrors(IterationQuery=findModels)); %#ok<*UNRCH>
-        dedTask.MaxProcessTime = 900;
         dedTask.ReportFilePath = fullfile( ...
             defaultResultPath, 'design_error_detections','$ITERATIONARTIFACT$_DED');
     end
