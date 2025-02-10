@@ -12,7 +12,7 @@ function processmodel(pm)
     includeModelMaintainabilityMetricTask = true;
     includeModelTestingMetricTask = true;
     includeModelStandardsTask = true;
-    includeDesignErrorDetectionTask = false;
+    includeDesignErrorDetectionTask = true;
     includeFindClones = true;
     includeModelComparisonTask = true;
     includeSDDTask = true;
