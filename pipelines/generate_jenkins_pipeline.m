@@ -10,6 +10,6 @@ function generate_jenkins_pipeline()
     op.RunprocessCommandOptions.GenerateJUnitForProcess = true;
     op.ReportPath = "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport";
     padv.pipeline.generatePipeline(op, "CIPipeline");
-    % Copy the pipeline and dag files just outside the project folder
+    % Copy the pipeline and dag files on the project root folder
     copyfile( fullfile(cp.RootFolder, 'derived', 'pipeline' , '*'), cp.RootFolder);
 end
