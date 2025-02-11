@@ -13,9 +13,9 @@ function processmodel(pm)
     includeModelTestingMetricTask = false;
     includeModelStandardsTask = false;
     includeDesignErrorDetectionTask = false;
-    includeFindClones = false;
-    includeModelComparisonTask = false;
-    includeSDDTask = false;
+    includeFindClones = true;
+    includeModelComparisonTask = true;
+    includeSDDTask = true;
     includeSimulinkWebViewTask = true;
     includeTestsPerTestCaseTask = false;
     includeMergeTestResultsTask = false;
