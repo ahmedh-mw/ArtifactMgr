@@ -9,10 +9,10 @@ function processmodel(pm)
     %% Include/Exclude Tasks in processmodel
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    includeModelMaintainabilityMetricTask = false;  % May be there is an error here
+    includeModelMaintainabilityMetricTask = false;  % This cause merging error: "Warning: This API cannot be used for a query result of type 'GraphQL'. "
     includeModelTestingMetricTask = true;
     includeModelStandardsTask = true;
-    includeDesignErrorDetectionTask = false;  % Has issue
+    includeDesignErrorDetectionTask = false;  % This task fails if MATLAB is running in batch mode
     includeFindClones = true;
     includeModelComparisonTask = true;
     includeSDDTask = true;

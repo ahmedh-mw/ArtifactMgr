@@ -16,8 +16,7 @@ node{
     
     activity.addStage('start')()
     activity.addParallelStages('Stage_2', [
-        'br_padv_builtin_task_CollectMetrics_AHRS_Voter': {
-            activity.addStage('padv_builtin_task_CollectMetrics_AHRS_Voter')()
+        'br_padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter': {
             activity.addStage('padv_builtin_task_GenerateSimulinkWebView_AHRS_Voter')()
             activity.addStage('padv_builtin_task_RunModelStandards_AHRS_Voter')()
             activity.addStage('FindAcrossModelClones_AHRS_Voter')()
@@ -32,8 +31,7 @@ node{
             activity.addStage('RefProveCodeQuality_AHRS_Voter')()
             activity.addStage('padv_builtin_task_RunCodeInspection_AHRS_Voter')()
             },
-        'br_padv_builtin_task_CollectMetrics_Actuator_Control': {
-            activity.addStage('padv_builtin_task_CollectMetrics_Actuator_Control')()
+        'br_padv_builtin_task_GenerateSimulinkWebView_Actuator_Control': {
             activity.addStage('padv_builtin_task_GenerateSimulinkWebView_Actuator_Control')()
             activity.addStage('padv_builtin_task_RunModelStandards_Actuator_Control')()
             activity.addStage('FindAcrossModelClones_Actuator_Control')()
@@ -46,8 +44,7 @@ node{
             activity.addStage('RefProveCodeQuality_Actuator_Control')()
             activity.addStage('padv_builtin_task_RunCodeInspection_Actuator_Control')()
             },
-        'br_padv_builtin_task_CollectMetrics_Flight_Control': {
-            activity.addStage('padv_builtin_task_CollectMetrics_Flight_Control')()
+        'br_padv_builtin_task_GenerateSimulinkWebView_Flight_Control': {
             activity.addStage('padv_builtin_task_GenerateSimulinkWebView_Flight_Control')()
             activity.addStage('padv_builtin_task_RunModelStandards_Flight_Control')()
             activity.addStage('FindAcrossModelClones_Flight_Control')()
@@ -55,8 +52,7 @@ node{
             activity.addStage('padv_builtin_task_GenerateModelComparison_Flight_Control')()
             activity.addStage('padv_builtin_task_GenerateSDDReport_Flight_Control')()
             },
-        'br_padv_builtin_task_CollectMetrics_InnerLoop_Control': {
-            activity.addStage('padv_builtin_task_CollectMetrics_InnerLoop_Control')()
+        'br_padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control': {
             activity.addStage('padv_builtin_task_GenerateSimulinkWebView_InnerLoop_Control')()
             activity.addStage('padv_builtin_task_RunModelStandards_InnerLoop_Control')()
             activity.addStage('FindAcrossModelClones_InnerLoop_Control')()
@@ -69,8 +65,7 @@ node{
             activity.addStage('RefProveCodeQuality_InnerLoop_Control')()
             activity.addStage('padv_builtin_task_RunCodeInspection_InnerLoop_Control')()
             },
-        'br_padv_builtin_task_CollectMetrics_OuterLoop_Control': {
-            activity.addStage('padv_builtin_task_CollectMetrics_OuterLoop_Control')()
+        'br_padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control': {
             activity.addStage('padv_builtin_task_GenerateSimulinkWebView_OuterLoop_Control')()
             activity.addStage('padv_builtin_task_RunModelStandards_OuterLoop_Control')()
             activity.addStage('FindAcrossModelClones_OuterLoop_Control')()
@@ -86,10 +81,10 @@ node{
             activity.addStage('padv_builtin_task_RunCodeInspection_OuterLoop_Control')()
             },
     ])()
+    activity.addStage('padv_builtin_task_GenerateRequirementsReport')()
     activity.addStage('Top_Model_Code_Generation')()
     activity.addStage('Top_Model_Code_Analysis')()
     activity.addStage('TopProveCodeQuality')()
     activity.addStage('Top_Model_Code_Inspection')()
-    activity.addStage('padv_builtin_task_GenerateRequirementsReport')()
     
 }
