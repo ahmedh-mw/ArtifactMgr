@@ -9,25 +9,25 @@ function processmodel(pm)
     %% Include/Exclude Tasks in processmodel
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    includeModelMaintainabilityMetricTask = true;
-    includeModelTestingMetricTask = true;
-    includeModelStandardsTask = true;
+    includeModelMaintainabilityMetricTask = false;
+    includeModelTestingMetricTask = false;
+    includeModelStandardsTask = false;
     includeDesignErrorDetectionTask = false;
-    includeFindClones = true;
-    includeModelComparisonTask = true;
-    includeSDDTask = true;
+    includeFindClones = false;
+    includeModelComparisonTask = false;
+    includeSDDTask = false;
     includeSimulinkWebViewTask = true;
-    includeTestsPerTestCaseTask = true;
-    includeMergeTestResultsTask = true;
-    includeRefGenerateCodeTask = true;
-    includeTopGenerateCodeTask = true; % Project Level Top-Model code generation
-    includeRefAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
-    includeTopAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
-    includeRefProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
-    includeTopProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
-    includeRefCodeInspection = true;
-    includeTopCodeInspection = true;
-    includeGenerateRequirementsReport = true;
+    includeTestsPerTestCaseTask = false;
+    includeMergeTestResultsTask = false;
+    includeRefGenerateCodeTask = false;
+    includeTopGenerateCodeTask = false; % Project Level Top-Model code generation
+    includeRefAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
+    includeTopAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
+    includeRefProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
+    includeTopProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
+    includeRefCodeInspection = false;
+    includeTopCodeInspection = false;
+    includeGenerateRequirementsReport = false;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Define Shared Path Variables
@@ -42,6 +42,7 @@ function processmodel(pm)
     %% Define Shared Queries
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     findModels = padv.builtin.query.FindModels(Name="ModelsQuery");
+    findSlModels = padv.builtin.query.FindArtifacts(ArtifactType="sl_model_file");
     findModelsWithTests = padv.builtin.query.FindModelsWithTestCases(Parent=findModels);
     findTestsForModel = padv.builtin.query.FindTestCasesForModel(Parent=findModels);
     findRefModels = padv.builtin.query.FindRefModels(Name="RefModelsQuery");
@@ -67,6 +68,8 @@ function processmodel(pm)
     % Tools required: Model Advisor
     if includeModelStandardsTask
         maTask = pm.addTask(padv.builtin.task.RunModelStandards(IterationQuery=findModels));
+        maTask.addInputQueries(padv.builtin.query.FindFileWithAddress( ...
+            Type='ma_config_file', Path=fullfile('tools','sampleChecks.json')));
         maTask.ReportPath = fullfile( ...
             defaultResultPath,'model_standards_results');
     end
@@ -131,7 +134,7 @@ function processmodel(pm)
     %% Merge test results
     % Tools required: Simulink Test (and optionally Simulink Coverage)
     if includeTestsPerTestCaseTask && includeMergeTestResultsTask
-        mergeTestTask = pm.addTask(padv.builtin.task.MergeTestResults(IterationQuery=findModelsWithTests));
+        mergeTestTask = pm.addTask(padv.builtin.task.MergeTestResults(IterationQuery=findModelsWithTests, PredecessorTask=milTask));
         mergeTestTask.ReportPath = defaultTestResultPath;
     end
 	
