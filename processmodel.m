@@ -9,10 +9,10 @@ function processmodel(pm)
     %% Include/Exclude Tasks in processmodel
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    includeModelMaintainabilityMetricTask = false;
+    includeModelMaintainabilityMetricTask = true;
     includeModelTestingMetricTask = true;
     includeModelStandardsTask = true;
-    includeDesignErrorDetectionTask = false;
+    includeDesignErrorDetectionTask = true;
     includeFindClones = true;
     includeModelComparisonTask = true;
     includeSDDTask = true;
@@ -25,9 +25,9 @@ function processmodel(pm)
     includeTopAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
     includeRefProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
     includeTopProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
-    includeRefCodeInspection = false;
-    includeTopCodeInspection = false;
-    includeGenerateRequirementsReport = false;
+    includeRefCodeInspection = true;
+    includeTopCodeInspection = true;
+    includeGenerateRequirementsReport = true;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Define Shared Path Variables
