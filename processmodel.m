@@ -21,10 +21,10 @@ function processmodel(pm)
     includeMergeTestResultsTask = true;
     includeRefGenerateCodeTask = true;
     includeTopGenerateCodeTask = true; % Project Level Top-Model code generation
-    includeRefAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
-    includeTopAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
-    includeRefProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
-    includeTopProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
+    includeRefAnalyzeModelCode = true && ~padv.internal.util.isMACA64 && exist('polyspaceroot','file');
+    includeTopAnalyzeModelCode = true && ~padv.internal.util.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
+    includeRefProveCodeQuality = true && ~padv.internal.util.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
+    includeTopProveCodeQuality = true && ~padv.internal.util.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
     includeRefCodeInspection = true;
     includeTopCodeInspection = true;
     includeGenerateRequirementsReport = true;
