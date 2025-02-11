@@ -9,7 +9,7 @@ function processmodel(pm)
     %% Include/Exclude Tasks in processmodel
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    includeModelMaintainabilityMetricTask = true;
+    includeModelMaintainabilityMetricTask = false;  % May be there is an error here
     includeModelTestingMetricTask = true;
     includeModelStandardsTask = true;
     includeDesignErrorDetectionTask = false;  % Has issue
@@ -19,12 +19,12 @@ function processmodel(pm)
     includeSimulinkWebViewTask = true;
     includeTestsPerTestCaseTask = true;
     includeMergeTestResultsTask = true;
-    includeRefGenerateCodeTask = false;
-    includeTopGenerateCodeTask = false; % Project Level Top-Model code generation
-    includeRefAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
-    includeTopAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
-    includeRefProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
-    includeTopProveCodeQuality = false && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
+    includeRefGenerateCodeTask = true;
+    includeTopGenerateCodeTask = true; % Project Level Top-Model code generation
+    includeRefAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
+    includeTopAnalyzeModelCode = true && ~padv.internal.isMACA64 && exist('polyspaceroot','file'); % Project Level Top-Model code analysis
+    includeRefProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));
+    includeTopProveCodeQuality = true && ~padv.internal.isMACA64 && (~isempty(ver('pscodeprover')) || ~isempty(ver('pscodeproverserver')));% Project Level Top-Model code proving
     includeRefCodeInspection = true;
     includeTopCodeInspection = true;
     includeGenerateRequirementsReport = true;
