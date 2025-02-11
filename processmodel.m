@@ -10,15 +10,15 @@ function processmodel(pm)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     includeModelMaintainabilityMetricTask = false;
-    includeModelTestingMetricTask = false;
-    includeModelStandardsTask = false;
+    includeModelTestingMetricTask = true;
+    includeModelStandardsTask = true;
     includeDesignErrorDetectionTask = false;
     includeFindClones = true;
     includeModelComparisonTask = true;
     includeSDDTask = true;
     includeSimulinkWebViewTask = true;
-    includeTestsPerTestCaseTask = false;
-    includeMergeTestResultsTask = false;
+    includeTestsPerTestCaseTask = true;
+    includeMergeTestResultsTask = true;
     includeRefGenerateCodeTask = false;
     includeTopGenerateCodeTask = false; % Project Level Top-Model code generation
     includeRefAnalyzeModelCode = false && ~padv.internal.isMACA64 && exist('polyspaceroot','file');
