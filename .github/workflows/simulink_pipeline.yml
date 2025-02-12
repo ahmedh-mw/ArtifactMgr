@@ -15,25 +15,26 @@ on: # You must define at least one trigger for each workflow.
     types: [opened, synchronize, reopened]
     
 jobs:
-  # ir_dag:
-  #   runs-on: ${{ vars.RUNNER_LABEL }}
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         path: ${{ vars.SCM_FOLDER || 'scm' }}
-  #         submodules: ${{ vars.SUBMODULES_MODE || 'false' }}
-  #
-  #     - name: Copy ir_dag and pipeline
-  #       run: |
-  #         cp scm/.github/workflows/ir_dag.json scm/ir_dag.json
-  #
-  #     - name: Upload ir_dag
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: ir_dag
-  #         path: |
-  #           scm/ir_dag.json
+  ir_dag:
+    runs-on: ${{ vars.RUNNER_LABEL }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ${{ vars.SCM_FOLDER || 'scm' }}
+          submodules: ${{ vars.SUBMODULES_MODE || 'false' }}
+  
+      - name: Copy ir_dag and pipeline
+        run: |
+          cp scm/.github/workflows/ir_dag.json scm/ir_dag.json
+  
+      - name: Upload ir_dag
+        uses: actions/upload-artifact@v4
+        with:
+          name: ir_dag
+          path: |
+            scm/ir_dag.json
+  
   start:
     needs: [ir_dag]
     uses: ./.github/workflows/generic-job.yml
@@ -393,3 +394,4 @@ jobs:
     uses: ./.github/workflows/generic-job.yml
     with:
       job-name: Top_Model_Code_Inspection 
+  
