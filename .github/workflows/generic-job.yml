@@ -1,3 +1,4 @@
+# Copyright 2025 The MathWorks, Inc.
 name: Reusable Workflow - Generic Job
 on:
   workflow_dispatch:
@@ -45,7 +46,7 @@ jobs:
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
-      - name: Execute Job Artifacts
+      - name: Execute Job tasks
         uses: ./scm/.github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
