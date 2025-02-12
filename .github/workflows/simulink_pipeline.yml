@@ -4,6 +4,7 @@
 # Make sure to check out source code to a sub-directory 'scm'
 # Make sure to confiure the following variables at repository variables:
 #   PYTHON_ALIAS, SUPPORT_PACKAGE_ROOT, NETWORK_STORAGE_PATH, RUNNER_LABEL, CONTINUE_ON_ERROR
+name: MATLAB Workflow
 on: # You must define at least one trigger for each workflow.
   workflow_dispatch:  # Set manual triggers as an optional trigger.
   pull_request:       # Set pull_request as an automatic trigger. 
