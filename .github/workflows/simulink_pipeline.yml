@@ -21,8 +21,7 @@ jobs:
   
   #     - name: Copy ir_dag and pipeline
   #       run: |
-  #         cp scm/pipelines/static/ir_dag.json scm/ir_dag.json
-  #         cp scm/.github/workflows/simulink_pipeline.yml scm/simulink_pipeline.yml
+  #         cp scm/.github/workflows/ir_dag.json scm/ir_dag.json
 
   #     - name: Upload ir_dag
   #       uses: actions/upload-artifact@v4
@@ -30,7 +29,6 @@ jobs:
   #         name: ir_dag
   #         path: |
   #           scm/ir_dag.json
-  #           scm/simulink_pipeline.yml
     
   start:
     needs: [ir_dag]
