@@ -1,3 +1,4 @@
+# Copyright 2025 The MathWorks, Inc.
 name: Reusable Workflow - Container Job
 on:
   workflow_dispatch:
@@ -21,7 +22,9 @@ jobs:
       SUBMODULES_MODE: ${{ vars.SUBMODULES_MODE || 'false' }}
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SCM_FOLDER: ${{ vars.SCM_FOLDER || 'scm' }}
-      SCRIPTS_LOCATION: "${{ vars.SCM_FOLDER || 'scm' }}/pipelines/scripts"
+      SUPPORT_PACKAGE_ROOT: ${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}
+      PY_SCRIPTS_LOCATION: "${{ vars.SUPPORT_PACKAGE_ROOT || 'scm' }}/toolbox/padv/pipeline_generator/ci/py"
+      NETWORK_STORAGE_PATH: ${{ vars.NETWORK_STORAGE_PATH }}
       HOME: /home/matlab
 
     steps:
@@ -31,17 +34,23 @@ jobs:
           path: ${{ env.SCM_FOLDER }}
           submodules: ${{ env.SUBMODULES_MODE }}
 
+      - name: Download ir_dag
+        uses: actions/download-artifact@v4
+        with:
+            name: ir_dag
+            path: ${{ env.SCM_FOLDER }}
+
       - name: Load environment variables
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/env_prepare.py --platform github"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
 
       - name: Clean Workspace
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_clean.py"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_clean.py"
 
       - name: Job Preparation
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\" --platform github"
 
       - name: Download Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Execute Job tasks
         uses: ./scm/.github/actions/job-execute
@@ -50,5 +59,7 @@ jobs:
           use-matlab-plugin: ${{ env.USE_MATLAB_PLUGIN }}
           enable-dryrun: ${{ env.ENABLE_CI_DRYRUN }}
 
-      - name: Upload Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_delta_upload.py --jobname \"${{ inputs.job-name }}\" --errordetected false"
+      - name: Upload Job Artifacts
+        uses: ./scm/.github/actions/job-upload-artifacts
+        with:
+          job-name: ${{ inputs.job-name }}
