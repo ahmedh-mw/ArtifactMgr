@@ -19,14 +19,6 @@ runs:
       shell: pwsh
       run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\" --skip_compression"
 
-    - name: Upload Pipeline Artifacts
-      if: ${{ (runner.os == 'Windows') && (env.IS_COLLECTING_ARTIFACTS == 'true') }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.ARTIFACTS_FILE_NAME_STEM }}
-        path: ${{ env.DONWLOADS_FOLDER }}
-
-
     - name: Upload Job Artifacts
       if: ${{ runner.os != 'Windows' }}
       shell: bash
@@ -38,7 +30,7 @@ runs:
       run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_collect_artifacts.py --jobname \"${{ inputs.job-name }}\" --skip_compression"
 
     - name: Upload Pipeline Artifacts
-      if: ${{ (runner.os != 'Windows') && (env.IS_COLLECTING_ARTIFACTS == 'true') }}
+      if: ${{ env.IS_COLLECTING_ARTIFACTS == 'true' }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ARTIFACTS_FILE_NAME_STEM }}
