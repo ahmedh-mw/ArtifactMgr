@@ -1,7 +1,13 @@
 node{
     // env.PYTHON_ALIAS = 'python3';
     // env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_1217/matlab';
-    // env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
+
+    env.ARTIFACTORY_SERVICE_MODE = 'jfrog';         // jfrog/network
+    env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
+    env.ARTIFACTORY_URL = 'http://mathworks-v4rgb:8082/artifactory';
+    env.REPO_NAME = 'padv-bslcicd';
+    env.API_TOKEN = 'cmVmdGtuOjAxOjAwMDAwMDAwMDA6aTNPMUowN0JhbWhRdjhKbGs2em92TmVaQTMz';
+    
     env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
     cleanWs();checkout scm;
 
