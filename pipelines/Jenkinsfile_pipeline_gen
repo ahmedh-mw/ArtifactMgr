@@ -6,6 +6,7 @@ node{
     // env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
     // env.ARTIFACTORY_URL = 'http://mathworks-v4rgb:8082/artifactory';
     // env.REPO_NAME = 'padv-bslcicd';
+    // You need to set jfrog api token in Jenkins credentials with 'api_token_cred' id;
     withCredentials([string( credentialsId: 'api_token_cred',variable: 'api_token')]) {
         env.API_TOKEN = api_token;
     }
