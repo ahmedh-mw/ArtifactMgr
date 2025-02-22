@@ -50,7 +50,7 @@ jobs:
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
 
-      - name: Execute Job tasks
+      - name: Execute Job Tasks
         uses: ./scm/.github/actions/job-execute
         with:
           job-name: ${{ inputs.job-name }}
