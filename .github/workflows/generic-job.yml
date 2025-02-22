@@ -23,7 +23,6 @@ jobs:
       NETWORK_STORAGE_PATH: ${{ vars.NETWORK_STORAGE_PATH }}
       ARTIFACTORY_URL: ${{ vars.ARTIFACTORY_URL }}
       REPO_NAME: ${{ vars.REPO_NAME }}
-      API_TOKEN: ${{ secrets.API_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -40,15 +39,21 @@ jobs:
 
       - name: Load environment variables
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
+        env:
+          API_TOKEN: "${{ secrets.API_TOKEN }}"
 
       - name: Clean Workspace
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_clean.py"
 
       - name: Job Preparation
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\" --platform github"
+        env:
+          API_TOKEN: "${{ secrets.API_TOKEN }}"
 
       - name: Download Artifacts
         run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
+        env:
+          API_TOKEN: "${{ secrets.API_TOKEN }}"
 
       - name: Execute Job tasks
         uses: ./scm/.github/actions/job-execute
@@ -61,3 +66,5 @@ jobs:
         uses: ./scm/.github/actions/job-upload-artifacts
         with:
           job-name: ${{ inputs.job-name }}
+        env:
+          API_TOKEN: "${{ secrets.API_TOKEN }}"
