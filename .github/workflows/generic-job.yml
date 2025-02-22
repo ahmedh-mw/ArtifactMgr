@@ -15,7 +15,6 @@ jobs:
     env:
       WORKSPACE_PATH_KEY: GITHUB_WORKSPACE
       SCM_FOLDER: ${{ vars.SCM_FOLDER || 'scm' }}
-      PY_SCRIPTS_LOCATION: "${{ env.SUPPORT_PACKAGE_ROOT || 'scm' }}/toolbox/padv/pipeline_generator/ci/py"
 
     steps:
       - name: Checkout code
@@ -31,16 +30,16 @@ jobs:
             path: ${{ env.SCM_FOLDER }}
 
       - name: Load environment variables
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/env_prepare.py --platform github"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/env_prepare.py --platform github"
 
       - name: Clean Workspace
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_clean.py"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/job_clean.py"
 
       - name: Job Preparation
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_prepare.py --jobname \"${{ inputs.job-name }}\" --platform github"
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/job_prepare.py --jobname \"${{ inputs.job-name }}\" --platform github"
 
       - name: Download Artifacts
-        run: "${{ env.PYTHON_ALIAS }} ${{ env.PY_SCRIPTS_LOCATION }}/job_download.py --jobname \"${{ inputs.job-name }}\""
+        run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/job_download.py --jobname \"${{ inputs.job-name }}\""
 
       - name: Execute Job Tasks
         uses: ./scm/.github/actions/job-execute

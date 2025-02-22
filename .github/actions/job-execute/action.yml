@@ -18,12 +18,12 @@ runs:
     - name: Job Dryrun Execute for Windows
       if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: pwsh
-      run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
+      run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
     - name: Job Dryrun Execute for Linux/MacOS
       if: ${{ (runner.os != 'Windows') && (inputs.enable-dryrun == 'true') }}
       shell: bash
-      run: "${{ env.PYTHON_ALIAS }} ${{ env.SCRIPTS_LOCATION }}/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
+      run: "${{ env.PYTHON_ALIAS }} ${{ env.SUPPORT_PACKAGE_ROOT }}/toolbox/padv/pipeline_generator/ci/py/job_dryrun.py --jobname \"${{ inputs.job-name }}\""
 
     - name: Job Execute for Windows
       if: ${{ (runner.os == 'Windows') && (inputs.enable-dryrun != 'true') && (inputs.use-matlab-plugin != 'true') }}
