@@ -7,8 +7,6 @@ on:
       job-name:
         required: true
         type: string
-    secrets:
-      API_TOKEN_SECRET: ${{ secrets.API_TOKEN_SECRET }}
       
 jobs:
   Generic-Job:
