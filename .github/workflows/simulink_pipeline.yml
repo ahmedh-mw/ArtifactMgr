@@ -39,6 +39,7 @@ jobs:
   start:
     needs: [ir_dag]
     uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
     with:
       job-name: start 
   
