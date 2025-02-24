@@ -23,4 +23,4 @@ jobs:
       - name: Run MATLAB Tasks
         uses: matlab-actions/run-command@v2
         with:
-          command: "runMatlabTasks"
+          command: "disp(pwd);runMatlabTasks;"
