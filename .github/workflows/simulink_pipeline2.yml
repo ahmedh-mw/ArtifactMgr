@@ -1,0 +1,22 @@
+# Copyright 2025 The MathWorks, Inc.
+name: MATLAB Workflow2
+on: # You must define at least one trigger for each workflow.
+  workflow_dispatch:  # Set manual triggers as an optional trigger.
+  pull_request:       # Set pull_request as an automatic trigger. 
+                      # By default, a pull_request runs when a pull_request 
+                      # event's activity type is opened, synchronize, or reopened
+    # opened: This triggers the workflow when a pull request is initially opened.
+    # synchronize: This triggers the workflow when new commits are pushed to a pull request branch. This includes any time the pull request's head branch is updated with new commits.
+    # reopened: This triggers the workflow when a previously closed pull request is reopened
+    types: [opened, synchronize, reopened]
+    
+jobs:
+  Run_MATLAB_Tasks:
+    name: Run_MATLAB_Tasks
+    runs-on: ${{ vars.RUNNER_LABEL }}
+
+    steps:
+      - name: Run MATLAB Tasks
+        uses: matlab-actions/run-command@v2
+        with:
+          command: "runMatlabTasks"
