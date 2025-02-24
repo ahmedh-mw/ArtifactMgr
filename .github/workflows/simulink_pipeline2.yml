@@ -16,6 +16,9 @@ jobs:
     runs-on: ${{ vars.RUNNER_LABEL }}
 
     steps:
+      - name: Add MATLAB to PATH
+        run: echo "D:/sb/Bslcicd_0209/matlab/bin" >> $GITHUB_PATH
+        
       - name: Run MATLAB Tasks
         uses: matlab-actions/run-command@v2
         with:
