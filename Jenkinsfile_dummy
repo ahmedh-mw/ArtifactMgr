@@ -1,0 +1,12 @@
+// Copyright 2025 The MathWorks, Inc.
+node{
+    stage('AHRS_Voter_MATLAB_Generate_Code'){
+        echo 'Running MATLAB tasks...'   
+    }
+    stage('AHRS_Voter_MATLAB_Analyze_Code'){
+        echo 'Running MATLAB tasks...'   
+    }
+    stage('AHRS_Voter_MATLAB_Code_Inspection'){
+        echo 'Running MATLAB tasks...'   
+    }
+}
