@@ -3,9 +3,9 @@ node{
     stage('AHRS_Voter_Model_Compiler'){
         echo 'Running MATLAB tasks...'   
     }
-    // stage('AHRS_Voter_MATLAB_Generate_Code'){
-    //     echo 'Running MATLAB tasks...'   
-    // }
+    stage('AHRS_Voter_MATLAB_Generate_Code'){
+        echo 'Running MATLAB tasks...'   
+    }
     stage('AHRS_Voter_MATLAB_Analyze_Code'){
         echo 'Running MATLAB tasks...'   
     }
