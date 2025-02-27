@@ -1,4 +1,4 @@
-function generate_jenkins_pipeline()
+function generate_jenkins_pipeline_subfolder()
     cp = openProject(pwd);
 
     op = padv.pipeline.JenkinsOptions;
