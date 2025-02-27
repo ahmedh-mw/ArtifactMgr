@@ -11,8 +11,8 @@ node{
         env.API_TOKEN = api_token;
     }
     
-    env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
-    cleanWs();checkout scm;
+    env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
+    cleanWs();dir("scm"){checkout scm;};
 
     stage('Pipeline Generation'){
         runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline();"
