@@ -1,5 +1,5 @@
 // Copyright 2025 The MathWorks, Inc.
-node{
+node('padv_win_agents'){
     env.PYTHON_ALIAS = 'python3';
     env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0209/matlab';
 
@@ -12,13 +12,13 @@ node{
     //     env.API_TOKEN = api_token;
     // }
     
-    env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
+    env.PATH = "D:/sb/Bslcicd_02011/matlab/bin;$PATH";
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
         // Update tokens at Jenkinsfile_pipeline_gen.m file
-        runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline();"
-        stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')
+        runMATLABCommand "addpath('$WORKSPACE/pipelines');generate_jenkins_pipeline();"
+        stash(includes:'ir_dag.json, simulink_pipeline', name:'ir_dag')
     }
-    load "$WORKSPACE/scm/simulink_pipeline"
+    load "$WORKSPACE/simulink_pipeline"
 }

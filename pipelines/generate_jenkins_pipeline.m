@@ -1,5 +1,5 @@
 function generate_jenkins_pipeline()
-    cp = openProject('scm');
+    cp = openProject(pwd);
 
     op = padv.pipeline.JenkinsOptions;
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
