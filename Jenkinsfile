@@ -4,6 +4,6 @@ node{
     cleanWs();dir("scm"){checkout scm;};
 
     stage('Run MATLAB Tasks'){
-        runMATLABCommand "runMatlabTasks();"
+        runMATLABCommand "addpath('scm');runMatlabTasks();"
     }
 }
