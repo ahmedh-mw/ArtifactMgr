@@ -1,12 +1,13 @@
 % Copyright 2025 The MathWorks, Inc.
 
 function generate_jenkins_pipeline()
-    cp = openProject('scm');
+    cp = openProject(pwd);
 
     op = padv.pipeline.JenkinsOptions;
     op.PipelineArchitecture = "IndependentModelParallelJobs";
     op.GeneratedPipelineDirectory = fullfile(cp.RootFolder, "pipelines", "derived");
-    op.MatlabInstallationLocation = "D:/sb/Bslcicd_0209/matlab/bi";
+    op.MatlabInstallationLocation = "D:/sb/Bslcicd_0225/matlab/bin";
+    op.GeneratedPipelineDirectory = "scm";
     op.AgentLabel = "padv_win_agents";
     op.StopOnStageFailure = true;
     op.RunprocessCommandOptions.GenerateJUnitForProcess = true;
