@@ -12,7 +12,7 @@ node('padv_win_agents'){
     //     env.API_TOKEN = api_token;
     // }
     
-    env.PATH = "D:/sb/Bslcicd_02025/matlab/bin;$PATH";
+    env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
