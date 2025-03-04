@@ -53,7 +53,7 @@ function taskResult = modelGenTask(input, obj)
     cmTask = padv.builtin.task.CollectMetrics();
     cmTask.RuntimeContext = obj.RuntimeContext;
     cmTask.RuntimeContext.Task = cmTask;
-    for i=1:50
+    for i=1:100
         results = cmTask.run(input);
     end
     outputPaths = results.OutputArtifacts.ArtifactAddress.getFileAddress();
@@ -67,7 +67,7 @@ function taskResult = modelGenTask(input, obj)
     codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
     codegenTask.RuntimeContext = obj.RuntimeContext;
     codegenTask.RuntimeContext.Task = codegenTask;
-    for i=1:50
+    for i=1:100
         results = codegenTask.run(input);
     end
     outputs = arrayfun(@(a) a.ArtifactAddress.getFileAddress(), results.OutputArtifacts);
@@ -86,7 +86,7 @@ function reportTask(input, obj)
     slwebTask.RuntimeContext.Task = slwebTask;
     slwebTask.ReportPath = fullfile(obj.OutputDirectory,'webview');
     slwebTask.ReportName = '$ITERATIONARTIFACT$_webview';
-    for i=1:50
+    for i=1:100
         results = slwebTask.run(input);
     end
     
