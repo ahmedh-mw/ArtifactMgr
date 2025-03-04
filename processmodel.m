@@ -27,12 +27,12 @@ function processmodel(pm)
     modelGenRefTask = pm.addTask("modelGenRefTask", Title="Model Gen Task",Action=@modelGenTask,...
         IterationQuery=findRefModels,...
         InputQueries=padv.builtin.query.GetIterationArtifact);
-    modelGenRefTask.OutputDirectory = defaultResultPath;
+    modelGenRefTask.OutputDirectory = fullfile(defaultResultPath, "gen");
 
     reportTsk = pm.addTask("reportTask", Title="Report Task",Action=@reportTask,...
         IterationQuery=findModels,...
         InputQueries=padv.builtin.query.GetIterationArtifact);
-    reportTsk.OutputDirectory = defaultResultPath;
+    reportTsk.OutputDirectory = fullfile(defaultResultPath, "rep");
     
     codegenTopTask = pm.addTask(padv.builtin.task.GenerateCode("IterationQuery", ...
         findProjectFile,"InputQueries",{findTopModels,...
@@ -49,11 +49,13 @@ end
 
 function taskResult = modelGenTask(input, obj)
     taskResult = padv.TaskResult;
+    counter = 100;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
     cmTask = padv.builtin.task.CollectMetrics();
+    cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
     cmTask.RuntimeContext = obj.RuntimeContext;
     cmTask.RuntimeContext.Task = cmTask;
-    for i=1:100
+    for i=1:counter
         results = cmTask.run(input);
     end
     outputPaths = results.OutputArtifacts.ArtifactAddress.getFileAddress();
@@ -67,7 +69,7 @@ function taskResult = modelGenTask(input, obj)
     codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
     codegenTask.RuntimeContext = obj.RuntimeContext;
     codegenTask.RuntimeContext.Task = codegenTask;
-    for i=1:100
+    for i=1:counter
         results = codegenTask.run(input);
     end
     outputs = arrayfun(@(a) a.ArtifactAddress.getFileAddress(), results.OutputArtifacts);
@@ -80,13 +82,14 @@ end
 
 function reportTask(input, obj)
     taskResult = padv.TaskResult;
+    counter = 100;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateSimulinkWebView
     slwebTask = padv.builtin.task.GenerateSimulinkWebView();
     slwebTask.RuntimeContext = obj.RuntimeContext;
     slwebTask.RuntimeContext.Task = slwebTask;
     slwebTask.ReportPath = fullfile(obj.OutputDirectory,'webview');
     slwebTask.ReportName = '$ITERATIONARTIFACT$_webview';
-    for i=1:100
+    for i=1:counter
         results = slwebTask.run(input);
     end
     
