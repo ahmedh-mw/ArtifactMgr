@@ -51,7 +51,7 @@ end
 
 function taskResult = modelGenTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 10;
+    counter = 100;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
     cmTask = padv.builtin.task.CollectMetrics();
     cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
@@ -84,7 +84,7 @@ end
 
 function reportTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 10;
+    counter = 100;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateSimulinkWebView
     slwebTask = padv.builtin.task.GenerateSimulinkWebView();
     slwebTask.RuntimeContext = obj.RuntimeContext;
