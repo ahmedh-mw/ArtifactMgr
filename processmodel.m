@@ -43,8 +43,8 @@ function processmodel(pm)
     codegenTopTask.Title = "Top Model Code Generation";
     codegenTopTask.TrackAllGeneratedCode = true;
     codegenTask.GenerateExternalCodeCache = true;
-    codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
-    
+    codegenTask.ExternalCodeCacheDirectory = fullfile(defaultResultPath, 'external_code_cache');
+
     codegenTopTask.dependsOn(modelGenRefTask);
     codegenTopTask.runsAfter(reportTsk);
 end
