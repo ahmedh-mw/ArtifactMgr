@@ -27,7 +27,7 @@ function processmodel(pm)
     modelGenRefTask = pm.addTask("modelGenRefTask", Title="Model Gen Task",Action=@modelGenTask,...
         IterationQuery=findRefModels,...
         InputQueries=padv.builtin.query.GetIterationArtifact);
-    modelGenRefTask.OutputDirectory = [fullfile(defaultResultPath, "gen"), "work/cache"];
+    modelGenRefTask.OutputDirectory = fullfile(defaultResultPath, "gen");
 
     reportTsk = pm.addTask("reportTask", Title="Report Task",Action=@reportTask,...
         IterationQuery=findModels,...
@@ -42,7 +42,9 @@ function processmodel(pm)
     codegenTopTask.TreatAsRefModel = false;
     codegenTopTask.Title = "Top Model Code Generation";
     codegenTopTask.TrackAllGeneratedCode = true;
-
+    codegenTask.GenerateExternalCodeCache = true;
+    codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
+    
     codegenTopTask.dependsOn(modelGenRefTask);
     codegenTopTask.runsAfter(reportTsk);
 end
