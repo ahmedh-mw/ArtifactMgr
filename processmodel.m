@@ -33,20 +33,6 @@ function processmodel(pm)
         IterationQuery=findModels,...
         InputQueries=padv.builtin.query.GetIterationArtifact);
     reportTsk.OutputDirectory = fullfile(defaultResultPath, "rep");
-    
-    codegenTopTask = pm.addTask(padv.builtin.task.GenerateCode("IterationQuery", ...
-        findProjectFile,"InputQueries",{findTopModels,...
-        padv.builtin.query.GetOutputsOfDependentTask(modelGenRefTask)},...
-        "Name", "Top Model Code Generation"));
-    codegenTopTask.UpdateThisModelReferenceTarget = 'IfOutOfDate';
-    codegenTopTask.TreatAsRefModel = false;
-    codegenTopTask.Title = "Top Model Code Generation";
-    codegenTopTask.TrackAllGeneratedCode = true;
-    codegenTask.GenerateExternalCodeCache = true;
-    codegenTask.ExternalCodeCacheDirectory = fullfile(defaultResultPath, 'external_code_cache');
-
-    codegenTopTask.dependsOn(modelGenRefTask);
-    codegenTopTask.runsAfter(reportTsk);
 end
 
 function taskResult = modelGenTask(input, obj)
