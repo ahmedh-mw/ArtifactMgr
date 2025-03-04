@@ -3,7 +3,7 @@ function generate_jenkins_pipeline_subfolder()
 
     op = padv.pipeline.JenkinsOptions;
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
-    op.PipelineArchitecture = "SingleJob";
+    op.PipelineArchitecture = "SerialJobs";
     op.MatlabInstallationLocation = "D:/sb/Bslcicd_0225/matlab/bin";
     op.GeneratedPipelineDirectory = "scm";
     op.AgentLabel = "padv_win_agents";
