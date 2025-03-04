@@ -27,7 +27,7 @@ function processmodel(pm)
     modelGenRefTask = pm.addTask("modelGenRefTask", Title="Model Gen Task",Action=@modelGenTask,...
         IterationQuery=findRefModels,...
         InputQueries=padv.builtin.query.GetIterationArtifact);
-    modelGenRefTask.OutputDirectory = fullfile(defaultResultPath, "gen");
+    modelGenRefTask.OutputDirectory = [fullfile(defaultResultPath, "gen"), "work/cache"];
 
     reportTsk = pm.addTask("reportTask", Title="Report Task",Action=@reportTask,...
         IterationQuery=findModels,...
@@ -44,12 +44,12 @@ function processmodel(pm)
     codegenTopTask.TrackAllGeneratedCode = true;
 
     codegenTopTask.dependsOn(modelGenRefTask);
-    codegenTopTask.dependsOn(reportTsk);
+    codegenTopTask.runsAfter(reportTsk);
 end
 
 function taskResult = modelGenTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 100;
+    counter = 1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
     cmTask = padv.builtin.task.CollectMetrics();
     cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
@@ -82,7 +82,7 @@ end
 
 function reportTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 100;
+    counter = 1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateSimulinkWebView
     slwebTask = padv.builtin.task.GenerateSimulinkWebView();
     slwebTask.RuntimeContext = obj.RuntimeContext;
