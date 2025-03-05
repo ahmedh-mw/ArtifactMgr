@@ -37,7 +37,7 @@ end
 
 function taskResult = modelGenTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 100;
+    counter = 1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
     cmTask = padv.builtin.task.CollectMetrics();
     cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
@@ -48,20 +48,30 @@ function taskResult = modelGenTask(input, obj)
     end
     outputPaths = results.OutputArtifacts.ArtifactAddress.getFileAddress();
     
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DetectDesignErrors
+    % dedTask = padv.builtin.task.DetectDesignErrors();
+    % dedTask.ReportFilePath = fullfile(obj.OutputDirectory, 'design_error_detections','$ITERATIONARTIFACT$_DED');
+    % dedTask.RuntimeContext = obj.RuntimeContext;
+    % dedTask.RuntimeContext.Task = dedTask;
+    % for i=1:counter
+    %     results = codegenTask.run(input);
+    % end
+    % outputs = arrayfun(@(a) a.ArtifactAddress.getFileAddress(), results.OutputArtifacts);
+    % outputPaths = [outputPaths, outputs];
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateCode
-    codegenTask = padv.builtin.task.GenerateCode();
-    codegenTask.UpdateThisModelReferenceTarget = 'IfOutOfDate';
-    codegenTask.TreatAsRefModel = true;
-    codegenTask.Title = "Reference Model Code Generation";
-    codegenTask.GenerateExternalCodeCache = true;
-    codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
-    codegenTask.RuntimeContext = obj.RuntimeContext;
-    codegenTask.RuntimeContext.Task = codegenTask;
-    for i=1:counter
-        results = codegenTask.run(input);
-    end
-    outputs = arrayfun(@(a) a.ArtifactAddress.getFileAddress(), results.OutputArtifacts);
-    outputPaths = [outputPaths, outputs];
+    % codegenTask = padv.builtin.task.GenerateCode();
+    % codegenTask.UpdateThisModelReferenceTarget = 'IfOutOfDate';
+    % codegenTask.TreatAsRefModel = true;
+    % codegenTask.Title = "Reference Model Code Generation";
+    % codegenTask.GenerateExternalCodeCache = true;
+    % codegenTask.ExternalCodeCacheDirectory = fullfile(obj.OutputDirectory, 'external_code_cache');
+    % codegenTask.RuntimeContext = obj.RuntimeContext;
+    % codegenTask.RuntimeContext.Task = codegenTask;
+    % for i=1:counter
+    %     results = codegenTask.run(input);
+    % end
+    % outputs = arrayfun(@(a) a.ArtifactAddress.getFileAddress(), results.OutputArtifacts);
+    % outputPaths = [outputPaths, outputs];
     
     taskResult.OutputPaths = outputPaths;
     taskResult.ResultValues.Pass = results.ResultValues.Pass;
@@ -70,7 +80,7 @@ end
 
 function reportTask(input, obj)
     taskResult = padv.TaskResult;
-    counter = 100;
+    counter = 1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateSimulinkWebView
     slwebTask = padv.builtin.task.GenerateSimulinkWebView();
     slwebTask.RuntimeContext = obj.RuntimeContext;
