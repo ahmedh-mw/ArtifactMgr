@@ -38,15 +38,25 @@ end
 function taskResult = modelGenTask(input, obj)
     taskResult = padv.TaskResult;
     counter = 1;
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
-    cmTask = padv.builtin.task.CollectMetrics();
-    cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
-    cmTask.RuntimeContext = obj.RuntimeContext;
-    cmTask.RuntimeContext.Task = cmTask;
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GenerateSimulinkWebView
+    slwebTask = padv.builtin.task.GenerateSimulinkWebView();
+    slwebTask.RuntimeContext = obj.RuntimeContext;
+    slwebTask.RuntimeContext.Task = slwebTask;
+    slwebTask.ReportPath = fullfile(obj.OutputDirectory,'webview');
+    slwebTask.ReportName = '$ITERATIONARTIFACT$_webview';
     for i=1:counter
-        results = cmTask.run(input);
+        results = slwebTask.run(input);
     end
-    outputPaths = results.OutputArtifacts.ArtifactAddress.getFileAddress();
+    outputPaths = [results.OutputArtifacts.ArtifactAddress.getFileAddress()];
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CollectMetrics
+    % cmTask = padv.builtin.task.CollectMetrics();
+    % cmTask.OutputDirectory = fullfile(obj.OutputDirectory, 'metrics');
+    % cmTask.RuntimeContext = obj.RuntimeContext;
+    % cmTask.RuntimeContext.Task = cmTask;
+    % for i=1:counter
+    %     results = cmTask.run(input);
+    % end
+    % outputPaths = results.OutputArtifacts.ArtifactAddress.getFileAddress();
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DetectDesignErrors
     % dedTask = padv.builtin.task.DetectDesignErrors();
@@ -90,8 +100,8 @@ function reportTask(input, obj)
     for i=1:counter
         results = slwebTask.run(input);
     end
-    
     outputPaths = [results.OutputArtifacts.ArtifactAddress.getFileAddress()];
+
     taskResult.OutputPaths = outputPaths;
     taskResult.ResultValues.Pass = results.ResultValues.Pass;
     taskResult.Status = results.Status;
