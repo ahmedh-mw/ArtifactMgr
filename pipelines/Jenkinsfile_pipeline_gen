@@ -11,7 +11,7 @@ node{
         env.API_TOKEN = api_token;
     }
     
-    env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
+    env.PATH = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin;$PATH";
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
