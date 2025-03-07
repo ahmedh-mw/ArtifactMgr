@@ -15,7 +15,7 @@ node{
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
-        runMATLABCommand "addpath('$WORKSPACE/pipelines');generate_jenkins_pipeline_subfolder();"
+        runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline_subfolder();"
         stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')
     }
     load "$WORKSPACE/scm/simulink_pipeline"
