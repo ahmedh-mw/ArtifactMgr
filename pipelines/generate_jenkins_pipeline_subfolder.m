@@ -1,5 +1,5 @@
 function generate_jenkins_pipeline_subfolder()
-    cp = openProject(pwd);
+    cp = openProject('scm');
 
     op = padv.pipeline.JenkinsOptions;
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
