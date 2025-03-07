@@ -5,7 +5,7 @@ function generate_jenkins_pipeline_subfolder()
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
     op.PipelineArchitecture = "IndependentModelParallelJobs";
     op.MatlabInstallationLocation = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin";
-    op.GeneratedPipelineDirectory = "scm";
+    op.GeneratedPipelineDirectory = "";
     op.AgentLabel = "padv_win_agents";
     op.StopOnStageFailure = true;
     op.RunprocessCommandOptions.GenerateJUnitForProcess = true;
