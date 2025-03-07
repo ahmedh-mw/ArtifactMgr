@@ -22,6 +22,5 @@ node{
         runMATLABCommand "addpath('$WORKSPACE/pipelines');generate_jenkins_pipeline_subfolder();"
         stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')
     }
-    // load "$WORKSPACE/scm/simulink_pipeline"
-    load "$WORKSPACE/simulink_pipeline"
+    load "$WORKSPACE/scm/simulink_pipeline"
 }
