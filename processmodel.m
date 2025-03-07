@@ -24,15 +24,19 @@ function processmodel(pm)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Register Tasks
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    modelGenRefTask = pm.addTask("modelGenRefTask", Title="Model Gen Task",Action=@modelGenTask,...
-        IterationQuery=findRefModels,...
-        InputQueries=padv.builtin.query.GetIterationArtifact);
-    modelGenRefTask.OutputDirectory = fullfile(defaultResultPath, "gen");
+    slwebTask = pm.addTask(padv.builtin.task.GenerateSimulinkWebView(IterationQuery=findModels));
+    slwebTask.ReportPath = fullfile(defaultResultPath,'webview');
+    slwebTask.ReportName = '$ITERATIONARTIFACT$_webview';
 
-    reportTsk = pm.addTask("reportTask", Title="Report Task",Action=@reportTask,...
-        IterationQuery=findModels,...
-        InputQueries=padv.builtin.query.GetIterationArtifact);
-    reportTsk.OutputDirectory = fullfile(defaultResultPath, "rep");
+    % modelGenRefTask = pm.addTask("modelGenRefTask", Title="Model Gen Task",Action=@modelGenTask,...
+    %     IterationQuery=findRefModels,...
+    %     InputQueries=padv.builtin.query.GetIterationArtifact);
+    % modelGenRefTask.OutputDirectory = fullfile(defaultResultPath, "gen");
+    % 
+    % reportTsk = pm.addTask("reportTask", Title="Report Task",Action=@reportTask,...
+    %     IterationQuery=findModels,...
+    %     InputQueries=padv.builtin.query.GetIterationArtifact);
+    % reportTsk.OutputDirectory = fullfile(defaultResultPath, "rep");
 end
 
 function taskResult = modelGenTask(input, obj)
