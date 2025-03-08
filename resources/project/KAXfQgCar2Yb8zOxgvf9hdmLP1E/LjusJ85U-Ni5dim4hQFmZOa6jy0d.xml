@@ -1,4 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Info File="tools/prjCleanup.m" GroupUUID="default" Icon="" Name="prjCleanup" Type="Shutdown" Visible="0">
-    <Extension Name="ShutdownPrev" Value="HEAD"/>
-</Info>
+<Info File="tools/prjCleanup.m" Icon="" Name="prjCleanup" Type="Shutdown" Visible="0"/>
