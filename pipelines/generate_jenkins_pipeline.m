@@ -3,7 +3,7 @@ function generate_jenkins_pipeline_subfolder()
     % cp = openProject('scm');
     % cp = openProject('scm');
     % cp = openProject(pwd);
-    cp = openProject('scm');
+    cp = openProject(pwd);
 
     op = padv.pipeline.JenkinsOptions;
     % op.PipelineArchitecture = "IndependentModelParallelJobs"; # SingleJob, SerialJobs, SerialJobsGroupPerTask
