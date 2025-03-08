@@ -1,7 +1,8 @@
 node{
     // env.PYTHON_ALIAS = 'python3';
     // ************** 1
-    env.SUPPORT_PACKAGE_ROOT = 'G:/86/ahmedh.Bslcicd.j2884790.10/matlab';
+    // env.SUPPORT_PACKAGE_ROOT = 'G:/86/ahmedh.Bslcicd.j2884790.10/matlab';
+    env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0209/matlab';
     // env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0225/matlab';
     
     env.ARTIFACTORY_SERVICE_MODE = 'network';         // jfrog/network
@@ -14,13 +15,15 @@ node{
     }
     
     // ************** 2
-    env.PATH = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin;$PATH";
+    // env.PATH = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin;$PATH";
+    env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
     // env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
     
     cleanWs();checkout scm;
 
     stage('Pipeline Generation'){
         // ************** 3
+        // runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline_subfolder();"
         runMATLABCommand "addpath('$WORKSPACE/scm/pipelines');generate_jenkins_pipeline_subfolder();"
         // runMATLABCommand "addpath('$WORKSPACE/pipelines');generate_jenkins_pipeline_subfolder();"
         stash(includes:'scm/ir_dag.json, scm/simulink_pipeline', name:'ir_dag')

@@ -1,5 +1,6 @@
 function generate_jenkins_pipeline_subfolder()
     % ************** 1
+    % cp = openProject('scm');
     cp = openProject('scm');
     % cp = openProject(pwd);
 
@@ -8,10 +9,12 @@ function generate_jenkins_pipeline_subfolder()
     op.PipelineArchitecture = "IndependentModelParallelJobs";
 
     % ************** 2
-    op.MatlabInstallationLocation = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin";
+    % op.MatlabInstallationLocation = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin";
+    op.MatlabInstallationLocation = "D:/sb/Bslcicd_0209/matlab";
     % op.MatlabInstallationLocation = "D:/sb/Bslcicd_0225/matlab/bin";
 
     % ************** 3
+    % op.GeneratedPipelineDirectory = "";
     op.GeneratedPipelineDirectory = "";
     %op.GeneratedPipelineDirectory = "scm";
     op.AgentLabel = "padv_win_agents";
