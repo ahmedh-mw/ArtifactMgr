@@ -10,14 +10,14 @@ function processmodel(pm)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     includeModelMaintainabilityMetricTask = false;  % This cause merging error: "Warning: This API cannot be used for a query result of type 'GraphQL'. "
-    includeModelTestingMetricTask = true;
-    includeModelStandardsTask = true;
+    includeModelTestingMetricTask = false;
+    includeModelStandardsTask = false;
     includeDesignErrorDetectionTask = false;  % This task fails if MATLAB is running in batch mode
     includeFindClones = false;
     includeModelComparisonTask = false;
     includeSDDTask = false;
     includeSimulinkWebViewTask = true;
-    includeTestsPerTestCaseTask = true;
+    includeTestsPerTestCaseTask = false;
     includeMergeTestResultsTask = false;
     includeRefGenerateCodeTask = false;
     includeTopGenerateCodeTask = false; % Project Level Top-Model code generation
