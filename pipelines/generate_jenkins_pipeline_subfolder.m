@@ -13,7 +13,8 @@ function generate_jenkins_pipeline_subfolder()
     % op.MatlabInstallationLocation = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin";
     % op.MatlabInstallationLocation = "D:/sb/Bslcicd_0209/matlab";
     % op.MatlabInstallationLocation = "D:/sb/Bslcicd_0225/matlab/bin";
-    op.MatlabInstallationLocation = "/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530";
+    % op.MatlabInstallationLocation = "/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530";
+    op.MatlabInstallationLocation = "/mathworks/devel/sbs/70/ahmedh.BR2024bd.j2893988.36";
 
     % ************** 3
     % op.GeneratedPipelineDirectory = "";
