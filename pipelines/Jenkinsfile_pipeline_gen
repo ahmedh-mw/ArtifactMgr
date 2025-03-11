@@ -19,7 +19,7 @@ node{
     // env.PATH = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin;$PATH";
     // env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
     // env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
-    env.PATH = "/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530/matlab/bin:$PATH";
+    env.PATH = "/mathworks/devel/sandbox/ahmedh/tools:/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530/matlab/bin:$PATH";
     
     cleanWs();checkout scm;
 
