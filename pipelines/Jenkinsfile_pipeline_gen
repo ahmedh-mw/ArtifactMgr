@@ -1,5 +1,5 @@
 node{
-    // env.PYTHON_ALIAS = 'python3';
+    env.PYTHON_ALIAS = 'python3';
     // ************** 1
     // env.SUPPORT_PACKAGE_ROOT = 'G:/86/ahmedh.Bslcicd.j2884790.10/matlab';
     // env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0209/matlab';
