@@ -2,10 +2,10 @@ node{
     // env.PYTHON_ALIAS = 'python3';
     // ************** 1
     // env.SUPPORT_PACKAGE_ROOT = 'G:/86/ahmedh.Bslcicd.j2884790.10/matlab';
-    env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0209/matlab';
+    env.SUPPORT_PACKAGE_ROOT = '/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530/matlab';
     // env.SUPPORT_PACKAGE_ROOT = 'D:/sb/Bslcicd_0225/matlab';
     
-    env.ARTIFACTORY_SERVICE_MODE = 'network';         // jfrog/network
+    env.ARTIFACTORY_SERVICE_MODE = 'jfrog';         // jfrog/network
     env.NETWORK_STORAGE_PATH = 'C:/Data/artifactory';
     env.ARTIFACTORY_URL = 'http://mathworks-v4rgb:8082/artifactory';
     env.REPO_NAME = 'padv-bslcicd';
@@ -16,7 +16,7 @@ node{
     
     // ************** 2
     // env.PATH = "G:/86/ahmedh.Bslcicd.j2884790.10/matlab/bin;$PATH";
-    env.PATH = "D:/sb/Bslcicd_0209/matlab/bin;$PATH";
+    env.PATH = "/mathworks/devel/sbs/86/ahmedh.Bslcicd.j2896530/matlab/bin:$PATH";
     // env.PATH = "D:/sb/Bslcicd_0225/matlab/bin;$PATH";
     
     cleanWs();checkout scm;
